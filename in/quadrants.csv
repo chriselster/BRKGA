@@ -1,6 +1,0 @@
-topLeft,topRight,bottomLeft,bottomRight
-True,True,True,True
-True,True,False,False
-False,True,False,True
-False,False,True,True
-True,False,True,False

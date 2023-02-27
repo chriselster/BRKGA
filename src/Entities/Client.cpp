@@ -1,27 +1,18 @@
-#include "Client.hpp"
-
+#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <vector>
 
-Client::Client()
-{
-    std::ifstream file;
-    file.open("clients.csv");
-    std::string line;
-    std::vector<std::string> tokens;
-    while (std::getline(file, line))
-    {
-        std::stringstream stringStream(line);
-        std::string token;
-        while (std::getline(stringStream, token, ','))
-        {
-            tokens.push_back(token);
-        }
-    }
-    file.close();
+class Client {
+public:
+    Client(const std::vector<std::string>& values) :
+        index(std::stoi(values[0])),
+        X_coordinate(std::stof(values[1])),
+        Y_coordinate(std::stof(values[2]))
+    {}
 
-    this->id = std::stoi(tokens[0]);
-    this->x = std::stod(tokens[1]);
-    this->y = std::stod(tokens[2]);
-}
+    int index;
+    float X_coordinate;
+    float Y_coordinate;
+};

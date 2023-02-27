@@ -1,15 +1,15 @@
 CFLAGS =-std=c++17  -pthread -fsanitize=undefined -pedantic -Wall -Wextra -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-promo -Wstrict-null-sentinel -Wstrict-overflow=5 -Wswitch-default -Wundef  -Wno-unused
 CC = g++
-CPPDIR = src/Entities
-INCDIR = src/Headers
+CPPDIR = src\Entities
+INCDIR = src\Headers
 
 ODIR = obj
-CPPFILES = $(wildcard $(CPPDIR)/*.cpp)
-INCFILES = $(wildcard $(INCDIR)/*.hpp)
+CPPFILES = $(wildcard $(CPPDIR)\*.cpp)
+INCFILES = $(wildcard $(INCDIR)\*.hpp)
 OBJFILES = $(notdir $(CPPFILES:.cpp=.o))
-OBJFILES_WITH_PATH = $(patsubst %,$(ODIR)/%,$(OBJFILES))
+OBJFILES_WITH_PATH = $(patsubst %,$(ODIR)\%,$(OBJFILES))
 
-$(ODIR)/%.o: $(CPPDIR)/%.cpp
+$(ODIR)\%.o: $(CPPDIR)\%.cpp
 	$(CC) -c -o $@ $< $(CFLAGS) -I $(INCDIR)
 
 # Set project directory one level above of Makefile directory. $(CURDIR) is a GNU make variable containing the path to the current working directory
@@ -35,7 +35,7 @@ INCLUDES = $(foreach dir, $(SOURCEDIRS), $(addprefix -I , $(dir)))
 VPATH = $(SOURCEDIRS)
 
 # Create a list of *.cpp sources in DIRS
-SOURCES = $(foreach dir,$(SOURCEDIRS),$(wildcard $(dir)/*.cpp))
+SOURCES = $(foreach dir,$(SOURCEDIRS),$(wildcard $(dir)\*.cpp))
 
 # Define objects for all sources
 OBJS = $(subst $(SOURCEDIR),$(BUILDDIR),$(SOURCES:.cpp=.o))
@@ -72,7 +72,7 @@ endif
 
 # Define the function that will generate each rule
 define generateRules
-$(1)/%.o: %.cpp
+$(1)\%.o: %.cpp
 	@echo Building $$@
 	$(HIDE)$(CC) $(CFLAGS) -g -c  $$(INCLUDES) -o $$(subst /,$$(PSEP),$$@) $$(subst /,$$(PSEP),$$<) -MMD $(CXXFLAGS)
 endef
@@ -99,7 +99,7 @@ $(TARGET): $(OBJS)
 	$(HIDE)$(CC) $(CFLAGS) $(OBJS) -g -o $(TARGET)
 
 move:
-	mv main Example/
+	mv main Example\\
 
 # Include dependencies
 -include $(DEPS)
