@@ -35,7 +35,7 @@ INCLUDES = $(foreach dir, $(SOURCEDIRS), $(addprefix -I , $(dir)))
 VPATH = $(SOURCEDIRS)
 
 # Create a list of *.cpp sources in DIRS
-SOURCES = $(foreach dir,$(SOURCEDIRS),$(wildcard $(dir)\*.cpp))
+SOURCES = $(foreach dir,$(SOURCEDIRS),$(wildcard $(dir)/*.cpp))
 
 # Define objects for all sources
 OBJS = $(subst $(SOURCEDIR),$(BUILDDIR),$(SOURCES:.cpp=.o))
