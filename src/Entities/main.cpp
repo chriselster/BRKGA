@@ -7,6 +7,7 @@
 
 int main(int argc, char const *argv[])
 {
+
 	const unsigned num_generations = std::stoi(argv[1]);
 
 	TSPInstance instance = TSPInstance();

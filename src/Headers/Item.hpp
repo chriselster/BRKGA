@@ -4,16 +4,14 @@
 class Item
 {
 private:
-	int id;
 	double weight;
 	int type;
 	int clientId;
 
-private:
-	Item();
-	~Item();
-
 public:
+	int id;
+	Item(const std::vector<std::string> &values);
+	~Item();
 };
 
 #endif // __LOG_H__

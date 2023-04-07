@@ -1,21 +1,25 @@
 #ifndef __Carrier_H__
 #define __Carrier_H__
-#include "Fares.hpp"
-#include "Quadrant.hpp"
-
+#include "Client.hpp"
+#include "Vehicle.hpp"
 class Carrier
 {
 private:
-	Quadrants quadrants;
-	Fares fare;
-	double minimumCapacity;
-	double costPerAdditionalCustomer;
-	double discoutPerCapacityIncrease;
-	double maxDistanceBetweenCustomers;
+	float minimumCapacity;
+	float costPerAdditionalCustomer;
+	float discountPerCapacityIncrease;
+	float maxDistanceBetweenCustomers;
+	std::vector<double> farePerVehicleType;
+	std::vector<Client *> clients;
+	std::vector<Vehicle *> vehicles;
 
 public:
-	Carrier();
+	int id;
+	Carrier(std::vector<std::string> values);
 	~Carrier();
+	void addClient(Client *client);
+	void addVehicle(Vehicle *vehicle);
+	void addFare(int vehicleType, double fare);
 };
 
 #endif // __Carrier_H__

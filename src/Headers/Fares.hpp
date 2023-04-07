@@ -8,7 +8,7 @@ private:
 	std::vector<double> typeValues;
 
 public:
-	Fares();
+	Fares(const std::vector<std::string> &values);
 	~Fares();
 };
 

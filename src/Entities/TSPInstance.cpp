@@ -1,97 +1,89 @@
 #include "TSPInstance.hpp"
-#include "Log.hpp"
-#include <algorithm>
-#include <vector>
-TSPInstance::TSPInstance()
-{
-	std::ifstream file = std::ifstream("in.txt");
-	ReadBuildings(file);
-	ReadDemands(file);
-}
 
 TSPInstance::~TSPInstance()
 {
 }
 
-void TSPInstance::ReadBuildings(std::ifstream &file)
+void TSPInstance::setUp()
 {
-	uint num_buildings;
-	file >> num_buildings;
-	for (size_t i = 0; i < num_buildings; i++)
+	readEntities();
+	readAcceptedClientsPerCarrier();
+	readAcceptedItemsPerVeichle();
+	readFaresPerCarrier();
+}
+
+void TSPInstance::readEntities()
+{
+	carriers = CsvReader::from_csv<Carrier>("carriers.csv");
+	clients = CsvReader::from_csv<Client>("clients.csv");
+	items = CsvReader::from_csv<Item>("items.csv");
+	vehicles = CsvReader::from_csv<Vehicle>("vehicles.csv");
+
+	// sort all
+	std::sort(carriers.begin(), carriers.end(), [](Carrier &a, Carrier &b)
+			  { return a.id < b.id; });
+	std::sort(clients.begin(), clients.end(), [](Client &a, Client &b)
+			  { return a.id < b.id; });
+	std::sort(items.begin(), items.end(), [](Item &a, Item &b)
+			  { return a.id < b.id; });
+	std::sort(vehicles.begin(), vehicles.end(), [](Vehicle &a, Vehicle &b)
+			  { return a.id < b.id; });
+}
+
+void TSPInstance::readAcceptedClientsPerCarrier()
+{
+	CsvReader reader = CsvReader("clients_per_carrier.csv");
+
+	for (std::vector<std::string> row : reader.rows)
 	{
-		Building building = Building(file);
-		buildings_.push_back(building);
-		std::vector<Room *> ptr_rooms = buildings_.back().GetRoomPointers();
-		ptr_rooms_.insert(ptr_rooms_.begin(), ptr_rooms.begin(), ptr_rooms.end());
+		int carrierId = std::stoi(row[0]);
+		int clientId = std::stoi(row[1]);
+
+		carriers[carrierId].addClient(&clients[clientId]);
 	}
 }
 
-uint TSPInstance::size()
+void TSPInstance::readAcceptedItemsPerVeichle()
 {
-	return demands_.size();
-}
+	CsvReader reader = CsvReader("items_per_vehicle.csv");
 
-void TSPInstance::ReadDemands(std::ifstream &file)
-{
-	while (!file.eof())
+	for (std::vector<std::string> row : reader.rows)
 	{
-		Demand demand = Demand(file);
-		demands_.push_back(demand);
-	}
-	std::sort(demands_.begin(), demands_.end());
-}
+		int vehicleType = std::stoi(row[0]);
+		int itemType = std::stoi(row[1]);
 
-void TSPInstance::Print()
-{
-	for (auto &&building : buildings_)
-	{
-		building.Print();
+		for (auto &vehicle : vehicles)
+		{
+			if (vehicle.type == vehicleType)
+			{
+				vehicle.addAcceptedItem(itemType);
+			}
+		}
 	}
 }
 
-uint TSPInstance::Evaluate(std::vector<int> selected_rooms)
+void TSPInstance::readFaresPerCarrier()
 {
-	uint index = 0;
-	uint fittness = 0;
-	for (Demand &demand : demands_)
-	{
-		if (ptr_rooms_[selected_rooms[index++]]->Allocate(demand))
-			fittness += demand.value();
-	}
-	return fittness;
-}
+	// 	vehicleType,fare,carrierId
+	// 1,0.09,1
+	// 2,0.19,1
+	// 1,0.1,2
+	CsvReader reader = CsvReader("fares.csv");
 
-uint TSPInstance::room_qtt()
-{
-	uint total = 0;
-	for (Building &building : buildings_)
+	for (std::vector<std::string> row : reader.rows)
 	{
-		total += building.room_qtt();
-	}
-	return total;
-}
+		int vehicleType = std::stoi(row[0]);
+		double fare = std::stod(row[1]);
+		int carrierId = std::stoi(row[2]);
 
-void TSPInstance::Reset()
-{
-	for (Room *&ptr_room : ptr_rooms_)
-	{
-		ptr_room->Reset();
+		carriers[carrierId].addFare(vehicleType, fare);
 	}
 }
 
-void TSPInstance::PrintStatistics()
+void TSPInstance::addVehiclesToCarriers()
 {
-	uint allocated_demands = CountAllocatedDemands();
-	Log::GetInstance().Print("Alocadas:", allocated_demands, demands_.size());
-}
-
-uint TSPInstance::CountAllocatedDemands()
-{
-	uint allocated_demands = 0;
-	for (auto &&demand : demands_)
+	for (auto &vehicle : vehicles)
 	{
-		if (demand.is_allocated())
-			allocated_demands++;
+		carriers[vehicle.carrierId].addVehicle(&vehicle);
 	}
-	return allocated_demands;
 }

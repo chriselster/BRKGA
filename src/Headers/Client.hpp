@@ -7,12 +7,12 @@
 class Client
 {
 private:
-	int id;
 	double x;
 	double y;
 
 public:
-	Client();
+	int id;
+	Client(const std::vector<std::string> &values);
 	~Client();
 };
 
