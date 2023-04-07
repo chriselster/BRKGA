@@ -1,0 +1,32 @@
+{
+    // make gdb stop trying to compile the source code
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Iniciar",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/app",
+            "args": [
+                "100"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/in",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Habilitar a reformatação automática para gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Definir Tipo de Desmontagem como Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}

@@ -11,3 +11,7 @@ Item::Item(const std::vector<std::string> &values) : id(std::stoi(values[0])),
                                                      clientId(std::stoi(values[3]))
 {
 }
+
+Item::~Item()
+{
+}

@@ -1,7 +1,7 @@
 
-#include "brkga_mp_ipr/brkga_mp_ipr.hpp"
-#include "TSPDecoder.hpp"
-#include "TSPInstance.hpp"
+#include "./Headers/brkga_mp_ipr/brkga_mp_ipr.hpp"
+#include "./Headers/TSPDecoder.hpp"
+#include "./Headers/TSPInstance.hpp"
 #include <iostream>
 #include <string>
 
@@ -11,9 +11,10 @@ int main(int argc, char const *argv[])
 	const unsigned num_generations = std::stoi(argv[1]);
 
 	TSPInstance instance = TSPInstance();
+	instance.setUp();
+	instance.print();
 
 	TSPDecoder decoder(instance);
-
 	auto [brkga_params, control_params] =
 		BRKGA::readConfiguration("config.conf");
 
@@ -26,7 +27,7 @@ int main(int argc, char const *argv[])
 	algorithm.evolve(num_generations);
 
 	BRKGA::Chromosome best = algorithm.getBestChromosome();
-	decoder.PrintSolution(best);
+	decoder.printSolution(best);
 
 	return 0;
 }

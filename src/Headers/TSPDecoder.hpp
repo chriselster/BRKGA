@@ -8,16 +8,12 @@
 class TSPDecoder
 {
 private:
-	std::vector<int> selected_rooms_;
-
 public:
 	TSPDecoder(TSPInstance &instance);
 	~TSPDecoder();
 	BRKGA::fitness_t decode(BRKGA::Chromosome &chromosome, bool /* not-used */);
 	TSPInstance &instance;
-	void DecodeRooms(BRKGA::Chromosome &chromosome);
-	void Reset();
-	void PrintSolution(BRKGA::Chromosome &chromosome);
+	void printSolution(BRKGA::Chromosome &chromosome);
 };
 
 #endif // __TSPDECODER_H__

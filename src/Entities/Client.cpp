@@ -11,6 +11,10 @@ Client::Client(const std::vector<std::string> &values) : id(std::stoi(values[0])
 {
 }
 
+Client::~Client()
+{
+}
+
 void Client::print()
 {
     std::cout << "Client " << id << " at (" << x << ", " << y << ")" << std::endl;

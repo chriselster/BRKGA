@@ -8,6 +8,10 @@ Carrier::Carrier(std::vector<std::string> values) : id(std::stoi(values[0])),
 {
 }
 
+Carrier::~Carrier()
+{
+}
+
 void Carrier::addClient(Client *client)
 {
     clients.push_back(client);
@@ -15,6 +19,8 @@ void Carrier::addClient(Client *client)
 
 void Carrier::addFare(int vehicleType, double fare)
 {
+    if (farePerVehicleType.size() <= vehicleType)
+        farePerVehicleType.resize(vehicleType + 1, 0.0);
     farePerVehicleType[vehicleType] = fare;
 }
 

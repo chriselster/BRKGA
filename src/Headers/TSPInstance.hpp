@@ -10,6 +10,7 @@
 #include "Vehicle.hpp"
 #include "../Entities/CsvReader.cpp"
 #include <string>
+#include <algorithm>
 
 class TSPInstance
 {
@@ -30,15 +31,11 @@ public:
 	TSPInstance();
 	~TSPInstance();
 
-	void print();
-	uint Evaluate(std::vector<int> rooms);
-
 	void setUp();
-	uint room_qtt();
-	void Reset();
+	uint evaluate(std::vector<int> cromossome);
 	uint size();
-	void PrintStatistics();
-	uint CountAllocatedDemands();
+	void printStatistics();
+	void print();
 };
 
 #endif // __ALLOCATIONHANDLER_H__

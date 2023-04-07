@@ -20,6 +20,7 @@ public:
         std::ifstream file(filename);
         std::string line;
 
+        std::getline(file, line);
         while (std::getline(file, line))
         {
             std::stringstream ss(line);
@@ -40,6 +41,7 @@ public:
     CsvReader(std::string filename, char delimiter = ',')
         : m_delimiter(delimiter)
     {
+        printf("Reading file %s)\n", filename.c_str());
         m_file.open(filename);
         if (!m_file.is_open())
         {

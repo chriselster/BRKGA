@@ -1,5 +1,9 @@
 #include "TSPInstance.hpp"
 
+TSPInstance::TSPInstance()
+{
+}
+
 TSPInstance::~TSPInstance()
 {
 }
@@ -110,3 +114,15 @@ void TSPInstance::print()
 		client.print();
 	}
 }
+
+uint TSPInstance::evaluate(std::vector<int> cromossome)
+{
+	return 1;
+}
+
+uint TSPInstance::size()
+{
+	return 10;
+}
+
+void TSPInstance::printStatistics() {}

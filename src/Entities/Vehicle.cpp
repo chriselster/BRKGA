@@ -13,6 +13,10 @@ Vehicle::Vehicle(std::vector<std::string> values)
     carrierId = std::stoi(values[3]);
 }
 
+Vehicle::~Vehicle()
+{
+}
+
 void Vehicle::addAcceptedItem(int itemType)
 {
     acceptedItems.push_back(itemType);
