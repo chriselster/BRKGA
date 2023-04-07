@@ -10,3 +10,13 @@ Client::Client(const std::vector<std::string> &values) : id(std::stoi(values[0])
                                                          y(std::stof(values[2]))
 {
 }
+
+void Client::print()
+{
+    std::cout << "Client " << id << " at (" << x << ", " << y << ")" << std::endl;
+}
+
+void Client::addItem(Item *item)
+{
+    items.push_back(item);
+}

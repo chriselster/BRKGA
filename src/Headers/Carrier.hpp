@@ -2,6 +2,9 @@
 #define __Carrier_H__
 #include "Client.hpp"
 #include "Vehicle.hpp"
+#include <vector>
+#include <string>
+#include <iostream>
 class Carrier
 {
 private:
@@ -20,6 +23,7 @@ public:
 	void addClient(Client *client);
 	void addVehicle(Vehicle *vehicle);
 	void addFare(int vehicleType, double fare);
+	void print();
 };
 
 #endif // __Carrier_H__

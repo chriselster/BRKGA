@@ -17,3 +17,20 @@ void Vehicle::addAcceptedItem(int itemType)
 {
     acceptedItems.push_back(itemType);
 }
+
+bool Vehicle::acceptsItem(int itemType)
+{
+    for (int i = 0; i < acceptedItems.size(); i++)
+    {
+        if (acceptedItems[i] == itemType)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+void Vehicle::print()
+{
+    std::cout << "Vehicle " << id << " of type " << type << " with capacity " << capacity << std::endl;
+}

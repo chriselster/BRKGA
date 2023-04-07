@@ -6,9 +6,9 @@ class Item
 private:
 	double weight;
 	int type;
-	int clientId;
 
 public:
+	int clientId;
 	int id;
 	Item(const std::vector<std::string> &values);
 	~Item();

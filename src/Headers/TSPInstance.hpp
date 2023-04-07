@@ -6,7 +6,6 @@
 #include <vector>
 #include "Carrier.hpp"
 #include "Client.hpp"
-#include "Fares.hpp"
 #include "Item.hpp"
 #include "Vehicle.hpp"
 #include "../Entities/CsvReader.cpp"
@@ -17,7 +16,6 @@ class TSPInstance
 private:
 	std::vector<Carrier> carriers;
 	std::vector<Client> clients;
-	std::vector<Fares> fares;
 	std::vector<Item> items;
 	std::vector<Vehicle> vehicles;
 
@@ -26,12 +24,13 @@ private:
 	void readAcceptedClientsPerCarrier();
 	void readEntities();
 	void addVehiclesToCarriers();
+	void addItemsToClients();
 
 public:
 	TSPInstance();
 	~TSPInstance();
 
-	void Print();
+	void print();
 	uint Evaluate(std::vector<int> rooms);
 
 	void setUp();

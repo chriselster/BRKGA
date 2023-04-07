@@ -10,6 +10,8 @@ void TSPInstance::setUp()
 	readAcceptedClientsPerCarrier();
 	readAcceptedItemsPerVeichle();
 	readFaresPerCarrier();
+	addVehiclesToCarriers();
+	addItemsToClients();
 }
 
 void TSPInstance::readEntities()
@@ -85,5 +87,26 @@ void TSPInstance::addVehiclesToCarriers()
 	for (auto &vehicle : vehicles)
 	{
 		carriers[vehicle.carrierId].addVehicle(&vehicle);
+	}
+}
+
+void TSPInstance::addItemsToClients()
+{
+	for (auto &item : items)
+	{
+		clients[item.clientId].addItem(&item);
+	}
+}
+
+void TSPInstance::print()
+{
+	for (auto &carrier : carriers)
+	{
+		carrier.print();
+	}
+
+	for (auto &client : clients)
+	{
+		client.print();
 	}
 }

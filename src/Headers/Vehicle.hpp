@@ -14,6 +14,8 @@ public:
 	Vehicle(std::vector<std::string> values);
 	~Vehicle();
 	void addAcceptedItem(int itemType);
+	bool acceptsItem(int itemType);
+	void print();
 };
 
 #endif // __Vehicle_H__

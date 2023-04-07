@@ -22,3 +22,21 @@ void Carrier::addVehicle(Vehicle *vehicle)
 {
     vehicles.push_back(vehicle);
 }
+
+void Carrier::print()
+{
+    std::cout << "Carrier " << id << " with " << clients.size() << " clients" << std::endl;
+    std::cout << std::endl;
+    std::cout << "Clients: " << std::endl;
+    for (auto &client : clients)
+    {
+        client->print();
+    }
+    std::cout << std::endl;
+    std::cout << "Vehicles: " << std::endl;
+
+    for (auto &vehicle : vehicles)
+    {
+        vehicle->print();
+    }
+}
