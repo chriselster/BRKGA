@@ -29,3 +29,14 @@ clean:
 	rm -f $(OBJS) $(TARGET)
 
 .PHONY: all clean
+
+TEST_DIR := src/Tests
+TEST_SRCS := $(wildcard $(TEST_DIR)/*.cpp)
+TEST_OBJS := $(TEST_SRCS:.cpp=.o)
+
+build_test: $(OBJS)
+	$(CXX) $(CXXFLAGS) ./src/tests/Carrier_test.cpp ./src/tests/obj/catch_amalgamated.o ./obj/Entities/Point.o ./obj/Entities/Carrier.o ./obj/Entities/Client.o ./obj/Entities/Vehicle.o ./obj/Entities/Item.o -g -o ./test
+	
+
+test: build_test
+	./test

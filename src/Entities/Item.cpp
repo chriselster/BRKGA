@@ -12,6 +12,23 @@ Item::Item(const std::vector<std::string> &values) : id(std::stoi(values[0])),
 {
 }
 
+Item::Item(int id, int clientId, int type, double weight) : id(id),
+                                                            clientId(clientId),
+                                                            type(type),
+                                                            weight(weight)
+{
+}
+
 Item::~Item()
 {
+}
+
+void Item::setDestination(Point *p)
+{
+    destination = *p;
+}
+
+double Item::distanceTo(Point *p)
+{
+    return destination.distanceTo(p);
 }

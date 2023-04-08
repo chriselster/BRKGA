@@ -1,17 +1,22 @@
-#ifndef __LOG_H__
-#define __LOG_H__
+#ifndef ITEM_HPP
+#define ITEM_HPP
+#include "Point.hpp"
 
 class Item
 {
 private:
-	double weight;
-	int type;
+	Point destination;
 
 public:
+	double weight;
+	int type;
 	int clientId;
 	int id;
 	Item(const std::vector<std::string> &values);
+	Item(int id, int clientId, int type, double weight);
 	~Item();
+	void setDestination(Point *p);
+	double distanceTo(Point *p);
 };
 
-#endif // __LOG_H__
+#endif // ITEM_HPP

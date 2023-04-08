@@ -45,7 +45,7 @@ void TSPInstance::readAcceptedClientsPerCarrier()
 		int carrierId = std::stoi(row[0]);
 		int clientId = std::stoi(row[1]);
 
-		carriers[carrierId].addClient(&clients[clientId]);
+		carriers[carrierId - 1].addClient(&clients[clientId - 1]);
 	}
 }
 
@@ -70,10 +70,6 @@ void TSPInstance::readAcceptedItemsPerVeichle()
 
 void TSPInstance::readFaresPerCarrier()
 {
-	// 	vehicleType,fare,carrierId
-	// 1,0.09,1
-	// 2,0.19,1
-	// 1,0.1,2
 	CsvReader reader = CsvReader("fares.csv");
 
 	for (std::vector<std::string> row : reader.rows)
@@ -82,7 +78,7 @@ void TSPInstance::readFaresPerCarrier()
 		double fare = std::stod(row[1]);
 		int carrierId = std::stoi(row[2]);
 
-		carriers[carrierId].addFare(vehicleType, fare);
+		carriers[carrierId - 1].addFare(vehicleType, fare);
 	}
 }
 
@@ -90,7 +86,7 @@ void TSPInstance::addVehiclesToCarriers()
 {
 	for (auto &vehicle : vehicles)
 	{
-		carriers[vehicle.carrierId].addVehicle(&vehicle);
+		carriers[vehicle.carrierId - 1].addVehicle(&vehicle);
 	}
 }
 
@@ -98,7 +94,7 @@ void TSPInstance::addItemsToClients()
 {
 	for (auto &item : items)
 	{
-		clients[item.clientId].addItem(&item);
+		clients[item.clientId - 1].addItem(&item);
 	}
 }
 
@@ -122,7 +118,7 @@ uint TSPInstance::evaluate(std::vector<int> cromossome)
 
 uint TSPInstance::size()
 {
-	return 10;
+	return items.size();
 }
 
 void TSPInstance::printStatistics() {}

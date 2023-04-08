@@ -15,6 +15,7 @@ private:
 public:
 	int id;
 	Client(const std::vector<std::string> &values);
+	Client(int id, double x = 0, double y = 0);
 	~Client();
 	void addItem(Item *item);
 	void print();

@@ -11,6 +11,16 @@ Vehicle::Vehicle(std::vector<std::string> values)
     type = std::stod(values[1]);
     capacity = std::stod(values[2]);
     carrierId = std::stoi(values[3]);
+    capacityLeft = capacity;
+}
+
+Vehicle::Vehicle(int id, int carrierId, int type, int capacity)
+{
+    this->id = id;
+    this->carrierId = carrierId;
+    this->type = type;
+    this->capacity = capacity;
+    this->capacityLeft = capacity;
 }
 
 Vehicle::~Vehicle()
@@ -19,19 +29,15 @@ Vehicle::~Vehicle()
 
 void Vehicle::addAcceptedItem(int itemType)
 {
-    acceptedItems.push_back(itemType);
+    acceptedItems.insert(itemType);
 }
 
-bool Vehicle::acceptsItem(int itemType)
+bool Vehicle::canTake(Item *item)
 {
-    for (int i = 0; i < acceptedItems.size(); i++)
-    {
-        if (acceptedItems[i] == itemType)
-        {
-            return true;
-        }
-    }
-    return false;
+    if (acceptedItems.find(item->type) == acceptedItems.end())
+        return false;
+
+    return capacityLeft >= item->weight;
 }
 
 void Vehicle::print()
