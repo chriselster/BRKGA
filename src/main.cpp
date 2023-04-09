@@ -24,7 +24,13 @@ int main(int argc, char const *argv[])
 
 	algorithm.initialize();
 
-	algorithm.evolve(num_generations);
+	for (unsigned i = 0; i <= num_generations; i += 50)
+	{
+		algorithm.evolve(50);
+		std::cout << "Generation " << i + 50 << std::endl;
+		BRKGA::Chromosome best = algorithm.getBestChromosome();
+		decoder.printSolution(best);
+	}
 
 	BRKGA::Chromosome best = algorithm.getBestChromosome();
 	decoder.printSolution(best);
