@@ -131,6 +131,11 @@ uint TSPInstance::size()
 
 void TSPInstance::printStatistics()
 {
+	for (auto &vehicle : vehicles)
+	{
+		std::cout << "Vehicle " << vehicle.id << " has " << vehicle.remainingCapacity << " remaining capacity" << std::endl;
+	}
+	std::cout << std::endl;
 	for (auto &item : items)
 	{
 		if (item.wasAttended())
@@ -138,11 +143,6 @@ void TSPInstance::printStatistics()
 		else
 			std::cout << "\033[1;31mItem " << item.id << " was not attended.\033[0m"
 					  << " Position: " << item.destination.toString() << std::endl;
-	}
-	std::cout << std::endl;
-	for (auto &vehicle : vehicles)
-	{
-		std::cout << "Vehicle " << vehicle.id << " has " << vehicle.remainingCapacity << " remaining capacity" << std::endl;
 	}
 }
 
@@ -189,7 +189,7 @@ void TSPInstance::attendItem(Item *item, Vehicle *vehicle)
 	{
 		if (other.id == item->id)
 			continue;
-		if (item->distanceTo(&other.destination) <= carrier->maxDistanceBetweenClients)
+		if (item->distanceTo(&other.destination) <= carrier->maxDistanceBetweenClientsFactor * 100)
 		{
 			carrier->addProximityClient(other.clientId, vehicle);
 		}

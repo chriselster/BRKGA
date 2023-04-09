@@ -6,8 +6,10 @@ class Vehicle;
 class Item
 {
 private:
+	bool attended = false;
+
 public:
-	Vehicle *vehicle;
+	Vehicle *vehicle = nullptr;
 	Point destination;
 	double weight;
 	int type;

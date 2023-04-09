@@ -36,9 +36,10 @@ double Item::distanceTo(Point *point)
 void Item::setVehicle(Vehicle *vehicle)
 {
     this->vehicle = vehicle;
+    attended = true;
 }
 
 bool Item::wasAttended()
 {
-    return vehicle != nullptr;
+    return attended;
 }

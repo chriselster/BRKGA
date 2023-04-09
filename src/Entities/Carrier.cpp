@@ -4,14 +4,14 @@ Carrier::Carrier(std::vector<std::string> values) : id(std::stoi(values[0])),
                                                     minimumCapacity(std::stof(values[1])),
                                                     costPerAdditionalCustomer(std::stof(values[2])),
                                                     discountPerCapacityIncrease(std::stof(values[3])),
-                                                    maxDistanceBetweenClients(std::stof(values[4]))
+                                                    maxDistanceBetweenClientsFactor(std::stof(values[4]))
 {
 }
 
 Carrier::Carrier(float minimumCapacity, float costPerAdditionalCustomer, float discountPerCapacityIncrease, float maxDistanceBetweenCustomers) : minimumCapacity(minimumCapacity),
                                                                                                                                                  costPerAdditionalCustomer(costPerAdditionalCustomer),
                                                                                                                                                  discountPerCapacityIncrease(discountPerCapacityIncrease),
-                                                                                                                                                 maxDistanceBetweenClients(maxDistanceBetweenCustomers)
+                                                                                                                                                 maxDistanceBetweenClientsFactor(maxDistanceBetweenCustomers)
 {
 }
 
@@ -21,7 +21,7 @@ Carrier::Carrier()
     minimumCapacity = 0;
     costPerAdditionalCustomer = 0;
     discountPerCapacityIncrease = 0;
-    maxDistanceBetweenClients = 0;
+    maxDistanceBetweenClientsFactor = 0;
 }
 
 Carrier::~Carrier()

@@ -29,7 +29,7 @@ private:
 	std::map<int, std::vector<Vehicle *>> proximityClients;
 
 public:
-	float maxDistanceBetweenClients;
+	float maxDistanceBetweenClientsFactor;
 	int id;
 	Carrier(std::vector<std::string> values);
 	Carrier(float minimumCapacity, float costPerAdditionalCustomer, float discountPerCapacityIncrease, float maxDistanceBetweenCustomers);
