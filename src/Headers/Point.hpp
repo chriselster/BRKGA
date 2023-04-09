@@ -1,5 +1,8 @@
 #ifndef POINT_HPP
 #define POINT_HPP
+#include <cmath>
+#include <iostream>
+#include <string>
 
 class Point
 {
@@ -13,6 +16,8 @@ public:
     Point(const Point &p);
     ~Point();
     double distanceTo(Point *p);
+    void print();
+    std::string toString();
 };
 
 #endif // POINT_HPP

@@ -47,6 +47,7 @@ void Vehicle::print()
 
 void Vehicle::take(Item *item)
 {
+    item->setVehicle(this);
     remainingCapacity -= item->weight;
 }
 

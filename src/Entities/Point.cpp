@@ -27,3 +27,13 @@ double Point::distanceTo(Point *p)
 {
     return sqrt(pow(m_x - p->m_x, 2) + pow(m_y - p->m_y, 2));
 }
+
+void Point::print()
+{
+    std::cout << toString() << std::endl;
+}
+
+std::string Point::toString()
+{
+    return "(" + std::to_string(m_x) + ", " + std::to_string(m_y) + ")";
+}

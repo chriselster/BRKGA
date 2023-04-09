@@ -23,12 +23,22 @@ Item::~Item()
 {
 }
 
-void Item::setDestination(Point *p)
+void Item::setDestination(Point *point)
 {
-    destination = *p;
+    destination = *point;
 }
 
-double Item::distanceTo(Point *p)
+double Item::distanceTo(Point *point)
 {
-    return destination.distanceTo(p);
+    return destination.distanceTo(point);
+}
+
+void Item::setVehicle(Vehicle *vehicle)
+{
+    this->vehicle = vehicle;
+}
+
+bool Item::wasAttended()
+{
+    return vehicle != nullptr;
 }

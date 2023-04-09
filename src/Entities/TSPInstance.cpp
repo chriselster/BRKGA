@@ -131,6 +131,15 @@ uint TSPInstance::size()
 
 void TSPInstance::printStatistics()
 {
+	for (auto &item : items)
+	{
+		if (item.wasAttended())
+			std::cout << "\033[1;32mItem " << item.id << " was attended by vehicle " << item.vehicle->id << "\033[0m" << std::endl;
+		else
+			std::cout << "\033[1;31mItem " << item.id << " was not attended.\033[0m"
+					  << " Position: " << item.destination.toString() << std::endl;
+	}
+	std::cout << std::endl;
 	for (auto &vehicle : vehicles)
 	{
 		std::cout << "Vehicle " << vehicle.id << " has " << vehicle.remainingCapacity << " remaining capacity" << std::endl;
