@@ -8,20 +8,21 @@
 class Vehicle
 {
 private:
-	int capacity;
-	int capacityLeft;
+	double capacity;
 	std::set<int> acceptedItems;
 
 public:
+	double remainingCapacity;
 	int carrierId;
 	int id;
 	int type;
 	Vehicle(std::vector<std::string> values);
-	Vehicle(int id, int carrierId, int type, int capacity);
+	Vehicle(int id, int carrierId, int type, double capacity);
 	~Vehicle();
 	void addAcceptedItem(int itemType);
 	bool canTake(Item *itemType);
 	void print();
+	void take(Item *item);
 };
 
 #endif // __Vehicle_H__

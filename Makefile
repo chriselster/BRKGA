@@ -35,8 +35,11 @@ TEST_SRCS := $(wildcard $(TEST_DIR)/*.cpp)
 TEST_OBJS := $(TEST_SRCS:.cpp=.o)
 
 build_test: $(OBJS)
-	$(CXX) $(CXXFLAGS) ./src/tests/Carrier_test.cpp ./src/tests/obj/catch_amalgamated.o ./obj/Entities/Point.o ./obj/Entities/Carrier.o ./obj/Entities/Client.o ./obj/Entities/Vehicle.o ./obj/Entities/Item.o -g -o ./test
+	$(CXX) $(CXXFLAGS) ./src/tests/Carrier_test.cpp ./src/tests/obj/catch_amalgamated.o ./obj/Entities/Point.o ./obj/Entities/Carrier.o ./obj/Entities/Client.o ./obj/Entities/Vehicle.o ./obj/Entities/Item.o -g -o ./carrier_test
+	$(CXX) $(CXXFLAGS) ./src/tests/TSPInstance_test.cpp ./src/tests/obj/catch_amalgamated.o ./obj/Entities/Point.o ./obj/Entities/Carrier.o ./obj/Entities/Client.o ./obj/Entities/TSPInstance.o ./obj/Entities/Vehicle.o ./obj/Entities/Item.o -g -o ./instance_test
 	
 
 test: build_test
-	./test
+	mv ./instance_test ./src/tests/in/
+	./carrier_test
+	./src/tests/in/instance_test

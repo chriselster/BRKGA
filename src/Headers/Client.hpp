@@ -19,6 +19,7 @@ public:
 	~Client();
 	void addItem(Item *item);
 	void print();
+	Point *getPosition();
 };
 
 #endif // __CLIENT_H__

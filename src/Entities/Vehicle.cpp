@@ -11,16 +11,16 @@ Vehicle::Vehicle(std::vector<std::string> values)
     type = std::stod(values[1]);
     capacity = std::stod(values[2]);
     carrierId = std::stoi(values[3]);
-    capacityLeft = capacity;
+    remainingCapacity = capacity;
 }
 
-Vehicle::Vehicle(int id, int carrierId, int type, int capacity)
+Vehicle::Vehicle(int id, int carrierId, int type, double capacity)
 {
     this->id = id;
     this->carrierId = carrierId;
     this->type = type;
     this->capacity = capacity;
-    this->capacityLeft = capacity;
+    this->remainingCapacity = capacity;
 }
 
 Vehicle::~Vehicle()
@@ -37,10 +37,15 @@ bool Vehicle::canTake(Item *item)
     if (acceptedItems.find(item->type) == acceptedItems.end())
         return false;
 
-    return capacityLeft >= item->weight;
+    return remainingCapacity >= item->weight;
 }
 
 void Vehicle::print()
 {
     std::cout << "Vehicle " << id << " of type " << type << " with capacity " << capacity << std::endl;
+}
+
+void Vehicle::take(Item *item)
+{
+    remainingCapacity -= item->weight;
 }

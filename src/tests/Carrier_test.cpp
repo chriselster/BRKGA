@@ -16,28 +16,28 @@ TEST_CASE("Check if can attend item", "[item]")
     SECTION("Success")
     {
         vehicle->addAcceptedItem(1);
-        bool accepts = carrier.acceptsItem(new Item(1, 1, 1, 1));
+        bool accepts = carrier.canAttend(new Item(1, 1, 1, 1));
         REQUIRE(accepts);
     }
 
     SECTION("Fail - client not in carrier")
     {
         vehicle->addAcceptedItem(1);
-        bool accepts = carrier.acceptsItem(new Item(1, 2, 1, 1));
+        bool accepts = carrier.canAttend(new Item(1, 2, 1, 1));
         REQUIRE(!accepts);
     }
 
     SECTION("Fail - vehicle does not accept item")
     {
         vehicle->addAcceptedItem(2);
-        bool accepts = carrier.acceptsItem(new Item(1, 1, 1, 1));
+        bool accepts = carrier.canAttend(new Item(1, 1, 1, 1));
         REQUIRE(!accepts);
     }
 
     SECTION("Fail - vehicle does not have capacity")
     {
         vehicle->addAcceptedItem(1);
-        bool accepts = carrier.acceptsItem(new Item(1, 1, 1, 2));
+        bool accepts = carrier.canAttend(new Item(1, 1, 1, 2));
         REQUIRE(!accepts);
     }
 }
@@ -58,7 +58,8 @@ TEST_CASE("Get available vehicles", "[vehicle]")
 
 TEST_CASE("Calculate trip cost")
 {
-    Carrier carrier = Carrier(1, 1, 1, 1);
+    double COST_PER_ADDITIONAL_CLIENT = 5;
+    Carrier carrier = Carrier(1, COST_PER_ADDITIONAL_CLIENT, 1, 1);
     carrier.addClient(1);
     Vehicle *vehicle = new Vehicle(1, 1, 1, 1);
     Item *item = new Item(1, 1, 1, 1);
@@ -92,10 +93,28 @@ TEST_CASE("Calculate trip cost")
 
     SECTION("Single client underweight")
     {
-        // TODO: implement
+        // TODO: implementar, lembrar que se o primeiro item estiver abaixo do peso
+        // e o segundo fazer passar, o custo deve ser reduzido do valor da tarifa que o primeiro item pagaria
     }
 
     SECTION("Multiple client")
     {
+        carrier.addProximityClient(2, vehicle);
+        double cost = carrier.calculateTripCost(new Item(2, 2, 1, 1), vehicle);
+        REQUIRE(cost == COST_PER_ADDITIONAL_CLIENT);
     }
+}
+
+TEST_CASE("Attend item")
+{
+    Carrier carrier = Carrier(1, 1, 1, 1);
+    carrier.addClient(1);
+    Vehicle *vehicle = new Vehicle(1, 1, 1, 1);
+    Item *item = new Item(1, 1, 1, 1);
+    item->setDestination(new Point(0, 1));
+    vehicle->addAcceptedItem(1);
+    carrier.addVehicle(vehicle);
+    carrier.addFare(1, 1);
+    carrier.attendItem(item, vehicle);
+    REQUIRE(vehicle->remainingCapacity == 1 - item->weight);
 }

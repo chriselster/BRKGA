@@ -5,9 +5,8 @@
 class Item
 {
 private:
-	Point destination;
-
 public:
+	Point destination;
 	double weight;
 	int type;
 	int clientId;

@@ -30,3 +30,8 @@ void Client::addItem(Item *item)
 {
     items.push_back(item);
 }
+
+Point *Client::getPosition()
+{
+    return new Point(x, y);
+}

@@ -10,6 +10,7 @@
 #include <set>
 #include <queue>
 #include <utility>
+#include <map>
 class Carrier
 {
 private:
@@ -20,14 +21,15 @@ private:
 	// TODO: perguntar pro Rafa
 	float discountPerCapacityIncrease;
 	// Maximum distance for a client to be able to be served in the same vehicle
-	float maxDistanceBetweenCustomers;
 	// Fare per vehicle type per Km
 	std::vector<double> farePerVehicleTypePerKm;
 	std::vector<Vehicle *> vehicles;
 	std::set<int> clientIds;
 	Point position = Point(0, 0);
+	std::map<int, std::vector<Vehicle *>> proximityClients;
 
 public:
+	float maxDistanceBetweenClients;
 	int id;
 	Carrier(std::vector<std::string> values);
 	Carrier(float minimumCapacity, float costPerAdditionalCustomer, float discountPerCapacityIncrease, float maxDistanceBetweenCustomers);
@@ -37,9 +39,11 @@ public:
 	void addVehicle(Vehicle *vehicle);
 	void addFare(int vehicleType, double fare);
 	void print();
-	bool acceptsItem(Item *item);
+	bool canAttend(Item *item);
 	std::priority_queue<std::pair<double, Vehicle *>> getAvailableVehicles(Item *item);
 	double calculateTripCost(Item *item, Vehicle *vehicle);
+	void attendItem(Item *item, Vehicle *vehicle);
+	void addProximityClient(int clientId, Vehicle *vehicle);
 };
 
 #endif // __Carrier_H__

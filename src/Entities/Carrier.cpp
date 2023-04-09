@@ -4,14 +4,14 @@ Carrier::Carrier(std::vector<std::string> values) : id(std::stoi(values[0])),
                                                     minimumCapacity(std::stof(values[1])),
                                                     costPerAdditionalCustomer(std::stof(values[2])),
                                                     discountPerCapacityIncrease(std::stof(values[3])),
-                                                    maxDistanceBetweenCustomers(std::stof(values[4]))
+                                                    maxDistanceBetweenClients(std::stof(values[4]))
 {
 }
 
 Carrier::Carrier(float minimumCapacity, float costPerAdditionalCustomer, float discountPerCapacityIncrease, float maxDistanceBetweenCustomers) : minimumCapacity(minimumCapacity),
                                                                                                                                                  costPerAdditionalCustomer(costPerAdditionalCustomer),
                                                                                                                                                  discountPerCapacityIncrease(discountPerCapacityIncrease),
-                                                                                                                                                 maxDistanceBetweenCustomers(maxDistanceBetweenCustomers)
+                                                                                                                                                 maxDistanceBetweenClients(maxDistanceBetweenCustomers)
 {
 }
 
@@ -58,7 +58,7 @@ void Carrier::print()
     }
 }
 
-bool Carrier::acceptsItem(Item *item)
+bool Carrier::canAttend(Item *item)
 {
     if (clientIds.find(item->clientId) == clientIds.end())
         return false;
@@ -85,8 +85,23 @@ std::priority_queue<std::pair<double, Vehicle *>> Carrier::getAvailableVehicles(
 
 double Carrier::calculateTripCost(Item *item, Vehicle *vehicle)
 {
+    if (proximityClients.find(item->clientId) != proximityClients.end())
+    {
+        return costPerAdditionalCustomer;
+    }
     double distance = item->distanceTo(&position);
     double fare = farePerVehicleTypePerKm[vehicle->type];
     double cost = distance * fare;
     return cost;
+}
+
+void Carrier::attendItem(Item *item, Vehicle *vehicle)
+{
+    vehicle->take(item);
+}
+
+void Carrier::addProximityClient(int clientId, Vehicle *vehicle)
+{
+    clientIds.insert(clientId);
+    proximityClients[clientId].push_back(vehicle);
 }

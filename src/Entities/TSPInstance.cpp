@@ -1,4 +1,5 @@
 #include "TSPInstance.hpp"
+#include "VectorSelector.cpp"
 
 TSPInstance::TSPInstance()
 {
@@ -45,7 +46,7 @@ void TSPInstance::readAcceptedClientsPerCarrier()
 		int carrierId = std::stoi(row[0]);
 		int clientId = std::stoi(row[1]);
 
-		carriers[carrierId - 1].addClient(&clients[clientId - 1]);
+		carriers[carrierId - 1].addClient(clientId);
 	}
 }
 
@@ -94,7 +95,9 @@ void TSPInstance::addItemsToClients()
 {
 	for (auto &item : items)
 	{
-		clients[item.clientId - 1].addItem(&item);
+		Client *client = &clients[item.clientId - 1];
+		client->addItem(&item);
+		item.setDestination(client->getPosition());
 	}
 }
 
@@ -122,3 +125,53 @@ uint TSPInstance::size()
 }
 
 void TSPInstance::printStatistics() {}
+
+void TSPInstance::attendItem(int itemId, double vehicleSelector)
+{
+	std::vector<std::pair<double, Vehicle *>> availableVehicles = getAvailableVehicles(itemId);
+	if (availableVehicles.empty())
+	{
+		fitness += PENALTY;
+		return;
+	}
+
+	Item *item = &items[itemId - 1];
+	VectorSelector selector = VectorSelector(availableVehicles);
+	Vehicle *selectedVehicle = selector(vehicleSelector).second;
+	fitness += selector(vehicleSelector).first;
+	attendItem(item, selectedVehicle);
+}
+
+std::vector<std::pair<double, Vehicle *>> TSPInstance::getAvailableVehicles(int itemId)
+{
+	std::vector<std::pair<double, Vehicle *>> availableVehicles;
+	for (auto &carrier : carriers)
+	{
+		if (carrier.canAttend(&items[itemId - 1]))
+		{
+			std::priority_queue<std::pair<double, Vehicle *>> vehicles = carrier.getAvailableVehicles(&items[itemId - 1]);
+			while (!vehicles.empty())
+			{
+				availableVehicles.push_back(vehicles.top());
+				vehicles.pop();
+			}
+		}
+	}
+	sort(availableVehicles.begin(), availableVehicles.end());
+	return availableVehicles;
+}
+
+void TSPInstance::attendItem(Item *item, Vehicle *vehicle)
+{
+	Carrier *carrier = &carriers[vehicle->carrierId - 1];
+	carrier->attendItem(item, vehicle);
+	for (auto &other : items)
+	{
+		if (other.id == item->id)
+			continue;
+		if (item->distanceTo(&other.destination) <= carrier->maxDistanceBetweenClients)
+		{
+			carrier->addProximityClient(other.clientId, vehicle);
+		}
+	}
+}

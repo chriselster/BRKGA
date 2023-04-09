@@ -9,12 +9,14 @@
 #include "Item.hpp"
 #include "Vehicle.hpp"
 #include "../Entities/CsvReader.cpp"
+
 #include <string>
 #include <algorithm>
 
 class TSPInstance
 {
 private:
+	float PENALTY = 1000000;
 	std::vector<Carrier> carriers;
 	std::vector<Client> clients;
 	std::vector<Item> items;
@@ -26,8 +28,11 @@ private:
 	void readEntities();
 	void addVehiclesToCarriers();
 	void addItemsToClients();
+	std::vector<std::pair<double, Vehicle *>> getAvailableVehicles(int itemId);
+	void attendItem(Item *itemId, Vehicle *vehicle);
 
 public:
+	double fitness = 0;
 	TSPInstance();
 	~TSPInstance();
 
@@ -36,6 +41,7 @@ public:
 	uint size();
 	void printStatistics();
 	void print();
+	void attendItem(int itemId, double vehicleSelector);
 };
 
 #endif // __ALLOCATIONHANDLER_H__
