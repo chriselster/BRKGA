@@ -114,7 +114,7 @@ void TSPInstance::print()
 	}
 }
 
-uint TSPInstance::evaluate(std::vector<double> cromossome)
+double TSPInstance::evaluate(std::vector<double> cromossome)
 {
 	fitness = 0;
 	for (int i = 0; i < items.size(); i++)

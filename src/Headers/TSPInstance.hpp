@@ -37,7 +37,7 @@ public:
 	~TSPInstance();
 
 	void setUp();
-	uint evaluate(std::vector<double> cromossome);
+	double evaluate(std::vector<double> cromossome);
 	uint size();
 	void printStatistics();
 	void print();
