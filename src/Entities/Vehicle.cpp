@@ -29,12 +29,12 @@ Vehicle::~Vehicle()
 
 void Vehicle::addAcceptedItem(int itemType)
 {
-    acceptedItems.insert(itemType);
+    acceptedItemTypes.insert(itemType);
 }
 
 bool Vehicle::canTake(Item *item)
 {
-    if (acceptedItems.find(item->type) == acceptedItems.end())
+    if (acceptedItemTypes.find(item->type) == acceptedItemTypes.end())
         return false;
 
     return remainingCapacity >= item->weight;
@@ -48,4 +48,9 @@ void Vehicle::print()
 void Vehicle::take(Item *item)
 {
     remainingCapacity -= item->weight;
+}
+
+void Vehicle::reset()
+{
+    remainingCapacity = capacity;
 }

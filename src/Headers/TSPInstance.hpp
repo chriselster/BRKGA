@@ -37,11 +37,12 @@ public:
 	~TSPInstance();
 
 	void setUp();
-	uint evaluate(std::vector<int> cromossome);
+	uint evaluate(std::vector<double> cromossome);
 	uint size();
 	void printStatistics();
 	void print();
 	void attendItem(int itemId, double vehicleSelector);
+	void reset();
 };
 
 #endif // __ALLOCATIONHANDLER_H__

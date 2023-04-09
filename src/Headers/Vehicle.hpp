@@ -9,7 +9,7 @@ class Vehicle
 {
 private:
 	double capacity;
-	std::set<int> acceptedItems;
+	std::set<int> acceptedItemTypes;
 
 public:
 	double remainingCapacity;
@@ -23,6 +23,7 @@ public:
 	bool canTake(Item *itemType);
 	void print();
 	void take(Item *item);
+	void reset();
 };
 
 #endif // __Vehicle_H__

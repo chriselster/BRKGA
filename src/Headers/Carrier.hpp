@@ -44,6 +44,7 @@ public:
 	double calculateTripCost(Item *item, Vehicle *vehicle);
 	void attendItem(Item *item, Vehicle *vehicle);
 	void addProximityClient(int clientId, Vehicle *vehicle);
+	void reset();
 };
 
 #endif // __Carrier_H__

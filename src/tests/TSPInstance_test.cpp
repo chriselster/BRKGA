@@ -11,3 +11,12 @@ TEST_CASE("Get available vehicles", "[vehicle]")
     Catch::Matchers::WithinAbsMatcher matcher = Catch::Matchers::WithinAbsMatcher(vehicleKmCost * itemPosition.distanceTo(new Point(0, 0)), 0.0001);
     REQUIRE_THAT(instance.fitness, matcher);
 }
+
+TEST_CASE("Reset")
+{
+    TSPInstance instance = TSPInstance();
+    instance.setUp();
+    instance.attendItem(1, 0.1);
+    instance.reset();
+    REQUIRE(instance.fitness == 0);
+}

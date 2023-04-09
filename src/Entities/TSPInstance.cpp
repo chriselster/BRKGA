@@ -114,9 +114,14 @@ void TSPInstance::print()
 	}
 }
 
-uint TSPInstance::evaluate(std::vector<int> cromossome)
+uint TSPInstance::evaluate(std::vector<double> cromossome)
 {
-	return 1;
+	fitness = 0;
+	for (int i = 0; i < items.size(); i++)
+	{
+		attendItem(i + 1, cromossome[i]);
+	}
+	return fitness;
 }
 
 uint TSPInstance::size()
@@ -124,7 +129,13 @@ uint TSPInstance::size()
 	return items.size();
 }
 
-void TSPInstance::printStatistics() {}
+void TSPInstance::printStatistics()
+{
+	for (auto &vehicle : vehicles)
+	{
+		std::cout << "Vehicle " << vehicle.id << " has " << vehicle.remainingCapacity << " remaining capacity" << std::endl;
+	}
+}
 
 void TSPInstance::attendItem(int itemId, double vehicleSelector)
 {
@@ -173,5 +184,14 @@ void TSPInstance::attendItem(Item *item, Vehicle *vehicle)
 		{
 			carrier->addProximityClient(other.clientId, vehicle);
 		}
+	}
+}
+
+void TSPInstance::reset()
+{
+	fitness = 0;
+	for (auto &carrier : carriers)
+	{
+		carrier.reset();
 	}
 }

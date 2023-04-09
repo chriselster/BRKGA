@@ -12,14 +12,13 @@ TSPDecoder::~TSPDecoder()
 
 BRKGA::fitness_t TSPDecoder::decode(BRKGA::Chromosome &chromosome, bool /* not-used */)
 {
-	uint fitness = instance.evaluate(std::vector<int>(chromosome.begin(), chromosome.end()));
-	return 0;
+	uint fitness = instance.evaluate(std::vector<double>(chromosome.begin(), chromosome.end()));
+	return fitness;
 }
 
 void TSPDecoder::printSolution(BRKGA::Chromosome &chromosome)
 {
-	uint fitness = instance.evaluate(std::vector<int>(chromosome.begin(), chromosome.end()));
+	uint fitness = instance.evaluate(std::vector<double>(chromosome.begin(), chromosome.end()));
 	instance.printStatistics();
-	instance.print();
 	std::cout << "Best cost: " << fitness << std::endl;
 }

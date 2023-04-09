@@ -19,7 +19,7 @@ int main(int argc, char const *argv[])
 		BRKGA::readConfiguration("config.conf");
 
 	BRKGA::BRKGA_MP_IPR<TSPDecoder> algorithm(
-		decoder, BRKGA::Sense::MAXIMIZE, 0,
+		decoder, BRKGA::Sense::MINIMIZE, 0,
 		instance.size(), brkga_params);
 
 	algorithm.initialize();

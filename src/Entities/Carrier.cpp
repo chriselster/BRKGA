@@ -17,6 +17,11 @@ Carrier::Carrier(float minimumCapacity, float costPerAdditionalCustomer, float d
 
 Carrier::Carrier()
 {
+    id = 0;
+    minimumCapacity = 0;
+    costPerAdditionalCustomer = 0;
+    discountPerCapacityIncrease = 0;
+    maxDistanceBetweenClients = 0;
 }
 
 Carrier::~Carrier()
@@ -104,4 +109,13 @@ void Carrier::addProximityClient(int clientId, Vehicle *vehicle)
 {
     clientIds.insert(clientId);
     proximityClients[clientId].push_back(vehicle);
+}
+
+void Carrier::reset()
+{
+    for (auto &vehicle : vehicles)
+    {
+        vehicle->reset();
+    }
+    proximityClients.clear();
 }
