@@ -1,6 +1,7 @@
 #include "TSPDecoder.hpp"
 #include <cmath>
 #include <iostream>
+#include <fstream>
 
 TSPDecoder::TSPDecoder(TSPInstance &_instance) : instance(_instance)
 {
@@ -23,4 +24,8 @@ void TSPDecoder::printSolution(BRKGA::Chromosome &chromosome)
 	instance.printStatistics();
 	std::cout << "Best cost: " << fitness << std::endl
 			  << std::endl;
+
+	std::fstream file = std::fstream("../src/output/output.txt", std::ios::app);
+	file << "Best cost: " << fitness << std::endl
+		 << std::endl;
 }
