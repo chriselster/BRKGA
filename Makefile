@@ -45,3 +45,4 @@ test: build_test
 	./carrier_test
 	./vehicle_test
 	./src/tests/in/instance_test
+
