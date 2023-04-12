@@ -4,6 +4,9 @@
 #include "./Headers/TSPInstance.hpp"
 #include <iostream>
 #include <string>
+#include <fstream>
+#include <vector>
+#include <stdlib.h>
 
 int main(int argc, char const *argv[])
 {
@@ -17,23 +20,31 @@ int main(int argc, char const *argv[])
 	TSPDecoder decoder(instance);
 	auto [brkga_params, control_params] =
 		BRKGA::readConfiguration("config.conf");
+	int seed = std::rand();
 
 	BRKGA::BRKGA_MP_IPR<TSPDecoder> algorithm(
-		decoder, BRKGA::Sense::MINIMIZE, 0,
+		decoder, BRKGA::Sense::MINIMIZE, seed,
 		instance.size(), brkga_params);
 
 	algorithm.initialize();
-
+	algorithm.evolve(1);
+	std::cout << "Generation " << 1 << std::endl;
+	std::fstream file = std::fstream("../src/output/output.txt", std::ios::out);
+	file << "Generation " << 1 << std::endl;
+	file.close();
+	BRKGA::Chromosome best = algorithm.getBestChromosome();
+	decoder.printSolution(best);
 	for (unsigned i = 0; i <= num_generations; i += 50)
 	{
 		algorithm.evolve(50);
 		std::cout << "Generation " << i + 50 << std::endl;
-		BRKGA::Chromosome best = algorithm.getBestChromosome();
+		std::fstream file = std::fstream("../src/output/output.txt", std::ios::app);
+		file << "Generation " << i + 50 << std::endl
+			 << std::endl;
+		file.close();
+		best = algorithm.getBestChromosome();
 		decoder.printSolution(best);
 	}
-
-	BRKGA::Chromosome best = algorithm.getBestChromosome();
-	decoder.printSolution(best);
 
 	return 0;
 }

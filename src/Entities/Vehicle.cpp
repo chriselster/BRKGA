@@ -14,13 +14,14 @@ Vehicle::Vehicle(std::vector<std::string> values)
     remainingCapacity = capacity;
 }
 
-Vehicle::Vehicle(int id, int carrierId, int type, double capacity)
+Vehicle::Vehicle(int id, int carrierId, int type, double capacity, double costPerKm)
 {
     this->id = id;
     this->carrierId = carrierId;
     this->type = type;
     this->capacity = capacity;
     this->remainingCapacity = capacity;
+    this->costPerKm = costPerKm;
 }
 
 Vehicle::~Vehicle()
@@ -49,9 +50,20 @@ void Vehicle::take(Item *item)
 {
     item->setVehicle(this);
     remainingCapacity -= item->weight;
+    visitedClients.insert(item->clientId);
 }
 
 void Vehicle::reset()
 {
     remainingCapacity = capacity;
+}
+
+double Vehicle::usedCapacity()
+{
+    return capacity - remainingCapacity;
+}
+
+bool Vehicle::alreadyVisited(int clientId)
+{
+    return visitedClients.find(clientId) != visitedClients.end();
 }

@@ -28,4 +28,5 @@ void TSPDecoder::printSolution(BRKGA::Chromosome &chromosome)
 	std::fstream file = std::fstream("../src/output/output.txt", std::ios::app);
 	file << "Best cost: " << fitness << std::endl
 		 << std::endl;
+	file.close();
 }

@@ -19,7 +19,9 @@ private:
 	// Cost per additional customer
 	float costPerAdditionalCustomer;
 	// TODO: perguntar pro Rafa
-	float discountPerCapacityIncrease;
+
+	float deadFreightCost;
+
 	// Maximum distance for a client to be able to be served in the same vehicle
 	// Fare per vehicle type per Km
 	std::vector<double> farePerVehicleTypePerKm;
@@ -32,7 +34,7 @@ public:
 	float maxDistanceBetweenClientsFactor;
 	int id;
 	Carrier(std::vector<std::string> values);
-	Carrier(float minimumCapacity, float costPerAdditionalCustomer, float discountPerCapacityIncrease, float maxDistanceBetweenCustomers);
+	Carrier(float minimumCapacity, float costPerAdditionalCustomer, float deadFreightCost, float maxDistanceBetweenCustomers);
 	Carrier();
 	~Carrier();
 	void addClient(int clientId);
@@ -41,7 +43,7 @@ public:
 	void print();
 	bool canAttend(Item *item);
 	std::priority_queue<std::pair<double, Vehicle *>> getAvailableVehicles(Item *item);
-	double calculateTripCost(Item *item, Vehicle *vehicle);
+	double calculateTripCostDelta(Item *item, Vehicle *vehicle);
 	void attendItem(Item *item, Vehicle *vehicle);
 	void addProximityClient(int clientId, Vehicle *vehicle);
 	void reset();

@@ -3,14 +3,14 @@
 Carrier::Carrier(std::vector<std::string> values) : id(std::stoi(values[0])),
                                                     minimumCapacity(std::stof(values[1])),
                                                     costPerAdditionalCustomer(std::stof(values[2])),
-                                                    discountPerCapacityIncrease(std::stof(values[3])),
+                                                    deadFreightCost(std::stof(values[3])),
                                                     maxDistanceBetweenClientsFactor(std::stof(values[4]))
 {
 }
 
 Carrier::Carrier(float minimumCapacity, float costPerAdditionalCustomer, float discountPerCapacityIncrease, float maxDistanceBetweenCustomers) : minimumCapacity(minimumCapacity),
                                                                                                                                                  costPerAdditionalCustomer(costPerAdditionalCustomer),
-                                                                                                                                                 discountPerCapacityIncrease(discountPerCapacityIncrease),
+                                                                                                                                                 deadFreightCost(discountPerCapacityIncrease),
                                                                                                                                                  maxDistanceBetweenClientsFactor(maxDistanceBetweenCustomers)
 {
 }
@@ -20,7 +20,7 @@ Carrier::Carrier()
     id = 0;
     minimumCapacity = 0;
     costPerAdditionalCustomer = 0;
-    discountPerCapacityIncrease = 0;
+    deadFreightCost = 0;
     maxDistanceBetweenClientsFactor = 0;
 }
 
@@ -82,21 +82,32 @@ std::priority_queue<std::pair<double, Vehicle *>> Carrier::getAvailableVehicles(
     {
         if (vehicle->canTake(item))
         {
-            availableVehicles.push(std::make_pair(calculateTripCost(item, vehicle), vehicle));
+            availableVehicles.push(std::make_pair(calculateTripCostDelta(item, vehicle), vehicle));
         }
     }
     return availableVehicles;
 }
 
-double Carrier::calculateTripCost(Item *item, Vehicle *vehicle)
+double Carrier::calculateTripCostDelta(Item *item, Vehicle *vehicle)
 {
+    double cost = 0;
+    bool paidDeadFreight = vehicle->usedCapacity() != 0 && vehicle->usedCapacity() < minimumCapacity;
+    if (paidDeadFreight && vehicle->usedCapacity() + item->weight >= minimumCapacity)
+    {
+        cost -= deadFreightCost;
+    }
+    if (vehicle->alreadyVisited(item->clientId))
+    {
+        return cost;
+    }
+    // TODO: recalcular rota
     if (proximityClients.find(item->clientId) != proximityClients.end())
     {
         return costPerAdditionalCustomer;
     }
+
     double distance = item->distanceTo(&position);
-    double fare = farePerVehicleTypePerKm[vehicle->type];
-    double cost = distance * fare;
+    cost += distance * vehicle->costPerKm;
     return cost;
 }
 
