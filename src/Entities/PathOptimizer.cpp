@@ -1,10 +1,11 @@
 #include "PathOptimizer.hpp"
 
-PathOptimizer::PathOptimizer(std::vector<Point *>)
+PathOptimizer::PathOptimizer(std::vector<Point *> initialPoints)
 {
-    for (int i = 0; i < points.size(); i++)
+    addPoint(new Point(0, 0));
+    for (int i = 0; i < initialPoints.size(); i++)
     {
-        addPoint(points[i]);
+        addPoint(initialPoints[i]);
     }
 }
 

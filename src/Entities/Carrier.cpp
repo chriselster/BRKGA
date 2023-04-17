@@ -103,7 +103,7 @@ double Carrier::calculateTripCostDelta(Item *item, Vehicle *vehicle)
     // TODO: recalcular rota
     if (proximityClients.find(item->clientId) != proximityClients.end())
     {
-        return costPerAdditionalCustomer;
+        cost += costPerAdditionalCustomer;
     }
 
     double distance = item->distanceTo(&position);

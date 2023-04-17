@@ -67,3 +67,17 @@ bool Vehicle::alreadyVisited(int clientId)
 {
     return visitedClients.find(clientId) != visitedClients.end();
 }
+
+double Vehicle::calculateTripCostDelta(Item *item)
+{
+    double cost = 0;
+    if (alreadyVisited(item->clientId))
+    {
+        cost += costPerKm;
+    }
+    else
+    {
+        cost += costPerKm * 2;
+    }
+    return cost;
+}

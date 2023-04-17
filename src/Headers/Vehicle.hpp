@@ -11,6 +11,7 @@ private:
 	double capacity;
 	std::set<int> acceptedItemTypes;
 	std::set<int> visitedClients;
+	double currentTripCost = 0;
 
 public:
 	double costPerKm;
@@ -28,6 +29,7 @@ public:
 	void reset();
 	double usedCapacity();
 	bool alreadyVisited(int clientId);
+	double calculateTripCostDelta(Item *item);
 };
 
 #endif // __Vehicle_H__

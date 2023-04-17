@@ -5,8 +5,8 @@
 class PathOptimizer
 {
 private:
-    std::vector<Point *> points;
-    std::vector<std::vector<double>> distanceMatrix;
+    std::vector<Point *> points = std::vector<Point *>();
+    std::vector<std::vector<double>> distanceMatrix = std::vector<std::vector<double>>();
 
 public:
     PathOptimizer(std::vector<Point *>);
