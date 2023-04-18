@@ -32,9 +32,9 @@ clean:
 
 
 build_test: $(OBJS)
-	$(CXX) $(CXXFLAGS) ./src/tests/Carrier_test.cpp ./src/tests/obj/catch_amalgamated.o  ./obj/Entities/Point.o ./obj/Entities/Carrier.o ./obj/Entities/Client.o ./obj/Entities/Vehicle.o ./obj/Entities/Item.o -g -o ./carrier_test
-	$(CXX) $(CXXFLAGS) ./src/tests/TSPInstance_test.cpp ./src/tests/obj/catch_amalgamated.o ./obj/Entities/Point.o ./obj/Entities/Carrier.o ./obj/Entities/Client.o ./obj/Entities/TSPInstance.o ./obj/Entities/Vehicle.o ./obj/Entities/Item.o -g -o ./instance_test
-	$(CXX) $(CXXFLAGS) ./src/tests/Vehicle_test.cpp ./src/tests/obj/catch_amalgamated.o ./obj/Entities/Point.o ./obj/Entities/Carrier.o ./obj/Entities/Client.o ./obj/Entities/TSPInstance.o ./obj/Entities/Vehicle.o ./obj/Entities/Item.o -g -o ./vehicle_test
+	$(CXX) $(CXXFLAGS) ./src/tests/Carrier_test.cpp ./src/tests/obj/catch_amalgamated.o  ./obj/Entities/Point.o ./obj/Entities/Carrier.o ./obj/Entities/Client.o ./obj/Entities/Vehicle.o ./obj/Entities/Item.o ./obj/Entities/PathOptimizer.o -g -o ./carrier_test
+	$(CXX) $(CXXFLAGS) ./src/tests/TSPInstance_test.cpp ./src/tests/obj/catch_amalgamated.o ./obj/Entities/Point.o ./obj/Entities/Carrier.o ./obj/Entities/Client.o ./obj/Entities/TSPInstance.o ./obj/Entities/Vehicle.o ./obj/Entities/Item.o ./obj/Entities/PathOptimizer.o -g -o ./instance_test
+	$(CXX) $(CXXFLAGS) ./src/tests/Vehicle_test.cpp ./src/tests/obj/catch_amalgamated.o ./obj/Entities/Point.o ./obj/Entities/Carrier.o ./obj/Entities/Client.o ./obj/Entities/TSPInstance.o ./obj/Entities/Vehicle.o ./obj/Entities/Item.o ./obj/Entities/PathOptimizer.o -g -o ./vehicle_test
 	$(CXX) $(CXXFLAGS) ./src/tests/PathOptimizer_test.cpp ./src/tests/obj/catch_amalgamated.o ./obj/Entities/Point.o ./obj/Entities/Carrier.o ./obj/Entities/Client.o ./obj/Entities/TSPInstance.o ./obj/Entities/Vehicle.o ./obj/Entities/Item.o ./obj/Entities/PathOptimizer.o -g -o ./path_optimizer_test
 
 test: build_test

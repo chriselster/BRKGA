@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 #include "Vehicle.hpp"
+#include "Item.hpp"
+#include "PathOptimizer.hpp"
 
 Vehicle::Vehicle(std::vector<std::string> values)
 {
@@ -11,6 +13,7 @@ Vehicle::Vehicle(std::vector<std::string> values)
     type = std::stod(values[1]);
     capacity = std::stod(values[2]);
     carrierId = std::stoi(values[3]);
+    costPerKm = std::stod(values[4]);
     remainingCapacity = capacity;
 }
 
@@ -50,7 +53,13 @@ void Vehicle::take(Item *item)
 {
     item->setVehicle(this);
     remainingCapacity -= item->weight;
+    if (alreadyVisited(item->clientId))
+        return;
     visitedClients.insert(item->clientId);
+    visitedPoints.push_back(&item->destination);
+    // TODO: da pra utilizar como atributo
+    PathOptimizer pathOptimizer = PathOptimizer(visitedPoints);
+    currentTripCost = pathOptimizer.getShortestPath() * costPerKm;
 }
 
 void Vehicle::reset()
@@ -73,11 +82,10 @@ double Vehicle::calculateTripCostDelta(Item *item)
     double cost = 0;
     if (alreadyVisited(item->clientId))
     {
-        cost += costPerKm;
+        return 0;
     }
-    else
-    {
-        cost += costPerKm * 2;
-    }
-    return cost;
+    PathOptimizer pathOptimizer = PathOptimizer(visitedPoints);
+    pathOptimizer.addPoint(&item->destination);
+    cost = pathOptimizer.getShortestPath() * costPerKm;
+    return cost - currentTripCost;
 }

@@ -20,4 +20,18 @@ TEST_CASE("Calculate item cost delta")
     {
         REQUIRE(vehicle.calculateTripCostDelta(&item) == 2);
     }
+    SECTION("Multiple items")
+    {
+        vehicle.take(&item);
+        Item item2 = Item(1, 2, 1, 1);
+        item2.setDestination(new Point(0, 3));
+        REQUIRE(vehicle.calculateTripCostDelta(&item2) == 1);
+    }
+    SECTION("Item in the path")
+    {
+        vehicle.take(&item);
+        Item item2 = Item(1, 2, 1, 1);
+        item2.setDestination(new Point(0, 1));
+        REQUIRE(vehicle.calculateTripCostDelta(&item2) == 0);
+    }
 }

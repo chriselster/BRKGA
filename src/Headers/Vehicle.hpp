@@ -11,6 +11,7 @@ private:
 	double capacity;
 	std::set<int> acceptedItemTypes;
 	std::set<int> visitedClients;
+	std::vector<Point *> visitedPoints;
 	double currentTripCost = 0;
 
 public:

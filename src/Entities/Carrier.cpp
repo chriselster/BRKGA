@@ -106,8 +106,7 @@ double Carrier::calculateTripCostDelta(Item *item, Vehicle *vehicle)
         cost += costPerAdditionalCustomer;
     }
 
-    double distance = item->distanceTo(&position);
-    cost += distance * vehicle->costPerKm;
+    cost += vehicle->calculateTripCostDelta(item);
     return cost;
 }
 
