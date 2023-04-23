@@ -1,6 +1,17 @@
 #include "./catch/catch_amalgamated.hpp"
 #include "../Headers/Vehicle.hpp"
-#include <limits>
+#include <vector>
+
+TEST_CASE("Build from value list")
+{
+    // int id, int carrierId, int type, double capacity, double costPerKm, double minimumCapacity, double additionalForMultipleClients, max distace
+    std::vector<std::string> values = {"1", "2", "3", "0.1", "0.2", "0.3", "0.4", "0.5"};
+    Vehicle vehicle = Vehicle(values);
+    REQUIRE(vehicle.id == 1);
+    REQUIRE(vehicle.carrierId == 2);
+    REQUIRE(vehicle.type == 3);
+    REQUIRE(vehicle.remainingCapacity == 0.1);
+}
 
 TEST_CASE("Reset")
 {

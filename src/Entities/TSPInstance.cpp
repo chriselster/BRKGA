@@ -14,17 +14,15 @@ void TSPInstance::setUp()
 	readEntities();
 	readAcceptedClientsPerCarrier();
 	readAcceptedItemsPerVeichle();
-	readFaresPerCarrier();
-	addVehiclesToCarriers();
 	addItemsToClients();
 }
 
 void TSPInstance::readEntities()
 {
-	carriers = CsvReader::from_csv<Carrier>("carriers.csv");
 	clients = CsvReader::from_csv<Client>("clients.csv");
 	items = CsvReader::from_csv<Item>("items.csv");
 	vehicles = CsvReader::from_csv<Vehicle>("vehicles.csv");
+	createCarriers();
 
 	std::sort(carriers.begin(), carriers.end(), [](Carrier &a, Carrier &b)
 			  { return a.id < b.id; });
@@ -34,6 +32,18 @@ void TSPInstance::readEntities()
 			  { return a.id < b.id; });
 	std::sort(vehicles.begin(), vehicles.end(), [](Vehicle &a, Vehicle &b)
 			  { return a.id < b.id; });
+}
+
+void TSPInstance::createCarriers()
+{
+	for (auto &vehicle : vehicles)
+	{
+		if (carriers.size() < vehicle.carrierId)
+		{
+			carriers.push_back(Carrier(vehicle.carrierId));
+		}
+		carriers[vehicle.carrierId - 1].addVehicle(&vehicle);
+	}
 }
 
 void TSPInstance::readAcceptedClientsPerCarrier()
@@ -65,28 +75,6 @@ void TSPInstance::readAcceptedItemsPerVeichle()
 				vehicle.addAcceptedItem(itemType);
 			}
 		}
-	}
-}
-
-void TSPInstance::readFaresPerCarrier()
-{
-	CsvReader reader = CsvReader("fares.csv");
-
-	for (std::vector<std::string> row : reader.rows)
-	{
-		int vehicleType = std::stoi(row[0]);
-		double fare = std::stod(row[1]);
-		int carrierId = std::stoi(row[2]);
-
-		carriers[carrierId - 1].addFare(vehicleType, fare);
-	}
-}
-
-void TSPInstance::addVehiclesToCarriers()
-{
-	for (auto &vehicle : vehicles)
-	{
-		carriers[vehicle.carrierId - 1].addVehicle(&vehicle);
 	}
 }
 
@@ -188,10 +176,10 @@ void TSPInstance::attendItem(Item *item, Vehicle *vehicle)
 	{
 		if (other.id == item->id)
 			continue;
-		if (item->distanceTo(&other.destination) <= carrier->maxDistanceBetweenClientsFactor * 100)
-		{
-			carrier->addProximityClient(other.clientId, vehicle);
-		}
+		// if (item->distanceTo(&other.destination) <= carrier->maxDistanceBetweenClientsFactor * 100)
+		// {
+		// 	carrier->addClient(other.clientId);
+		// }
 	}
 }
 

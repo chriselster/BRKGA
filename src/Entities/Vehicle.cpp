@@ -6,17 +6,17 @@
 #include <algorithm>
 #include "Vehicle.hpp"
 #include "Item.hpp"
-#include "PathOptimizer.hpp"
 
 Vehicle::Vehicle(std::vector<std::string> values)
 {
     id = std::stoi(values[0]);
-    type = std::stod(values[1]);
-    capacity = std::stod(values[2]);
-    carrierId = std::stoi(values[3]);
+    carrierId = std::stoi(values[1]);
+    type = std::stod(values[2]);
+    capacity = std::stod(values[3]);
     costPerKmPerWeight = std::stod(values[4]);
-    minimumCapacity = std::stod(values[5]);
+    minimumContractedLoad = std::stod(values[5]);
     additionalForMultipleClients = std::stod(values[6]);
+    maxDistanceBetweenClients = std::stod(values[7]);
     remainingCapacity = capacity;
 }
 
@@ -28,7 +28,7 @@ Vehicle::Vehicle(int id, int carrierId, int type, double capacity, double costPe
     this->capacity = capacity;
     this->remainingCapacity = capacity;
     this->costPerKmPerWeight = costPerKm;
-    this->minimumCapacity = minimumCapacity;
+    this->minimumContractedLoad = minimumCapacity;
     this->additionalForMultipleClients = additionalForMultipleClients;
 }
 
@@ -99,7 +99,7 @@ double Vehicle::calculateTripCost(Item *item)
 
 void Vehicle::setMinimumCapacity(double minimumCapacity)
 {
-    this->minimumCapacity = minimumCapacity;
+    this->minimumContractedLoad = minimumCapacity;
 }
 
 double Vehicle::getFarthestDistance(Point *point)
@@ -118,10 +118,10 @@ double Vehicle::calculateDeadFreightCost(Item *item)
 {
     double cost = 0;
     double newUsedCapacity = usedCapacity() + item->weight;
-    if (newUsedCapacity < minimumCapacity)
+    if (newUsedCapacity < minimumContractedLoad)
     {
         double fartherstDistance = getFarthestDistance(&item->destination);
-        cost += fartherstDistance * costPerKmPerWeight * std::max(minimumCapacity - newUsedCapacity, 0.0);
+        cost += fartherstDistance * costPerKmPerWeight * std::max(minimumContractedLoad - newUsedCapacity, 0.0);
     }
     return cost;
 }

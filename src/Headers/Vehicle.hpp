@@ -10,7 +10,8 @@ class Vehicle
 {
 private:
 	double capacity;
-	double minimumCapacity;
+	double minimumContractedLoad;
+	double maxDistanceBetweenClients;
 	double additionalForMultipleClients;
 	std::set<int> acceptedItemTypes;
 	std::set<int> visitedClients;
@@ -20,9 +21,9 @@ private:
 	double calculateTripCost(Item *item);
 	double getFarthestDistance(Point *point);
 	double calculateDeadFreightCost(Item *item);
+	double costPerKmPerWeight;
 
 public:
-	double costPerKmPerWeight;
 	double remainingCapacity;
 	int carrierId;
 	int id;

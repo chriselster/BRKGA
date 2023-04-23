@@ -9,7 +9,7 @@
 TEST_CASE("Check if can attend item", "[item]")
 {
     Carrier carrier = Carrier();
-    Vehicle *vehicle = new Vehicle(1, 1, 1, 1, 1, 1, 1);
+    Vehicle *vehicle = new Vehicle(1, 1, 1, 1, 0.5, 0.2, 20);
     carrier.addVehicle(vehicle);
     carrier.addClient(1);
 
@@ -58,73 +58,54 @@ TEST_CASE("Get available vehicles", "[vehicle]")
 
 TEST_CASE("Calculate trip cost")
 {
-    double COST_PER_ADDITIONAL_CLIENT = 5;
+    double COST_PER_ADDITIONAL_CLIENT = 1000;
     double MINIMUM_CAPACITY = 1;
     double DEAD_FREIGHT_COST = 10;
     double COST_PER_KM = 5;
-    Carrier carrier = Carrier(MINIMUM_CAPACITY, COST_PER_ADDITIONAL_CLIENT, DEAD_FREIGHT_COST, 1);
+    Carrier carrier = Carrier(1);
     carrier.addClient(1);
     Vehicle *vehicle = new Vehicle(1, 1, 1, 10, COST_PER_KM, 1, 1);
     Item *item = new Item(1, 1, 1, 1);
-    item->setDestination(new Point(0, 1));
+    item->setDestination(new Point(0, 20));
     vehicle->addAcceptedItem(1);
     carrier.addVehicle(vehicle);
-    carrier.addFare(1, 1);
 
-    SECTION("Single client 1 km away")
+    SECTION("Single client 20 km away")
     {
         double cost = carrier.calculateTripCostDelta(item, vehicle);
-        double expectedCost = 1 * COST_PER_KM;
-        REQUIRE(cost == expectedCost);
-    }
-
-    SECTION("Single client sqrt(2) km away")
-    {
-        item->setDestination(new Point(1, 1));
-        double cost = carrier.calculateTripCostDelta(item, vehicle);
-        double expectedCost = sqrt(2) * COST_PER_KM;
+        double expectedCost = 20 * COST_PER_KM;
         REQUIRE(cost == expectedCost);
     }
 
     SECTION("Single client underweight")
     {
-        double cost = carrier.calculateTripCostDelta(new Item(1, 1, 1, 0.5), vehicle); // did not exceed the minimum capacity
-        double expectedCost = 1 * COST_PER_KM + DEAD_FREIGHT_COST;
-    }
-
-    SECTION("Same destination")
-    {
-        vehicle->take(item);
-        double cost = carrier.calculateTripCostDelta(item, vehicle);
-        REQUIRE(cost == 0);
-    }
-
-    SECTION("Same destination, subtract deadFreight cost")
-    {
-
-        vehicle->take(new Item(1, 1, 1, 0.5)); // did not exceed the minimum capacity
-        double cost = carrier.calculateTripCostDelta(item, vehicle);
-        REQUIRE(cost == -DEAD_FREIGHT_COST);
+        Item *item = new Item(1, 1, 1, 0.5);
+        item->setDestination(new Point(0, 4));
+        double cost = carrier.calculateTripCostDelta(item, vehicle); // did not exceed the minimum capacity
+        double expectedCost = vehicle->calculateTripCostDelta(item);
+        REQUIRE(cost == expectedCost);
     }
 
     SECTION("Multiple client")
     {
-        carrier.addProximityClient(2, vehicle);
-        double cost = carrier.calculateTripCostDelta(new Item(2, 2, 1, 1), vehicle);
-        REQUIRE(cost == COST_PER_ADDITIONAL_CLIENT);
+        carrier.attendItem(item, vehicle);
+        item = new Item(2, 2, 1, 1);
+        item->setDestination(new Point(0, 4));
+        double cost = carrier.calculateTripCostDelta(item, vehicle);
+        double expectedCost = vehicle->calculateTripCostDelta(item);
+        REQUIRE(cost == expectedCost);
     }
 }
 
 TEST_CASE("Attend item")
 {
-    Carrier carrier = Carrier(1, 1, 1, 1);
+    Carrier carrier = Carrier(1);
     carrier.addClient(1);
     Vehicle *vehicle = new Vehicle(1, 1, 1, 1, 1, 1, 1);
     Item *item = new Item(1, 1, 1, 1);
     item->setDestination(new Point(0, 1));
     vehicle->addAcceptedItem(1);
     carrier.addVehicle(vehicle);
-    carrier.addFare(1, 1);
     carrier.attendItem(item, vehicle);
     REQUIRE(vehicle->remainingCapacity == 1 - item->weight);
 }

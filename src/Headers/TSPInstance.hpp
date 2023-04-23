@@ -23,13 +23,12 @@ private:
 	std::vector<Vehicle> vehicles;
 
 	void readAcceptedItemsPerVeichle();
-	void readFaresPerCarrier();
 	void readAcceptedClientsPerCarrier();
 	void readEntities();
-	void addVehiclesToCarriers();
 	void addItemsToClients();
 	std::vector<std::pair<double, Vehicle *>> getAvailableVehicles(int itemId);
 	void attendItem(Item *itemId, Vehicle *vehicle);
+	void createCarriers();
 
 public:
 	double fitness = 0;

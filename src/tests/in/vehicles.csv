@@ -1,4 +1,2 @@
-index,type,capacity,carrierId,costPerKm
-1,1,50.0,1,0.09
-2,2.0,35.0,1,0.09
-3,2.0,25.0,1,0.09
+index,carrierId,type,capacity,costPerKmPerWeight, minimumContractedLoad, additionalForMultipleClients, maxDistanceBetweenClients
+1,1,1,0.1,0.1,0.1,0.1,0.1
