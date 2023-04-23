@@ -21,6 +21,7 @@ public:
 	void setVehicle(Vehicle *vehicle);
 	void setDestination(Point *point);
 	double distanceTo(Point *point);
+	void setWeight(double weight);
 	bool wasAttended();
 };
 

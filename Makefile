@@ -1,5 +1,5 @@
-CXXFLAGS =-std=c++17  -pthread -fsanitize=undefined -pedantic -Wall -Wextra -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-promo -Wstrict-null-sentinel -Wstrict-overflow=5 -Wswitch-default -Wundef  -Wno-unused -O3
-
+CXXFLAGS =-std=c++17  -pthread -fsanitize=undefined -pedantic -Wall -Wextra -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-promo -Wstrict-null-sentinel -Wstrict-overflow=5 -Wswitch-default -Wundef  -Wno-unused
+CXXFLAGS += $(OPTIMIZATION)
 CXX = g++
 SRCDIR = ./src
 OBJDIR = ./obj
@@ -20,10 +20,10 @@ TARGET = $(BINDIR)/app
 all: $(TARGET)
 
 $(TARGET): $(OBJS) $(SRCDIR)/main.cpp
-	$(CXX) $(CXXFLAGS) -I./srd/Headers -o $@ $^ -g
+	$(CXX) $(CXXFLAGS) $(OTIMIZATION_FLAGS) -I./srd/Headers -o $@ $^ -g
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(HEADERS)
-	$(CXX) $(CXXFLAGS) -I./src/Headers -c -o $@ $< -g
+	$(CXX) $(CXXFLAGS) $(OTIMIZATION_FLAGS) -I./src/Headers -c -o $@ $< -g
 
 clean:
 	rm -f $(OBJS) $(TARGET)
@@ -36,6 +36,7 @@ build_test: $(OBJS)
 	$(CXX) $(CXXFLAGS) ./src/tests/TSPInstance_test.cpp ./src/tests/obj/catch_amalgamated.o ./obj/Entities/Point.o ./obj/Entities/Carrier.o ./obj/Entities/Client.o ./obj/Entities/TSPInstance.o ./obj/Entities/Vehicle.o ./obj/Entities/Item.o ./obj/Entities/PathOptimizer.o -g -o ./instance_test
 	$(CXX) $(CXXFLAGS) ./src/tests/Vehicle_test.cpp ./src/tests/obj/catch_amalgamated.o ./obj/Entities/Point.o ./obj/Entities/Carrier.o ./obj/Entities/Client.o ./obj/Entities/TSPInstance.o ./obj/Entities/Vehicle.o ./obj/Entities/Item.o ./obj/Entities/PathOptimizer.o -g -o ./vehicle_test
 	$(CXX) $(CXXFLAGS) ./src/tests/PathOptimizer_test.cpp ./src/tests/obj/catch_amalgamated.o ./obj/Entities/Point.o ./obj/Entities/Carrier.o ./obj/Entities/Client.o ./obj/Entities/TSPInstance.o ./obj/Entities/Vehicle.o ./obj/Entities/Item.o ./obj/Entities/PathOptimizer.o -g -o ./path_optimizer_test
+
 
 test: build_test
 	mv ./instance_test ./src/tests/in/

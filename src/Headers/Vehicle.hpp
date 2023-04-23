@@ -5,17 +5,22 @@
 #include <string>
 #include <iostream>
 #include "Item.hpp"
+#include "Point.hpp"
 class Vehicle
 {
 private:
 	double capacity;
+	double minimumCapacity;
 	std::set<int> acceptedItemTypes;
 	std::set<int> visitedClients;
 	std::vector<Point *> visitedPoints;
 	double currentTripCost = 0;
+	Point origin = Point(0, 0);
+	double calculateTripCost(Item *item);
+	double getFarthestDistance(Point *point);
 
 public:
-	double costPerKm;
+	double costPerKmPerWeight;
 	double remainingCapacity;
 	int carrierId;
 	int id;
@@ -31,6 +36,7 @@ public:
 	double usedCapacity();
 	bool alreadyVisited(int clientId);
 	double calculateTripCostDelta(Item *item);
+	void setMinimumCapacity(double minimumCapacity);
 };
 
 #endif // __Vehicle_H__

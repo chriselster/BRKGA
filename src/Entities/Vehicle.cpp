@@ -13,7 +13,7 @@ Vehicle::Vehicle(std::vector<std::string> values)
     type = std::stod(values[1]);
     capacity = std::stod(values[2]);
     carrierId = std::stoi(values[3]);
-    costPerKm = std::stod(values[4]);
+    costPerKmPerWeight = std::stod(values[4]);
     remainingCapacity = capacity;
 }
 
@@ -24,7 +24,7 @@ Vehicle::Vehicle(int id, int carrierId, int type, double capacity, double costPe
     this->type = type;
     this->capacity = capacity;
     this->remainingCapacity = capacity;
-    this->costPerKm = costPerKm;
+    this->costPerKmPerWeight = costPerKm;
 }
 
 Vehicle::~Vehicle()
@@ -57,9 +57,7 @@ void Vehicle::take(Item *item)
         return;
     visitedClients.insert(item->clientId);
     visitedPoints.push_back(&item->destination);
-    // TODO: da pra utilizar como atributo
-    PathOptimizer pathOptimizer = PathOptimizer(visitedPoints);
-    currentTripCost = pathOptimizer.getShortestPath() * costPerKm;
+    currentTripCost = calculateTripCost(item);
 }
 
 void Vehicle::reset()
@@ -79,13 +77,39 @@ bool Vehicle::alreadyVisited(int clientId)
 
 double Vehicle::calculateTripCostDelta(Item *item)
 {
+    return calculateTripCost(item) - currentTripCost;
+}
+
+double Vehicle::calculateTripCost(Item *item)
+{
     double cost = 0;
     if (alreadyVisited(item->clientId))
-    {
         return 0;
+
+    double tripDistance = origin.distanceTo(&item->destination);
+    double newUsedCapacity = usedCapacity() + item->weight;
+    if (newUsedCapacity < minimumCapacity)
+    {
+        double fartherstDistance = getFarthestDistance(&item->destination);
+        cost += fartherstDistance * costPerKmPerWeight * (minimumCapacity - newUsedCapacity);
     }
-    PathOptimizer pathOptimizer = PathOptimizer(visitedPoints);
-    pathOptimizer.addPoint(&item->destination);
-    cost = pathOptimizer.getShortestPath() * costPerKm;
-    return cost - currentTripCost;
+    cost += costPerKmPerWeight * tripDistance * item->weight;
+    return cost;
+}
+
+void Vehicle::setMinimumCapacity(double minimumCapacity)
+{
+    this->minimumCapacity = minimumCapacity;
+}
+
+double Vehicle::getFarthestDistance(Point *point)
+{
+    double fartherDistance = origin.distanceTo(point);
+    for (Point *visitedPoint : visitedPoints)
+    {
+        double distance = visitedPoint->distanceTo(point);
+        if (distance > fartherDistance)
+            fartherDistance = distance;
+    }
+    return fartherDistance;
 }

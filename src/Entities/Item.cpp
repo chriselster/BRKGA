@@ -43,3 +43,8 @@ bool Item::wasAttended()
 {
     return attended;
 }
+
+void Item::setWeight(double weight)
+{
+    this->weight = weight;
+}

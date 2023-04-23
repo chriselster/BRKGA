@@ -26,7 +26,6 @@ void TSPInstance::readEntities()
 	items = CsvReader::from_csv<Item>("items.csv");
 	vehicles = CsvReader::from_csv<Vehicle>("vehicles.csv");
 
-	// sort all
 	std::sort(carriers.begin(), carriers.end(), [](Carrier &a, Carrier &b)
 			  { return a.id < b.id; });
 	std::sort(clients.begin(), clients.end(), [](Client &a, Client &b)
