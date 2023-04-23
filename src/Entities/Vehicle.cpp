@@ -20,7 +20,7 @@ Vehicle::Vehicle(std::vector<std::string> values)
     remainingCapacity = capacity;
 }
 
-Vehicle::Vehicle(int id, int carrierId, int type, double capacity, double costPerKm, double minimumCapacity, double additionalForMultipleClients)
+Vehicle::Vehicle(int id, int carrierId, int type, double capacity, double costPerKm, double minimumCapacity, double additionalForMultipleClients, double maxDistanceBetweenClients)
 {
     this->id = id;
     this->carrierId = carrierId;
@@ -30,6 +30,8 @@ Vehicle::Vehicle(int id, int carrierId, int type, double capacity, double costPe
     this->costPerKmPerWeight = costPerKm;
     this->minimumContractedLoad = minimumCapacity;
     this->additionalForMultipleClients = additionalForMultipleClients;
+    this->maxDistanceBetweenClients = maxDistanceBetweenClients;
+    remainingCapacity = capacity;
 }
 
 Vehicle::~Vehicle()
@@ -46,7 +48,13 @@ bool Vehicle::canTake(Item *item)
     if (acceptedItemTypes.find(item->type) == acceptedItemTypes.end())
         return false;
 
-    return remainingCapacity >= item->weight;
+    if (remainingCapacity < item->weight)
+        return false;
+
+    if (visitedClients.size() > 0 && origin.distanceTo(&item->destination) > maxDistanceBetweenClients)
+        return false;
+
+    return true;
 }
 
 void Vehicle::print()

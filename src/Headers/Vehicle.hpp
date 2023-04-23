@@ -29,7 +29,8 @@ public:
 	int id;
 	int type;
 	Vehicle(std::vector<std::string> values);
-	Vehicle(int id, int carrierId, int type, double capacity, double costPerKm, double minimumCapacity, double additionalForMultipleClients);
+	Vehicle(int id, int carrierId, int type, double capacity, double costPerKm,
+			double minimumCapacity, double additionalForMultipleClients, double maxDistanceBetweenClients);
 	~Vehicle();
 	void addAcceptedItem(int itemType);
 	bool canTake(Item *itemType);

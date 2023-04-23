@@ -172,15 +172,6 @@ void TSPInstance::attendItem(Item *item, Vehicle *vehicle)
 {
 	Carrier *carrier = &carriers[vehicle->carrierId - 1];
 	carrier->attendItem(item, vehicle);
-	for (auto &other : items)
-	{
-		if (other.id == item->id)
-			continue;
-		// if (item->distanceTo(&other.destination) <= carrier->maxDistanceBetweenClientsFactor * 100)
-		// {
-		// 	carrier->addClient(other.clientId);
-		// }
-	}
 }
 
 void TSPInstance::reset()

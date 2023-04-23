@@ -15,7 +15,7 @@ TEST_CASE("Build from value list")
 
 TEST_CASE("Reset")
 {
-    Vehicle vehicle = Vehicle(1, 1, 1, 1, 1, 1, 1);
+    Vehicle vehicle = Vehicle(1, 1, 1, 1, 1, 1, 1, 1);
     vehicle.addAcceptedItem(1);
     vehicle.take(new Item(1, 1, 1, 1));
     REQUIRE(vehicle.remainingCapacity == 0);
@@ -30,7 +30,7 @@ TEST_CASE("Calculate item cost delta")
     double itemWeight = 1;
     Point *origin = new Point(0, 0);
     Point *destination = new Point(0, 2);
-    Vehicle vehicle = Vehicle(1, 1, 1, 100, costPerKmPerWeight, 1, additionalForMultipleClients);
+    Vehicle vehicle = Vehicle(1, 1, 1, 100, costPerKmPerWeight, 1, additionalForMultipleClients, 10);
     Item item = Item(1, 1, 1, itemWeight);
     item.setDestination(destination);
     SECTION("Single item")
@@ -94,4 +94,31 @@ TEST_CASE("Calculate item cost delta")
         }
     }
 }
+
+TEST_CASE("Can attend")
+{
+    Vehicle vehicle = Vehicle(1, 1, 1, 40, 1, 1, 1, 5);
+    vehicle.addAcceptedItem(1);
+    Item item = Item(1, 1, 1, 1);
+    item.setDestination(new Point(0, 1));
+    vehicle.take(&item);
+    SECTION("True if is to same client")
+    {
+        item = Item(1, 1, 1, 1);
+        REQUIRE(vehicle.canTake(&item));
+    }
+    SECTION("False if is to different client far away")
+    {
+        Item item = Item(1, 2, 1, 1);
+        item.setDestination(new Point(0, 20));
+        REQUIRE(!vehicle.canTake(&item));
+    }
+    SECTION("Unless other client is in range")
+    {
+        Item item = Item(1, 2, 1, 1);
+        item.setDestination(new Point(0, 2));
+        REQUIRE(vehicle.canTake(&item));
+    }
+}
+
 #include "./catch/catch_amalgamated.hpp"
