@@ -4,7 +4,7 @@
 
 TEST_CASE("Reset")
 {
-    Vehicle vehicle = Vehicle(1, 1, 1, 1, 1);
+    Vehicle vehicle = Vehicle(1, 1, 1, 1, 1, 1, 1);
     vehicle.addAcceptedItem(1);
     vehicle.take(new Item(1, 1, 1, 1));
     REQUIRE(vehicle.remainingCapacity == 0);
@@ -14,11 +14,12 @@ TEST_CASE("Reset")
 
 TEST_CASE("Calculate item cost delta")
 {
+    double additionalForMultipleClients = 1;
     double costPerKmPerWeight = 1;
     double itemWeight = 1;
     Point *origin = new Point(0, 0);
     Point *destination = new Point(0, 2);
-    Vehicle vehicle = Vehicle(1, 1, 1, 100, costPerKmPerWeight);
+    Vehicle vehicle = Vehicle(1, 1, 1, 100, costPerKmPerWeight, 1, additionalForMultipleClients);
     Item item = Item(1, 1, 1, itemWeight);
     item.setDestination(destination);
     SECTION("Single item")
@@ -40,11 +41,11 @@ TEST_CASE("Calculate item cost delta")
     SECTION("Multiple items over deadfreight")
     {
         vehicle.take(&item);
-        itemWeight = 2;
+        double secondItemWeight = 2;
         destination = new Point(0, 3);
-        Item item2 = Item(1, 2, 1, itemWeight);
+        Item item2 = Item(1, 2, 1, secondItemWeight);
         item2.setDestination(destination);
-        double expectedCost = costPerKmPerWeight * itemWeight * origin->distanceTo(destination);
+        double expectedCost = costPerKmPerWeight * secondItemWeight * origin->distanceTo(destination) + additionalForMultipleClients;
         REQUIRE(vehicle.calculateTripCostDelta(&item2) == expectedCost);
     }
 
@@ -63,6 +64,7 @@ TEST_CASE("Calculate item cost delta")
             item2.setDestination(destination);
             double secondTripCost = origin->distanceTo(destination) * costPerKmPerWeight * (secondItemWeight) + firstTripCost;
             secondTripCost += origin->distanceTo(destination) * costPerKmPerWeight * (deadfreight - firstItemWeight - secondItemWeight);
+            secondTripCost += additionalForMultipleClients;
 
             vehicle.take(&item);
             REQUIRE(vehicle.calculateTripCostDelta(&item2) == Catch::Approx(secondTripCost - firstTripCost));
@@ -74,6 +76,7 @@ TEST_CASE("Calculate item cost delta")
             destination = new Point(0, 3);
             item2.setDestination(destination);
             double secondTripCost = origin->distanceTo(destination) * costPerKmPerWeight * (secondItemWeight) + firstTripCost;
+            secondTripCost += additionalForMultipleClients;
 
             vehicle.take(&item);
             REQUIRE(vehicle.calculateTripCostDelta(&item2) == Catch::Approx(secondTripCost - firstTripCost));

@@ -9,7 +9,7 @@
 TEST_CASE("Check if can attend item", "[item]")
 {
     Carrier carrier = Carrier();
-    Vehicle *vehicle = new Vehicle(1, 1, 1, 1, 1);
+    Vehicle *vehicle = new Vehicle(1, 1, 1, 1, 1, 1, 1);
     carrier.addVehicle(vehicle);
     carrier.addClient(1);
 
@@ -48,7 +48,7 @@ TEST_CASE("Get available vehicles", "[vehicle]")
     {
         Carrier carrier = Carrier();
         carrier.addClient(1);
-        Vehicle *vehicle = new Vehicle(1, 1, 1, 1, 1);
+        Vehicle *vehicle = new Vehicle(1, 1, 1, 1, 1, 1, 1);
         vehicle->addAcceptedItem(1);
         carrier.addVehicle(vehicle);
         std::priority_queue<std::pair<double, Vehicle *>> availableVehicles = carrier.getAvailableVehicles(new Item(1, 1, 1, 1));
@@ -64,7 +64,7 @@ TEST_CASE("Calculate trip cost")
     double COST_PER_KM = 5;
     Carrier carrier = Carrier(MINIMUM_CAPACITY, COST_PER_ADDITIONAL_CLIENT, DEAD_FREIGHT_COST, 1);
     carrier.addClient(1);
-    Vehicle *vehicle = new Vehicle(1, 1, 1, 10, COST_PER_KM);
+    Vehicle *vehicle = new Vehicle(1, 1, 1, 10, COST_PER_KM, 1, 1);
     Item *item = new Item(1, 1, 1, 1);
     item->setDestination(new Point(0, 1));
     vehicle->addAcceptedItem(1);
@@ -119,7 +119,7 @@ TEST_CASE("Attend item")
 {
     Carrier carrier = Carrier(1, 1, 1, 1);
     carrier.addClient(1);
-    Vehicle *vehicle = new Vehicle(1, 1, 1, 1, 1);
+    Vehicle *vehicle = new Vehicle(1, 1, 1, 1, 1, 1, 1);
     Item *item = new Item(1, 1, 1, 1);
     item->setDestination(new Point(0, 1));
     vehicle->addAcceptedItem(1);

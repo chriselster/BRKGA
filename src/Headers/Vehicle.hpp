@@ -11,6 +11,7 @@ class Vehicle
 private:
 	double capacity;
 	double minimumCapacity;
+	double additionalForMultipleClients;
 	std::set<int> acceptedItemTypes;
 	std::set<int> visitedClients;
 	std::vector<Point *> visitedPoints;
@@ -18,6 +19,7 @@ private:
 	Point origin = Point(0, 0);
 	double calculateTripCost(Item *item);
 	double getFarthestDistance(Point *point);
+	double calculateDeadFreightCost(Item *item);
 
 public:
 	double costPerKmPerWeight;
@@ -26,7 +28,7 @@ public:
 	int id;
 	int type;
 	Vehicle(std::vector<std::string> values);
-	Vehicle(int id, int carrierId, int type, double capacity, double costPerKm);
+	Vehicle(int id, int carrierId, int type, double capacity, double costPerKm, double minimumCapacity, double additionalForMultipleClients);
 	~Vehicle();
 	void addAcceptedItem(int itemType);
 	bool canTake(Item *itemType);
