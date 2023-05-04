@@ -48,3 +48,9 @@ void Item::setWeight(double weight)
 {
     this->weight = weight;
 }
+
+void Item::reset()
+{
+    vehicle = nullptr;
+    attended = false;
+}

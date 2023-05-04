@@ -51,8 +51,15 @@ bool Vehicle::canTake(Item *item)
     if (remainingCapacity < item->weight)
         return false;
 
-    if (visitedClients.size() > 0 && origin.distanceTo(&item->destination) > maxDistanceBetweenClients)
+    if (visitedPoints.size() > 0)
+    {
+        for (Point *visitedPoint : visitedPoints)
+        {
+            if (visitedPoint->distanceTo(&item->destination) <= maxDistanceBetweenClients)
+                return true;
+        }
         return false;
+    }
 
     return true;
 }

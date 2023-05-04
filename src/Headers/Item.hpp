@@ -23,6 +23,7 @@ public:
 	double distanceTo(Point *point);
 	void setWeight(double weight);
 	bool wasAttended();
+	void reset();
 };
 
 #endif // ITEM_HPP

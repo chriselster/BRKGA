@@ -108,7 +108,7 @@ double TSPInstance::evaluate(std::vector<double> cromossome)
 	fitness = 0;
 	for (int i = 0; i < items.size(); i++)
 	{
-		attendItem(i + 1, cromossome[i]);
+		attendItem(i, cromossome[i]);
 	}
 	return fitness;
 }
@@ -182,5 +182,9 @@ void TSPInstance::reset()
 	for (auto &carrier : carriers)
 	{
 		carrier.reset();
+	}
+	for (auto &item : items)
+	{
+		item.reset();
 	}
 }
