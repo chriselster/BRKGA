@@ -3,6 +3,7 @@
 
 TSPInstance::TSPInstance()
 {
+	carriers = std::vector<Carrier>();
 }
 
 TSPInstance::~TSPInstance()
@@ -22,6 +23,7 @@ void TSPInstance::readEntities()
 	clients = CsvReader::from_csv<Client>("clients.csv");
 	items = CsvReader::from_csv<Item>("items.csv");
 	vehicles = CsvReader::from_csv<Vehicle>("vehicles.csv");
+	carriers = std::vector<Carrier>();
 	createCarriers();
 
 	std::sort(carriers.begin(), carriers.end(), [](Carrier &a, Carrier &b)
@@ -38,11 +40,11 @@ void TSPInstance::createCarriers()
 {
 	for (auto &vehicle : vehicles)
 	{
-		if (carriers.size() < vehicle.carrierId)
+		if (carriers.size() <= vehicle.carrierId)
 		{
 			carriers.push_back(Carrier(vehicle.carrierId));
 		}
-		carriers[vehicle.carrierId - 1].addVehicle(&vehicle);
+		carriers[vehicle.carrierId].addVehicle(&vehicle);
 	}
 }
 
@@ -55,7 +57,7 @@ void TSPInstance::readAcceptedClientsPerCarrier()
 		int carrierId = std::stoi(row[0]);
 		int clientId = std::stoi(row[1]);
 
-		carriers[carrierId - 1].addClient(clientId);
+		carriers[carrierId].addClient(clientId);
 	}
 }
 
@@ -82,7 +84,7 @@ void TSPInstance::addItemsToClients()
 {
 	for (auto &item : items)
 	{
-		Client *client = &clients[item.clientId - 1];
+		Client *client = &clients[item.clientId];
 		client->addItem(&item);
 		item.setDestination(client->getPosition());
 	}
@@ -142,7 +144,7 @@ void TSPInstance::attendItem(int itemId, double vehicleSelector)
 		return;
 	}
 
-	Item *item = &items[itemId - 1];
+	Item *item = &items[itemId];
 	VectorSelector selector = VectorSelector(availableVehicles);
 	Vehicle *selectedVehicle = selector(vehicleSelector).second;
 	fitness += selector(vehicleSelector).first;
@@ -154,9 +156,9 @@ std::vector<std::pair<double, Vehicle *>> TSPInstance::getAvailableVehicles(int 
 	std::vector<std::pair<double, Vehicle *>> availableVehicles;
 	for (auto &carrier : carriers)
 	{
-		if (carrier.canAttend(&items[itemId - 1]))
+		if (carrier.canAttend(&items[itemId]))
 		{
-			std::priority_queue<std::pair<double, Vehicle *>> vehicles = carrier.getAvailableVehicles(&items[itemId - 1]);
+			std::priority_queue<std::pair<double, Vehicle *>> vehicles = carrier.getAvailableVehicles(&items[itemId]);
 			while (!vehicles.empty())
 			{
 				availableVehicles.push_back(vehicles.top());
@@ -170,7 +172,7 @@ std::vector<std::pair<double, Vehicle *>> TSPInstance::getAvailableVehicles(int 
 
 void TSPInstance::attendItem(Item *item, Vehicle *vehicle)
 {
-	Carrier *carrier = &carriers[vehicle->carrierId - 1];
+	Carrier *carrier = &carriers[vehicle->carrierId];
 	carrier->attendItem(item, vehicle);
 }
 

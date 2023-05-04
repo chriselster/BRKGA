@@ -2,6 +2,7 @@
 #include <cmath>
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 
 TSPDecoder::TSPDecoder(TSPInstance &_instance) : instance(_instance)
 {
@@ -22,11 +23,12 @@ void TSPDecoder::printSolution(BRKGA::Chromosome &chromosome)
 {
 	double fitness = instance.evaluate(std::vector<double>(chromosome.begin(), chromosome.end()));
 	instance.printStatistics();
-	std::cout << "Best cost: " << fitness << std::endl
+	std::cout << std::fixed << std::setprecision(2) << "Best cost: " << fitness << std::endl
 			  << std::endl;
 
 	std::fstream file = std::fstream("../src/output/output.txt", std::ios::app);
-	file << "Best cost: " << fitness << std::endl
+	file.setf(std::ios::fixed);
+	file << "Best cost: " << file.fixed << file.precision(2) << fitness << std::endl
 		 << std::endl;
 	file.close();
 }

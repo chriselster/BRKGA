@@ -2,11 +2,15 @@
 
 Carrier::Carrier(int id) : id(id)
 {
+    vehicles = std::vector<Vehicle *>();
+    clientIds = std::set<int>();
 }
 
 Carrier::Carrier()
 {
     id = 0;
+    vehicles = std::vector<Vehicle *>();
+    clientIds = std::set<int>();
 }
 
 Carrier::~Carrier()

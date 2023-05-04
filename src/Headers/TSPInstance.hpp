@@ -16,7 +16,7 @@
 class TSPInstance
 {
 private:
-	float PENALTY = 1000000;
+	float PENALTY = 100000000;
 	std::vector<Carrier> carriers;
 	std::vector<Client> clients;
 	std::vector<Item> items;
