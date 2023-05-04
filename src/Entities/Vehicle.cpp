@@ -76,6 +76,9 @@ void Vehicle::take(Item *item)
 void Vehicle::reset()
 {
     remainingCapacity = capacity;
+    visitedClients.clear();
+    visitedPoints.clear();
+    currentTripCost = 0;
 }
 
 double Vehicle::usedCapacity()

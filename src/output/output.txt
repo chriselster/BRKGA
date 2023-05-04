@@ -1,47 +1,23 @@
 Generation 1
-Best cost: 467000000000.00
+Best cost: 464500035319.45
 
 Generation 50
 
-Best cost: 467000000000.00
+Best cost: 464500034876.90
 
 Generation 100
 
-Best cost: 467000000000.00
+Best cost: 464500034875.01
 
 Generation 150
 
-Best cost: 467000000000.00
+Best cost: 464500034875.01
 
 Generation 200
 
-Best cost: 467000000000.00
+Best cost: 464500034875.01
 
 Generation 250
 
-Best cost: 467000000000.00
-
-Generation 300
-
-Best cost: 467000000000.00
-
-Generation 350
-
-Best cost: 467000000000.00
-
-Generation 400
-
-Best cost: 467000000000.00
-
-Generation 450
-
-Best cost: 467000000000.00
-
-Generation 500
-
-Best cost: 467000000000.00
-
-Generation 550
-
-Best cost: 467000000000.00
+Best cost: 464500034875.01
 
