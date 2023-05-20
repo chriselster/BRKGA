@@ -29,3 +29,19 @@ Generation 350
 
 Best cost: 9016.47167324
 
+Generation 400
+
+Best cost: 9016.47167324
+
+Generation 450
+
+Best cost: 9016.47167324
+
+Generation 500
+
+Best cost: 9016.47167324
+
+Generation 550
+
+Best cost: 9016.47167324
+
