@@ -107,7 +107,7 @@ double Vehicle::calculateTripCost(Item *item)
 {
     double cost = 0;
     if (alreadyVisited(item->clientId))
-        return 0; // aumentar o preço com o aumento de peso
+        return costPerKmPerWeight * item->weight;
     if (visitedClients.size() > 0)
         cost += additionalForMultipleClients;
     cost += calculateDeadFreightCost(item);
