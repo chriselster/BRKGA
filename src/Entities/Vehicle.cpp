@@ -71,13 +71,14 @@ void Vehicle::print()
 
 void Vehicle::take(Item *item)
 {
+    currentTripCost = calculateTripCost(item);
+    currentTripDeadFreightCost = calculateDeadFreightCost(item);
     item->setVehicle(this);
     remainingCapacity -= item->weight;
     if (alreadyVisited(item->clientId))
         return;
     visitedClients.insert(item->clientId);
     visitedPoints.push_back(&item->destination);
-    currentTripCost = calculateTripCost(item);
 }
 
 void Vehicle::reset()
@@ -86,6 +87,7 @@ void Vehicle::reset()
     visitedClients.clear();
     visitedPoints.clear();
     currentTripCost = 0;
+    currentTripDeadFreightCost = 0;
 }
 
 double Vehicle::usedCapacity()
@@ -106,10 +108,9 @@ double Vehicle::calculateTripCostDelta(Item *item)
 double Vehicle::calculateTripCost(Item *item)
 {
     double cost = 0;
-    if (alreadyVisited(item->clientId))
-        return costPerKmPerWeight * item->weight;
     if (visitedClients.size() > 0)
         cost += additionalForMultipleClients;
+    cost += currentTripCost - currentTripDeadFreightCost;
     cost += calculateDeadFreightCost(item);
     cost += costPerKmPerWeight * origin.distanceTo(&item->destination) * item->weight;
     return cost;

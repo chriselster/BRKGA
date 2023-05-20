@@ -21,6 +21,7 @@ private:
 	std::vector<Client> clients;
 	std::vector<Item> items;
 	std::vector<Vehicle> vehicles;
+	std::string testFolder;
 
 	void readAcceptedItemsPerVeichle();
 	void readAcceptedClientsPerCarrier();
@@ -29,6 +30,9 @@ private:
 	std::vector<std::pair<double, Vehicle *>> getAvailableVehicles(int itemId);
 	void attendItem(Item *itemId, Vehicle *vehicle);
 	void createCarriers();
+	void sortEntities();
+	void setTestFolder();
+	std::string addFolder(std::string filename);
 
 public:
 	double fitness = 0;

@@ -1,5 +1,6 @@
 #include "TSPInstance.hpp"
 #include "VectorSelector.cpp"
+#include "Constants.hpp"
 
 TSPInstance::TSPInstance()
 {
@@ -20,12 +21,45 @@ void TSPInstance::setUp()
 
 void TSPInstance::readEntities()
 {
-	clients = CsvReader::from_csv<Client>("clients.csv");
-	items = CsvReader::from_csv<Item>("items.csv");
-	vehicles = CsvReader::from_csv<Vehicle>("vehicles.csv");
+	setTestFolder();
+	clients = CsvReader::from_csv<Client>(addFolder(CLIENT_FILE));
+	items = CsvReader::from_csv<Item>(addFolder(ITEM_FILE));
+	vehicles = CsvReader::from_csv<Vehicle>(addFolder(VEHICLE_FILE));
 	carriers = std::vector<Carrier>();
 	createCarriers();
+	sortEntities();
+}
 
+std::string TSPInstance::addFolder(std::string filename)
+{
+	return testFolder + filename;
+}
+
+void TSPInstance::setTestFolder()
+{
+	std::fstream file;
+	file.open("parameters.txt", std::ios::in);
+	std::string line;
+	std::getline(file, line);
+	std::string delimiter = "= ";
+	std::string testFolder = line.substr(line.find(delimiter) + delimiter.length());
+	this->testFolder = testFolder + "/";
+}
+
+void TSPInstance::createCarriers()
+{
+	for (auto &vehicle : vehicles)
+	{
+		while (carriers.size() <= vehicle.carrierId)
+		{
+			carriers.push_back(Carrier(carriers.size()));
+		}
+		carriers[vehicle.carrierId].addVehicle(&vehicle);
+	}
+}
+
+void TSPInstance::sortEntities()
+{
 	std::sort(carriers.begin(), carriers.end(), [](Carrier &a, Carrier &b)
 			  { return a.id < b.id; });
 	std::sort(clients.begin(), clients.end(), [](Client &a, Client &b)
@@ -36,21 +70,9 @@ void TSPInstance::readEntities()
 			  { return a.id < b.id; });
 }
 
-void TSPInstance::createCarriers()
-{
-	for (auto &vehicle : vehicles)
-	{
-		if (carriers.size() <= vehicle.carrierId)
-		{
-			carriers.push_back(Carrier(vehicle.carrierId));
-		}
-		carriers[vehicle.carrierId].addVehicle(&vehicle);
-	}
-}
-
 void TSPInstance::readAcceptedClientsPerCarrier()
 {
-	CsvReader reader = CsvReader("clients_per_carrier.csv");
+	CsvReader reader = CsvReader(addFolder(CLIENTS_PER_CARRIER_FILE));
 
 	for (std::vector<std::string> row : reader.rows)
 	{
@@ -63,7 +85,7 @@ void TSPInstance::readAcceptedClientsPerCarrier()
 
 void TSPInstance::readAcceptedItemsPerVeichle()
 {
-	CsvReader reader = CsvReader("items_per_vehicle.csv");
+	CsvReader reader = CsvReader(addFolder(ITEMS_PER_VEHICLE_FILE));
 
 	for (std::vector<std::string> row : reader.rows)
 	{
