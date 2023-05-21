@@ -12,7 +12,7 @@ Item::Item(const std::vector<std::string> &values) : id(std::stoi(values[0])),
 {
 }
 
-Item::Item(int id, int clientId, int type, double weight) : id(id),
+Item::Item(int id, int clientId, int type, long double weight) : id(id),
                                                             clientId(clientId),
                                                             type(type),
                                                             weight(weight)
@@ -28,7 +28,7 @@ void Item::setDestination(Point *point)
     destination = *point;
 }
 
-double Item::distanceTo(Point *point)
+long double Item::distanceTo(Point *point)
 {
     return destination.distanceTo(point);
 }
@@ -44,7 +44,7 @@ bool Item::wasAttended()
     return attended;
 }
 
-void Item::setWeight(double weight)
+void Item::setWeight(long double weight)
 {
     this->weight = weight;
 }

@@ -27,8 +27,8 @@ public:
 	void addVehicle(Vehicle *vehicle);
 	void print();
 	bool canAttend(Item *item);
-	std::priority_queue<std::pair<double, Vehicle *>> getAvailableVehicles(Item *item);
-	double calculateTripCostDelta(Item *item, Vehicle *vehicle);
+	std::priority_queue<std::pair<long double, Vehicle *>> getAvailableVehicles(Item *item);
+	long double calculateTripCostDelta(Item *item, Vehicle *vehicle);
 	void attendItem(Item *item, Vehicle *vehicle);
 	void reset();
 };

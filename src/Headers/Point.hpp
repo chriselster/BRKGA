@@ -7,15 +7,15 @@
 class Point
 {
 private:
-    double m_x;
-    double m_y;
+    long double m_x;
+    long double m_y;
 
 public:
     Point();
-    Point(double x, double y);
+    Point(long double x, long double y);
     Point(const Point &p);
     ~Point();
-    double distanceTo(Point *p);
+    long double distanceTo(Point *p);
     void print();
     std::string toString();
 };

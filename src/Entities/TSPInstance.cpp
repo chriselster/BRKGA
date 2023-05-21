@@ -125,13 +125,14 @@ void TSPInstance::print()
 	}
 }
 
-double TSPInstance::evaluate(std::vector<double> cromossome)
+long double TSPInstance::evaluate(std::vector<long double> cromossome)
 {
 	fitness = 0;
 	for (int i = 0; i < items.size(); i++)
 	{
 		attendItem(i, cromossome[i]);
 	}
+
 	return fitness;
 }
 
@@ -142,11 +143,18 @@ uint TSPInstance::size()
 
 void TSPInstance::printStatistics()
 {
+	long double totoalCost = 0;
 	for (auto &vehicle : vehicles)
 	{
+		long double tripCost = vehicle.totalCost();
 		std::cout << "Vehicle " << vehicle.id << " has " << vehicle.remainingCapacity << " remaining capacity" << std::endl;
+		std::cout << "\tTrip cost: " << tripCost << std::endl;
+		totoalCost += tripCost;
 	}
 	std::cout << std::endl;
+	std::cout << "Total cost: " << totoalCost << std::endl
+			  << std::endl;
+
 	for (auto &item : items)
 	{
 		if (item.wasAttended())
@@ -157,9 +165,9 @@ void TSPInstance::printStatistics()
 	}
 }
 
-void TSPInstance::attendItem(int itemId, double vehicleSelector)
+void TSPInstance::attendItem(int itemId, long double vehicleSelector)
 {
-	std::vector<std::pair<double, Vehicle *>> availableVehicles = getAvailableVehicles(itemId);
+	std::vector<std::pair<long double, Vehicle *>> availableVehicles = getAvailableVehicles(itemId);
 	if (availableVehicles.empty())
 	{
 		fitness += PENALTY;
@@ -173,14 +181,14 @@ void TSPInstance::attendItem(int itemId, double vehicleSelector)
 	attendItem(item, selectedVehicle);
 }
 
-std::vector<std::pair<double, Vehicle *>> TSPInstance::getAvailableVehicles(int itemId)
+std::vector<std::pair<long double, Vehicle *>> TSPInstance::getAvailableVehicles(int itemId)
 {
-	std::vector<std::pair<double, Vehicle *>> availableVehicles;
+	std::vector<std::pair<long double, Vehicle *>> availableVehicles;
 	for (auto &carrier : carriers)
 	{
 		if (carrier.canAttend(&items[itemId]))
 		{
-			std::priority_queue<std::pair<double, Vehicle *>> vehicles = carrier.getAvailableVehicles(&items[itemId]);
+			std::priority_queue<std::pair<long double, Vehicle *>> vehicles = carrier.getAvailableVehicles(&items[itemId]);
 			while (!vehicles.empty())
 			{
 				availableVehicles.push_back(vehicles.top());
@@ -208,5 +216,34 @@ void TSPInstance::reset()
 	for (auto &item : items)
 	{
 		item.reset();
+	}
+}
+
+void TSPInstance::validate()
+{
+	bool valid = true;
+	for (auto &item : items)
+	{
+		if (!item.wasAttended())
+		{
+			valid = false;
+			std::cout << "Item " << item.id << " was not attended." << std::endl;
+		}
+	}
+	for (auto &vehicle : vehicles)
+	{
+		if (vehicle.remainingCapacity < 0)
+		{
+			valid = false;
+			std::cout << "Vehicle " << vehicle.id << " has " << vehicle.remainingCapacity << " remaining capacity" << std::endl;
+		}
+	}
+	if (valid)
+	{
+		std::cout << "\033[1;32mSolution is valid\033[0m" << std::endl;
+	}
+	else
+	{
+		std::cout << "\033[1;31mSolution is not valid\033[0m" << std::endl;
 	}
 }

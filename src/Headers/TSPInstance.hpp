@@ -27,7 +27,7 @@ private:
 	void readAcceptedClientsPerCarrier();
 	void readEntities();
 	void addItemsToClients();
-	std::vector<std::pair<double, Vehicle *>> getAvailableVehicles(int itemId);
+	std::vector<std::pair<long double, Vehicle *>> getAvailableVehicles(int itemId);
 	void attendItem(Item *itemId, Vehicle *vehicle);
 	void createCarriers();
 	void sortEntities();
@@ -35,17 +35,18 @@ private:
 	std::string addFolder(std::string filename);
 
 public:
-	double fitness = 0;
+	long double fitness = 0;
 	TSPInstance();
 	~TSPInstance();
 
 	void setUp();
-	double evaluate(std::vector<double> cromossome);
+	long double evaluate(std::vector<long double> cromossome);
 	uint size();
 	void printStatistics();
 	void print();
-	void attendItem(int itemId, double vehicleSelector);
+	void attendItem(int itemId, long double vehicleSelector);
 	void reset();
+	void validate();
 };
 
 #endif // __ALLOCATIONHANDLER_H__

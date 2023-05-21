@@ -11,7 +11,7 @@ Client::Client(const std::vector<std::string> &values) : id(std::stoi(values[0])
 {
 }
 
-Client::Client(int id, double x, double y) : id(id),
+Client::Client(int id, long double x, long double y) : id(id),
                                              x(x),
                                              y(y)
 {

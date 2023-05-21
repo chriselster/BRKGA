@@ -20,7 +20,7 @@ Vehicle::Vehicle(std::vector<std::string> values)
     remainingCapacity = capacity;
 }
 
-Vehicle::Vehicle(int id, int carrierId, int type, double capacity, double costPerKm, double minimumCapacity, double additionalForMultipleClients, double maxDistanceBetweenClients)
+Vehicle::Vehicle(int id, int carrierId, int type, long double capacity, long double costPerKm, long double minimumCapacity, long double additionalForMultipleClients, long double maxDistanceBetweenClients)
 {
     this->id = id;
     this->carrierId = carrierId;
@@ -71,14 +71,25 @@ void Vehicle::print()
 
 void Vehicle::take(Item *item)
 {
-    currentTripCost = calculateTripCost(item);
-    currentTripDeadFreightCost = calculateDeadFreightCost(item);
+    updateCurrentTripInfo(item);
     item->setVehicle(this);
+    addToVehicle(item);
+}
+
+void Vehicle::addToVehicle(Item *item)
+{
     remainingCapacity -= item->weight;
+    items.push_back(item);
     if (alreadyVisited(item->clientId))
         return;
     visitedClients.insert(item->clientId);
     visitedPoints.push_back(&item->destination);
+}
+
+void Vehicle::updateCurrentTripInfo(Item *item)
+{
+    currentTripCost = calculateTripCost(item);
+    currentTripDeadFreightCost = calculateDeadFreightCostWhenTaking(item);
 }
 
 void Vehicle::reset()
@@ -88,9 +99,10 @@ void Vehicle::reset()
     visitedPoints.clear();
     currentTripCost = 0;
     currentTripDeadFreightCost = 0;
+    items.clear();
 }
 
-double Vehicle::usedCapacity()
+long double Vehicle::usedCapacity()
 {
     return capacity - remainingCapacity;
 }
@@ -100,47 +112,80 @@ bool Vehicle::alreadyVisited(int clientId)
     return visitedClients.find(clientId) != visitedClients.end();
 }
 
-double Vehicle::calculateTripCostDelta(Item *item)
+long double Vehicle::calculateTripCostDelta(Item *item)
 {
     return calculateTripCost(item) - currentTripCost;
 }
 
-double Vehicle::calculateTripCost(Item *item)
+long double Vehicle::calculateTripCost(Item *item)
 {
-    double cost = 0;
-    if (visitedClients.size() > 0)
+    long double cost = 0;
+    if (visitedClients.size() == 1 && !alreadyVisited(item->clientId))
         cost += additionalForMultipleClients;
     cost += currentTripCost - currentTripDeadFreightCost;
-    cost += calculateDeadFreightCost(item);
-    cost += costPerKmPerWeight * origin.distanceTo(&item->destination) * item->weight;
+    cost += calculateDeadFreightCostWhenTaking(item);
+    cost += baseTripCost(item);
     return cost;
 }
 
-void Vehicle::setMinimumCapacity(double minimumCapacity)
+long double Vehicle::baseTripCost(Item *item)
+{
+    return costPerKmPerWeight * origin.distanceTo(&item->destination) * item->weight;
+}
+
+void Vehicle::setMinimumCapacity(long double minimumCapacity)
 {
     this->minimumContractedLoad = minimumCapacity;
 }
 
-double Vehicle::getFarthestDistance(Point *point)
+long double Vehicle::getFarthestTrip()
 {
-    double fartherDistance = origin.distanceTo(point);
+    long double fartherDistance = 0;
     for (Point *visitedPoint : visitedPoints)
     {
-        double distance = visitedPoint->distanceTo(point);
+        long double distance = origin.distanceTo(visitedPoint);
         if (distance > fartherDistance)
             fartherDistance = distance;
     }
     return fartherDistance;
 }
 
-double Vehicle::calculateDeadFreightCost(Item *item)
+long double Vehicle::calculateDeadFreightCostWhenTaking(Item *item)
 {
-    double cost = 0;
-    double newUsedCapacity = usedCapacity() + item->weight;
-    if (newUsedCapacity < minimumContractedLoad)
+    addToVehicle(item);
+    long double cost = calculateDeadFreight();
+    removeFromVehicle(item);
+    return cost;
+}
+
+void Vehicle::removeFromVehicle(Item *item)
+{
+    remainingCapacity += item->weight;
+    visitedClients.erase(item->clientId);
+    visitedPoints.pop_back();
+    items.pop_back();
+}
+
+long double Vehicle::calculateDeadFreight()
+{
+    long double cost = 0;
+    long double totalUsedCapacity = usedCapacity();
+    if (totalUsedCapacity < minimumContractedLoad)
     {
-        double fartherstDistance = getFarthestDistance(&item->destination);
-        cost += fartherstDistance * costPerKmPerWeight * std::max(minimumContractedLoad - newUsedCapacity, 0.0);
+        cost += getFarthestTrip() * costPerKmPerWeight * std::max(minimumContractedLoad - totalUsedCapacity, 0.0L);
     }
+    return cost;
+}
+
+long double Vehicle::totalCost()
+{
+    long double cost = 0;
+    if (visitedClients.size() > 1)
+        cost += additionalForMultipleClients;
+    for (Item *item : items)
+    {
+        cost += baseTripCost(item);
+    }
+    cost += calculateDeadFreight();
     return cost;
 }

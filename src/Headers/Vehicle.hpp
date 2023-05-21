@@ -9,39 +9,46 @@
 class Vehicle
 {
 private:
-	double capacity;
-	double minimumContractedLoad;
-	double maxDistanceBetweenClients;
-	double additionalForMultipleClients;
+	long double capacity;
+	long double minimumContractedLoad;
+	long double maxDistanceBetweenClients;
+	long double additionalForMultipleClients;
 	std::set<int> acceptedItemTypes;
 	std::set<int> visitedClients;
 	std::vector<Point *> visitedPoints;
-	double currentTripCost = 0;
-	double currentTripDeadFreightCost = 0;
+	std::vector<Item *> items;
+	long double currentTripCost = 0;
+	long double currentTripDeadFreightCost = 0;
 	Point origin = Point(0, 0);
-	double calculateTripCost(Item *item);
-	double getFarthestDistance(Point *point);
-	double calculateDeadFreightCost(Item *item);
-	double costPerKmPerWeight;
+	long double calculateTripCost(Item *item);
+	void updateCurrentTripInfo(Item *item);
+	long double getFarthestTrip();
+	long double calculateDeadFreightCostWhenTaking(Item *item);
+	long double calculateDeadFreight();
+	long double baseTripCost(Item *item);
+	void addToVehicle(Item *item);
+	void removeFromVehicle(Item *item);
+	long double costPerKmPerWeight;
 
 public:
-	double remainingCapacity;
+	long double remainingCapacity;
 	int carrierId;
 	int id;
 	int type;
 	Vehicle(std::vector<std::string> values);
-	Vehicle(int id, int carrierId, int type, double capacity, double costPerKm,
-			double minimumCapacity, double additionalForMultipleClients, double maxDistanceBetweenClients);
+	Vehicle(int id, int carrierId, int type, long double capacity, long double costPerKm,
+			long double minimumCapacity, long double additionalForMultipleClients, long double maxDistanceBetweenClients);
 	~Vehicle();
 	void addAcceptedItem(int itemType);
 	bool canTake(Item *itemType);
 	void print();
 	void take(Item *item);
 	void reset();
-	double usedCapacity();
+	long double totalCost();
+	long double usedCapacity();
 	bool alreadyVisited(int clientId);
-	double calculateTripCostDelta(Item *item);
-	void setMinimumCapacity(double minimumCapacity);
+	long double calculateTripCostDelta(Item *item);
+	void setMinimumCapacity(long double minimumCapacity);
 };
 
 #endif // __Vehicle_H__

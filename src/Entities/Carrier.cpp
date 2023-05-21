@@ -57,9 +57,9 @@ bool Carrier::canAttend(Item *item)
     return false;
 }
 
-std::priority_queue<std::pair<double, Vehicle *>> Carrier::getAvailableVehicles(Item *item)
+std::priority_queue<std::pair<long double, Vehicle *>> Carrier::getAvailableVehicles(Item *item)
 {
-    std::priority_queue<std::pair<double, Vehicle *>> availableVehicles;
+    std::priority_queue<std::pair<long double, Vehicle *>> availableVehicles;
     for (auto &vehicle : vehicles)
     {
         if (vehicle->canTake(item))
@@ -70,7 +70,7 @@ std::priority_queue<std::pair<double, Vehicle *>> Carrier::getAvailableVehicles(
     return availableVehicles;
 }
 
-double Carrier::calculateTripCostDelta(Item *item, Vehicle *vehicle)
+long double Carrier::calculateTripCostDelta(Item *item, Vehicle *vehicle)
 {
     return vehicle->calculateTripCostDelta(item);
 }

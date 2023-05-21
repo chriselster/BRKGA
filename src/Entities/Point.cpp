@@ -7,7 +7,7 @@ Point::Point()
     m_y = 0;
 }
 
-Point::Point(double x, double y)
+Point::Point(long double x, long double y)
 {
     m_x = x;
     m_y = y;
@@ -23,7 +23,7 @@ Point::~Point()
 {
 }
 
-double Point::distanceTo(Point *p)
+long double Point::distanceTo(Point *p)
 {
     return sqrt(pow(m_x - p->m_x, 2) + pow(m_y - p->m_y, 2));
 }

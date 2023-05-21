@@ -51,17 +51,17 @@ TEST_CASE("Get available vehicles", "[vehicle]")
         Vehicle *vehicle = new Vehicle(1, 1, 1, 1, 1, 1, 1, 1);
         vehicle->addAcceptedItem(1);
         carrier.addVehicle(vehicle);
-        std::priority_queue<std::pair<double, Vehicle *>> availableVehicles = carrier.getAvailableVehicles(new Item(1, 1, 1, 1));
+        std::priority_queue<std::pair<long double, Vehicle *>> availableVehicles = carrier.getAvailableVehicles(new Item(1, 1, 1, 1));
         REQUIRE(availableVehicles.size() == 1);
     }
 }
 
 TEST_CASE("Calculate trip cost")
 {
-    double COST_PER_ADDITIONAL_CLIENT = 1000;
-    double MINIMUM_CAPACITY = 1;
-    double DEAD_FREIGHT_COST = 10;
-    double COST_PER_KM = 5;
+    long double COST_PER_ADDITIONAL_CLIENT = 1000;
+    long double MINIMUM_CAPACITY = 1;
+    long double DEAD_FREIGHT_COST = 10;
+    long double COST_PER_KM = 5;
     Carrier carrier = Carrier(1);
     carrier.addClient(1);
     Vehicle *vehicle = new Vehicle(1, 1, 1, 10, COST_PER_KM, 1, 1, 1);
@@ -72,8 +72,8 @@ TEST_CASE("Calculate trip cost")
 
     SECTION("Single client 20 km away")
     {
-        double cost = carrier.calculateTripCostDelta(item, vehicle);
-        double expectedCost = 20 * COST_PER_KM;
+        long double cost = carrier.calculateTripCostDelta(item, vehicle);
+        long double expectedCost = 20 * COST_PER_KM;
         REQUIRE(cost == expectedCost);
     }
 
@@ -81,8 +81,8 @@ TEST_CASE("Calculate trip cost")
     {
         Item *item = new Item(1, 1, 1, 0.5);
         item->setDestination(new Point(0, 4));
-        double cost = carrier.calculateTripCostDelta(item, vehicle); // did not exceed the minimum capacity
-        double expectedCost = vehicle->calculateTripCostDelta(item);
+        long double cost = carrier.calculateTripCostDelta(item, vehicle); // did not exceed the minimum capacity
+        long double expectedCost = vehicle->calculateTripCostDelta(item);
         REQUIRE(cost == expectedCost);
     }
 
@@ -91,8 +91,8 @@ TEST_CASE("Calculate trip cost")
         carrier.attendItem(item, vehicle);
         item = new Item(2, 2, 1, 1);
         item->setDestination(new Point(0, 4));
-        double cost = carrier.calculateTripCostDelta(item, vehicle);
-        double expectedCost = vehicle->calculateTripCostDelta(item);
+        long double cost = carrier.calculateTripCostDelta(item, vehicle);
+        long double expectedCost = vehicle->calculateTripCostDelta(item);
         REQUIRE(cost == expectedCost);
     }
 }
