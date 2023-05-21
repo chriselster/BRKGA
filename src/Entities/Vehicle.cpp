@@ -88,8 +88,7 @@ void Vehicle::addToVehicle(Item *item)
 
 void Vehicle::updateCurrentTripInfo(Item *item)
 {
-    currentTripCost = calculateTripCost(item);
-    currentTripDeadFreightCost = calculateDeadFreightCostWhenTaking(item);
+    currentTripCost = calculateTripCostWhenTaking(item);
 }
 
 void Vehicle::reset()
@@ -98,7 +97,6 @@ void Vehicle::reset()
     visitedClients.clear();
     visitedPoints.clear();
     currentTripCost = 0;
-    currentTripDeadFreightCost = 0;
     items.clear();
 }
 
@@ -114,17 +112,14 @@ bool Vehicle::alreadyVisited(int clientId)
 
 long double Vehicle::calculateTripCostDelta(Item *item)
 {
-    return calculateTripCost(item) - currentTripCost;
+    return calculateTripCostWhenTaking(item) - currentTripCost;
 }
 
-long double Vehicle::calculateTripCost(Item *item)
+long double Vehicle::calculateTripCostWhenTaking(Item *item)
 {
-    long double cost = 0;
-    if (visitedClients.size() == 1 && !alreadyVisited(item->clientId))
-        cost += additionalForMultipleClients;
-    cost += currentTripCost - currentTripDeadFreightCost;
-    cost += calculateDeadFreightCostWhenTaking(item);
-    cost += baseTripCost(item);
+    addToVehicle(item);
+    long double cost = totalCost();
+    removeFromVehicle(item);
     return cost;
 }
 
@@ -148,14 +143,6 @@ long double Vehicle::getFarthestTrip()
             fartherDistance = distance;
     }
     return fartherDistance;
-}
-
-long double Vehicle::calculateDeadFreightCostWhenTaking(Item *item)
-{
-    addToVehicle(item);
-    long double cost = calculateDeadFreight();
-    removeFromVehicle(item);
-    return cost;
 }
 
 void Vehicle::removeFromVehicle(Item *item)

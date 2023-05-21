@@ -20,7 +20,7 @@ private:
 	long double currentTripCost = 0;
 	long double currentTripDeadFreightCost = 0;
 	Point origin = Point(0, 0);
-	long double calculateTripCost(Item *item);
+	long double calculateTripCostWhenTaking(Item *item);
 	void updateCurrentTripInfo(Item *item);
 	long double getFarthestTrip();
 	long double calculateDeadFreightCostWhenTaking(Item *item);

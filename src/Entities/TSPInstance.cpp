@@ -148,7 +148,8 @@ void TSPInstance::printStatistics()
 	{
 		long double tripCost = vehicle.totalCost();
 		std::cout << "Vehicle " << vehicle.id << " has " << vehicle.remainingCapacity << " remaining capacity" << std::endl;
-		std::cout << "\tTrip cost: " << tripCost << std::endl;
+		std::cout << "\tTrip cost: " << tripCost << std::endl
+				  << std::endl;
 		totoalCost += tripCost;
 	}
 	std::cout << std::endl;
@@ -174,10 +175,13 @@ void TSPInstance::attendItem(int itemId, long double vehicleSelector)
 		return;
 	}
 
-	Item *item = &items[itemId];
 	VectorSelector selector = VectorSelector(availableVehicles);
-	Vehicle *selectedVehicle = selector(vehicleSelector).second;
-	fitness += selector(vehicleSelector).first;
+	std::pair<long double, Vehicle *> selection = selector(vehicleSelector);
+
+	Vehicle *selectedVehicle = selection.second;
+	fitness += selection.first;
+
+	Item *item = &items[itemId];
 	attendItem(item, selectedVehicle);
 }
 
