@@ -15,8 +15,8 @@ private:
 	long double additionalForMultipleClients;
 	std::set<int> acceptedItemTypes;
 	std::set<int> visitedClients;
-	std::vector<Point *> visitedPoints;
-	std::vector<Item *> items;
+	std::set<Point *> visitedPoints;
+	std::set<Item *> items;
 	long double currentTripCost = 0;
 	long double currentTripDeadFreightCost = 0;
 	Point origin = Point(0, 0);
@@ -27,7 +27,7 @@ private:
 	long double calculateDeadFreight();
 	long double baseTripCost(Item *item);
 	void addToVehicle(Item *item);
-	void removeFromVehicle(Item *item);
+	void removeFromVehicle(Item *item, bool clientWasAlreadyVisited);
 	long double costPerKmPerWeight;
 
 public:
@@ -44,11 +44,13 @@ public:
 	void print();
 	void take(Item *item);
 	void reset();
-	long double totalCost();
+	long double tripCost();
 	long double usedCapacity();
 	bool alreadyVisited(int clientId);
 	long double calculateTripCostDelta(Item *item);
 	void setMinimumCapacity(long double minimumCapacity);
+	bool canVisitAllClients();
+	bool hasIncorrectPoints();
 };
 
 #endif // __Vehicle_H__

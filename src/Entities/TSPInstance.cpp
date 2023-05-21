@@ -146,7 +146,7 @@ void TSPInstance::printStatistics()
 	long double totoalCost = 0;
 	for (auto &vehicle : vehicles)
 	{
-		long double tripCost = vehicle.totalCost();
+		long double tripCost = vehicle.tripCost();
 		std::cout << "Vehicle " << vehicle.id << " has " << vehicle.remainingCapacity << " remaining capacity" << std::endl;
 		std::cout << "\tTrip cost: " << tripCost << std::endl
 				  << std::endl;
@@ -240,6 +240,16 @@ void TSPInstance::validate()
 		{
 			valid = false;
 			std::cout << "Vehicle " << vehicle.id << " has " << vehicle.remainingCapacity << " remaining capacity" << std::endl;
+		}
+		if (!vehicle.canVisitAllClients())
+		{
+			valid = false;
+			std::cout << "Vehicle " << vehicle.id << " can't visit all points" << std::endl;
+		}
+		if (vehicle.hasIncorrectPoints())
+		{
+			valid = false;
+			std::cout << "Vehicle " << vehicle.id << " has incorrect points" << std::endl;
 		}
 	}
 	if (valid)

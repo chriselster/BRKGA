@@ -79,11 +79,11 @@ void Vehicle::take(Item *item)
 void Vehicle::addToVehicle(Item *item)
 {
     remainingCapacity -= item->weight;
-    items.push_back(item);
+    items.insert(item);
     if (alreadyVisited(item->clientId))
         return;
     visitedClients.insert(item->clientId);
-    visitedPoints.push_back(&item->destination);
+    visitedPoints.insert(&item->destination);
 }
 
 void Vehicle::updateCurrentTripInfo(Item *item)
@@ -117,9 +117,10 @@ long double Vehicle::calculateTripCostDelta(Item *item)
 
 long double Vehicle::calculateTripCostWhenTaking(Item *item)
 {
+    bool clientWasAlreadtyVisited = alreadyVisited(item->clientId);
     addToVehicle(item);
-    long double cost = totalCost();
-    removeFromVehicle(item);
+    long double cost = tripCost();
+    removeFromVehicle(item, clientWasAlreadtyVisited);
     return cost;
 }
 
@@ -144,13 +145,14 @@ long double Vehicle::getFarthestTrip()
     }
     return fartherDistance;
 }
-
-void Vehicle::removeFromVehicle(Item *item)
+void Vehicle::removeFromVehicle(Item *item, bool clientWasAlreadtyVisited)
 {
     remainingCapacity += item->weight;
+    items.erase(item);
+    if (clientWasAlreadtyVisited)
+        return;
     visitedClients.erase(item->clientId);
-    visitedPoints.pop_back();
-    items.pop_back();
+    visitedPoints.erase(&item->destination);
 }
 
 long double Vehicle::calculateDeadFreight()
@@ -164,7 +166,7 @@ long double Vehicle::calculateDeadFreight()
     return cost;
 }
 
-long double Vehicle::totalCost()
+long double Vehicle::tripCost()
 {
     long double cost = 0;
     if (visitedClients.size() > 1)
@@ -175,4 +177,30 @@ long double Vehicle::totalCost()
     }
     cost += calculateDeadFreight();
     return cost;
+}
+
+bool Vehicle::canVisitAllClients()
+{
+    for (Point *visitedPoint : visitedPoints)
+    {
+        for (Point *otherPoint : visitedPoints)
+        {
+            if (visitedPoint->distanceTo(otherPoint) > maxDistanceBetweenClients)
+                return false;
+        }
+    }
+    return true;
+}
+
+bool Vehicle::hasIncorrectPoints()
+{
+    bool ok =
+        visitedClients.size() == visitedPoints.size();
+    std::set<int> visitedClientsSet;
+    for (auto item : items)
+    {
+        visitedClientsSet.insert(item->clientId);
+    }
+    ok = ok && visitedClientsSet.size() == visitedClients.size();
+    return !ok;
 }
