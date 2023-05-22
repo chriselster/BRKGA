@@ -1,6 +1,7 @@
 #include "TSPInstance.hpp"
 #include "VectorSelector.cpp"
 #include "Constants.hpp"
+#include "read_csv.cpp"
 
 TSPInstance::TSPInstance()
 {
@@ -259,5 +260,20 @@ void TSPInstance::validate()
 	else
 	{
 		std::cout << "\033[1;31mSolution is not valid\033[0m" << std::endl;
+	}
+}
+
+void TSPInstance::loadSolution(std::string solutionFile)
+{
+	std::vector<std::vector<int>> rows = read_csv<int>(solutionFile, false);
+
+	for (std::vector<int> row : rows)
+	{
+		int itemId = row[0];
+		int vehicleId = row[1];
+
+		Item *item = &items[itemId];
+		Vehicle *vehicle = &vehicles[vehicleId];
+		attendItem(item, vehicle);
 	}
 }

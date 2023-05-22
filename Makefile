@@ -25,6 +25,9 @@ $(TARGET): $(OBJS) $(SRCDIR)/main.cpp
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(HEADERS)
 	$(CXX) $(CXXFLAGS) $(OTIMIZATION_FLAGS) -I./src/Headers -c -o $@ $< -g
 
+solution: $(OBJS) $(SRCDIR)/solutionTester.cpp
+	$(CXX) $(CXXFLAGS) $(OTIMIZATION_FLAGS) -I./srd/Headers -o $@ $^ -g
+
 clean:
 	rm -f $(OBJS) $(TARGET)
 

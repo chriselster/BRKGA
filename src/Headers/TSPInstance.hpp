@@ -47,6 +47,7 @@ public:
 	void attendItem(int itemId, long double vehicleSelector);
 	void reset();
 	void validate();
+	void loadSolution(std::string solution);
 };
 
 #endif // __ALLOCATIONHANDLER_H__
