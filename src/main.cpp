@@ -20,7 +20,7 @@ int main(int argc, char const *argv[])
 	TSPDecoder decoder(instance);
 	auto [brkga_params, control_params] =
 		BRKGA::readConfiguration("config.conf");
-	int seed = 1;
+	int seed = 3;
 
 	BRKGA::BRKGA_MP_IPR<TSPDecoder> algorithm(
 		decoder, BRKGA::Sense::MINIMIZE, seed,

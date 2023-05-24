@@ -17,8 +17,6 @@ private:
 	std::set<int> visitedClients;
 	std::set<Point *> visitedPoints;
 	std::set<Item *> items;
-	long double currentTripCost = 0;
-	long double currentTripDeadFreightCost = 0;
 	Point origin = Point(0, 0);
 	long double calculateTripCostWhenTaking(Item *item);
 	void updateCurrentTripInfo(Item *item);
