@@ -175,13 +175,20 @@ long double Vehicle::tripCost()
 
 bool Vehicle::canVisitAllClients()
 {
+
     for (Point *visitedPoint : visitedPoints)
     {
+        bool ok = false;
         for (Point *otherPoint : visitedPoints)
         {
-            if (visitedPoint->distanceTo(otherPoint) > maxDistanceBetweenClients)
-                return false;
+            if (visitedPoint->distanceTo(otherPoint) <= maxDistanceBetweenClients)
+            {
+                ok = true;
+                break;
+            }
         }
+        if (!ok)
+            return false;
     }
     return true;
 }

@@ -1,7 +1,3 @@
 Generation 1
-Best cost: 100042608.79421080
-
-Generation 50
-
-Best cost: 39383.48940322
+Best cost: 111574.53280659
 
