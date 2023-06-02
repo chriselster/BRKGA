@@ -41,7 +41,7 @@ public:
 
 	void setUp();
 	long double evaluate(std::vector<long double> cromossome);
-	uint size();
+	unsigned int size();
 	void printStatistics();
 	void print();
 	void attendItem(int itemId, long double vehicleSelector);

@@ -73,9 +73,7 @@ void TSPInstance::sortEntities()
 
 void TSPInstance::readAcceptedClientsPerCarrier()
 {
-	CsvReader reader = CsvReader(addFolder(CLIENTS_PER_CARRIER_FILE));
-
-	for (std::vector<std::string> row : reader.rows)
+	for (std::vector<std::string> row : CsvReader(addFolder(CLIENTS_PER_CARRIER_FILE)).rows)
 	{
 		int carrierId = std::stoi(row[0]);
 		int clientId = std::stoi(row[1]);
@@ -86,9 +84,7 @@ void TSPInstance::readAcceptedClientsPerCarrier()
 
 void TSPInstance::readAcceptedItemsPerVeichle()
 {
-	CsvReader reader = CsvReader(addFolder(ITEMS_PER_VEHICLE_FILE));
-
-	for (std::vector<std::string> row : reader.rows)
+	for (std::vector<std::string> row : CsvReader(addFolder(ITEMS_PER_VEHICLE_FILE)).rows)
 	{
 		int vehicleType = std::stoi(row[0]);
 		int itemType = std::stoi(row[1]);
@@ -137,7 +133,7 @@ long double TSPInstance::evaluate(std::vector<long double> cromossome)
 	return fitness;
 }
 
-uint TSPInstance::size()
+unsigned int TSPInstance::size()
 {
 	return items.size();
 }
@@ -176,7 +172,7 @@ void TSPInstance::attendItem(int itemId, long double vehicleSelector)
 		return;
 	}
 
-	VectorSelector selector = VectorSelector(availableVehicles);
+	VectorSelector<std::pair<long double, Vehicle *>> selector = VectorSelector<std::pair<long double, Vehicle *>>(availableVehicles);
 	std::pair<long double, Vehicle *> selection = selector(vehicleSelector);
 
 	Vehicle *selectedVehicle = selection.second;

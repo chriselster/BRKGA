@@ -13,31 +13,6 @@ private:
 public:
     std::vector<std::vector<std::string>> rows;
 
-    template <typename T>
-    static std::vector<T> from_csv(const std::string &filename, char delimiter = ',')
-    {
-        std::vector<T> result;
-        std::ifstream file(filename);
-        std::string line;
-
-        std::getline(file, line);
-        while (std::getline(file, line))
-        {
-            std::stringstream ss(line);
-            std::string item;
-
-            std::vector<std::string> tokens;
-            while (std::getline(ss, item, delimiter))
-            {
-                tokens.push_back(item);
-            }
-
-            result.push_back(T(tokens));
-        }
-
-        return result;
-    }
-
     CsvReader(std::string filename, char delimiter = ',')
         : m_delimiter(delimiter)
     {
@@ -65,7 +40,32 @@ public:
         }
     }
 
-    ~CsvReader()
+    template <typename T>
+    static std::vector<T> from_csv(const std::string &filename, char delimiter = ',')
+    {
+        std::vector<T> result;
+        std::ifstream file(filename);
+        std::string line;
+
+        std::getline(file, line);
+        while (std::getline(file, line))
+        {
+            std::stringstream ss(line);
+            std::string item;
+
+            std::vector<std::string> tokens;
+            while (std::getline(ss, item, delimiter))
+            {
+                tokens.push_back(item);
+            }
+
+            result.push_back(T(tokens));
+        }
+
+        return result;
+    }
+
+        ~CsvReader()
     {
         m_file.close();
     }
