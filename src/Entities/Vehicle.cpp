@@ -71,7 +71,6 @@ void Vehicle::print()
 
 void Vehicle::take(Item *item)
 {
-    updateCurrentTripInfo(item);
     item->setVehicle(this);
     addToVehicle(item);
 }
@@ -86,9 +85,14 @@ void Vehicle::addToVehicle(Item *item)
     visitedPoints.insert(&item->destination);
 }
 
-void Vehicle::updateCurrentTripInfo(Item *item)
+void Vehicle::removeFromVehicle(Item *item, bool clientWasAlreadtyVisited)
 {
-    currentTripCost = calculateTripCostWhenTaking(item);
+    remainingCapacity += item->weight;
+    items.erase(item);
+    if (clientWasAlreadtyVisited)
+        return;
+    visitedClients.erase(item->clientId);
+    visitedPoints.erase(&item->destination);
 }
 
 void Vehicle::reset()
@@ -96,7 +100,6 @@ void Vehicle::reset()
     remainingCapacity = capacity;
     visitedClients.clear();
     visitedPoints.clear();
-    currentTripCost = 0;
     items.clear();
 }
 
@@ -112,7 +115,7 @@ bool Vehicle::alreadyVisited(int clientId)
 
 long double Vehicle::calculateTripCostDelta(Item *item)
 {
-    return calculateTripCostWhenTaking(item) - currentTripCost;
+    return calculateTripCostWhenTaking(item) - tripCost();
 }
 
 long double Vehicle::calculateTripCostWhenTaking(Item *item)
@@ -145,15 +148,6 @@ long double Vehicle::getFarthestTrip()
     }
     return fartherDistance;
 }
-void Vehicle::removeFromVehicle(Item *item, bool clientWasAlreadtyVisited)
-{
-    remainingCapacity += item->weight;
-    items.erase(item);
-    if (clientWasAlreadtyVisited)
-        return;
-    visitedClients.erase(item->clientId);
-    visitedPoints.erase(&item->destination);
-}
 
 long double Vehicle::calculateDeadFreight()
 {
@@ -181,13 +175,20 @@ long double Vehicle::tripCost()
 
 bool Vehicle::canVisitAllClients()
 {
+
     for (Point *visitedPoint : visitedPoints)
     {
+        bool ok = false;
         for (Point *otherPoint : visitedPoints)
         {
-            if (visitedPoint->distanceTo(otherPoint) > maxDistanceBetweenClients)
-                return false;
+            if (visitedPoint->distanceTo(otherPoint) <= maxDistanceBetweenClients)
+            {
+                ok = true;
+                break;
+            }
         }
+        if (!ok)
+            return false;
     }
     return true;
 }

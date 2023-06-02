@@ -42,25 +42,28 @@ TEST_CASE("Calculate item cost delta")
     }
     SECTION("Single item under deadfreight")
     {
-
         vehicle.setMinimumCapacity(minimumCapacity);
         itemWeight = minimumCapacity - 0.5;
         item.setWeight(itemWeight);
-        long double deadfreightCost = costPerKmPerWeight * (minimumCapacity - itemWeight) * origin->distanceTo(destination);
-        long double expectedCost = costPerKmPerWeight * (minimumCapacity - itemWeight) * origin->distanceTo(destination) + deadfreightCost;
+        vehicle.take(&item);
+        long double expectedCost = vehicle.tripCost();
+        vehicle.reset();
         REQUIRE(vehicle.calculateTripCostDelta(&item) == expectedCost);
     }
 
     SECTION("Multiple items over deadfreight")
     {
         vehicle.take(&item);
+        long double costOfFirstItem = vehicle.tripCost();
         long double secondItemWeight = 2;
         destination = new Point(0, 3);
         Item item2 = Item(1, 2, 1, secondItemWeight);
         item2.setDestination(destination);
-        long double deadfreightCost = costPerKmPerWeight * (minimumCapacity - itemWeight) * origin->distanceTo(destination);
-        long double expectedCost = costPerKmPerWeight * (secondItemWeight)*origin->distanceTo(destination) + additionalForMultipleClients + item1TripCost;
-        REQUIRE(vehicle.calculateTripCostDelta(&item2) == expectedCost - item1TripCost + deadfreightCost);
+        vehicle.take(&item2);
+        long double costOfTakingBoth = vehicle.tripCost();
+        vehicle.reset();
+        vehicle.take(&item);
+        REQUIRE(vehicle.calculateTripCostDelta(&item2) == costOfTakingBoth - costOfFirstItem);
     }
 
     SECTION("Multiple items under deadfreight")
@@ -70,31 +73,32 @@ TEST_CASE("Calculate item cost delta")
         vehicle.setMinimumCapacity(deadfreight);
         item.setWeight(firstItemWeight);
         long double firstTripCost = vehicle.calculateTripCostDelta(&item);
-        long double deadfreightCost = costPerKmPerWeight * (minimumCapacity - firstItemWeight) * origin->distanceTo(destination);
 
         SECTION("Second item still have deadfreight")
         {
             Item item2 = Item(1, 2, 1, secondItemWeight);
             destination = new Point(0, 3);
             item2.setDestination(destination);
-            long double secondTripCost = origin->distanceTo(destination) * costPerKmPerWeight * (secondItemWeight);
-            secondTripCost += origin->distanceTo(destination) * costPerKmPerWeight * (deadfreight - firstItemWeight - secondItemWeight);
-            secondTripCost += additionalForMultipleClients;
-
             vehicle.take(&item);
-            REQUIRE(vehicle.calculateTripCostDelta(&item2) == Catch::Approx(secondTripCost - firstTripCost + deadfreightCost));
+            vehicle.take(&item2);
+            long double costOfTakingBoth = vehicle.tripCost();
+            vehicle.reset();
+            vehicle.take(&item);
+            REQUIRE(vehicle.calculateTripCostDelta(&item2) == Catch::Approx(costOfTakingBoth - firstTripCost));
         }
+
         SECTION("Second item removes deadfreight")
         {
             secondItemWeight = 0.6;
             Item item2 = Item(1, 2, 1, secondItemWeight);
             destination = new Point(0, 3);
             item2.setDestination(destination);
-            long double secondTripCost = origin->distanceTo(destination) * costPerKmPerWeight * (secondItemWeight);
-            secondTripCost += additionalForMultipleClients;
-
             vehicle.take(&item);
-            REQUIRE(vehicle.calculateTripCostDelta(&item2) == Catch::Approx(secondTripCost - firstTripCost + deadfreightCost));
+            vehicle.take(&item2);
+            long double costOfTakingBoth = vehicle.tripCost();
+            vehicle.reset();
+            vehicle.take(&item);
+            REQUIRE(vehicle.calculateTripCostDelta(&item2) == Catch::Approx(costOfTakingBoth - firstTripCost));
         }
     }
 }

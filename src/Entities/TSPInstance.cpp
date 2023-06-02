@@ -241,7 +241,7 @@ void TSPInstance::validate()
 		if (!vehicle.canVisitAllClients())
 		{
 			valid = false;
-			std::cout << "Vehicle " << vehicle.id << " can't visit all points" << std::endl;
+			std::cout << "Vehicle " << vehicle.id << " can't visit all clients" << std::endl;
 		}
 		if (vehicle.hasIncorrectPoints())
 		{

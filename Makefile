@@ -1,4 +1,5 @@
 CXXFLAGS =-std=c++17  -pthread -fsanitize=undefined -pedantic -Wall -Wextra -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-promo -Wstrict-null-sentinel -Wstrict-overflow=5 -Wswitch-default -Wundef  -Wno-unused
+OPTIMIZATION = -O3 -DMATING_SEED_ONLY
 CXXFLAGS += $(OPTIMIZATION)
 CXX = g++
 SRCDIR = ./src
@@ -25,7 +26,7 @@ $(TARGET): $(OBJS) $(SRCDIR)/main.cpp
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(HEADERS)
 	$(CXX) $(CXXFLAGS) $(OTIMIZATION_FLAGS) -I./src/Headers -c -o $@ $< -g
 
-solution: $(OBJS) $(SRCDIR)/solutionTester.cpp
+solution: $(OBJS) $(SRCDIR)/solutionValidator.cpp
 	$(CXX) $(CXXFLAGS) $(OTIMIZATION_FLAGS) -I./srd/Headers -o $@ $^ -g
 
 clean:

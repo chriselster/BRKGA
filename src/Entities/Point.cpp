@@ -3,29 +3,29 @@
 
 Point::Point()
 {
-    m_x = 0;
-    m_y = 0;
+    _x = 0;
+    _y = 0;
 }
 
 Point::Point(long double x, long double y)
 {
-    m_x = x;
-    m_y = y;
+    _x = x;
+    _y = y;
 }
 
-Point::Point(const Point &p)
+Point::Point(const Point &other)
 {
-    m_x = p.m_x;
-    m_y = p.m_y;
+    _x = other._x;
+    _y = other._y;
 }
 
 Point::~Point()
 {
 }
 
-long double Point::distanceTo(Point *p)
+long double Point::distanceTo(Point *other)
 {
-    return sqrt(pow(m_x - p->m_x, 2) + pow(m_y - p->m_y, 2));
+    return sqrt(pow(_x - other->_x, 2) + pow(_y - other->_y, 2));
 }
 
 void Point::print()
@@ -35,5 +35,5 @@ void Point::print()
 
 std::string Point::toString()
 {
-    return "(" + std::to_string(m_x) + ", " + std::to_string(m_y) + ")";
+    return "(" + std::to_string(_x) + ", " + std::to_string(_y) + ")";
 }
