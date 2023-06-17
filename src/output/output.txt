@@ -1,3 +1,163 @@
 Generation 1
 Best cost: 111574.53280659
 
+Generation 50
+
+Best cost: 106261.70314077
+
+Generation 100
+
+Best cost: 105309.59476280
+
+Generation 150
+
+Best cost: 105025.55828651
+
+Generation 200
+
+Best cost: 105005.25788063
+
+Generation 250
+
+Best cost: 104985.02995843
+
+Generation 300
+
+Best cost: 104920.34767519
+
+Generation 350
+
+Best cost: 104813.41111526
+
+Generation 400
+
+Best cost: 104663.25071382
+
+Generation 450
+
+Best cost: 104482.07047632
+
+Generation 500
+
+Best cost: 104431.78748318
+
+Generation 550
+
+Best cost: 104431.78748318
+
+Generation 600
+
+Best cost: 104431.78748318
+
+Generation 650
+
+Best cost: 104431.78748318
+
+Generation 700
+
+Best cost: 104431.78748318
+
+Generation 750
+
+Best cost: 104431.78748318
+
+Generation 800
+
+Best cost: 104431.78748318
+
+Generation 850
+
+Best cost: 104431.78748318
+
+Generation 900
+
+Best cost: 104431.78748318
+
+Generation 950
+
+Best cost: 104431.78748318
+
+Generation 1000
+
+Best cost: 104431.78748318
+
+Generation 1050
+
+Best cost: 104431.78748318
+
+Generation 1100
+
+Best cost: 104431.78748318
+
+Generation 1150
+
+Best cost: 104431.78748318
+
+Generation 1200
+
+Best cost: 104431.78748318
+
+Generation 1250
+
+Best cost: 104431.78748318
+
+Generation 1300
+
+Best cost: 104431.78748318
+
+Generation 1350
+
+Best cost: 104431.78748318
+
+Generation 1400
+
+Best cost: 104431.78748318
+
+Generation 1450
+
+Best cost: 104431.78748318
+
+Generation 1500
+
+Best cost: 104431.78748318
+
+Generation 1550
+
+Best cost: 104422.13580105
+
+Generation 1600
+
+Best cost: 104356.98726589
+
+Generation 1650
+
+Best cost: 104356.98726589
+
+Generation 1700
+
+Best cost: 104356.98726589
+
+Generation 1750
+
+Best cost: 104191.30288913
+
+Generation 1800
+
+Best cost: 104191.30288913
+
+Generation 1850
+
+Best cost: 104191.30288913
+
+Generation 1900
+
+Best cost: 104191.30288913
+
+Generation 1950
+
+Best cost: 104191.30288913
+
+Generation 2000
+
+Best cost: 104191.30288913
+

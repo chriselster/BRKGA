@@ -22,7 +22,10 @@ private:
 	std::vector<Item> items;
 	std::vector<Vehicle> vehicles;
 	std::string testFolder;
+	int decoderType = 0;
 
+	std::vector<Item *> unnatendedItems();
+	std::string parseLine(std::fstream &file);
 	void readAcceptedItemsPerVeichle();
 	void readAcceptedClientsPerCarrier();
 	void readEntities();
@@ -31,7 +34,7 @@ private:
 	void attendItem(Item *itemId, Vehicle *vehicle);
 	void createCarriers();
 	void sortEntities();
-	void setTestFolder();
+	void readParameters();
 	std::string addFolder(std::string filename);
 
 public:

@@ -7,7 +7,7 @@ class VectorSelector
     std::vector<T> &values;
 
 public:
-    VectorSelector(std::vector<T> &values) : values(values) {}
+    VectorSelector(std::vector<T> values) : values(values) {}
     T operator()(float i)
     {
         int pos = floor(i * values.size());

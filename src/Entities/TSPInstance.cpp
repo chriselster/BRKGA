@@ -14,6 +14,7 @@ TSPInstance::~TSPInstance()
 
 void TSPInstance::setUp()
 {
+	readParameters();
 	readEntities();
 	readAcceptedClientsPerCarrier();
 	readAcceptedItemsPerVeichle();
@@ -22,7 +23,7 @@ void TSPInstance::setUp()
 
 void TSPInstance::readEntities()
 {
-	setTestFolder();
+
 	clients = CsvReader::from_csv<Client>(addFolder(CLIENT_FILE));
 	items = CsvReader::from_csv<Item>(addFolder(ITEM_FILE));
 	vehicles = CsvReader::from_csv<Vehicle>(addFolder(VEHICLE_FILE));
@@ -36,15 +37,21 @@ std::string TSPInstance::addFolder(std::string filename)
 	return testFolder + filename;
 }
 
-void TSPInstance::setTestFolder()
+void TSPInstance::readParameters()
 {
 	std::fstream file;
 	file.open("parameters.txt", std::ios::in);
+	testFolder = parseLine(file);
+	testFolder += "/";
+	decoderType = std::stoi(parseLine(file));
+}
+
+std::string TSPInstance::parseLine(std::fstream &file)
+{
 	std::string line;
 	std::getline(file, line);
 	std::string delimiter = "= ";
 	std::string testFolder = line.substr(line.find(delimiter) + delimiter.length());
-	this->testFolder = testFolder + "/";
 }
 
 void TSPInstance::createCarriers()
@@ -125,12 +132,60 @@ void TSPInstance::print()
 long double TSPInstance::evaluate(std::vector<long double> cromossome)
 {
 	fitness = 0;
-	for (int i = 0; i < items.size(); i++)
+	if (decoderType == ONLY_VEHIICLES)
 	{
-		attendItem(i, cromossome[i]);
+		for (int i = 0; i < items.size(); i++)
+		{
+			attendItem(i, cromossome[i]);
+		}
 	}
-
+	else if (decoderType == ONLY_iTEMS)
+	{
+		for (int i = 0; i < items.size(); i++)
+		{
+			VectorSelector<Item *> selector = VectorSelector<Item *>(unnatendedItems());
+			attendItem(selector(cromossome[i])->id, 0);
+		}
+	}
+	else
+	{
+		for (int i = 0; i < items.size(); i++)
+		{
+			VectorSelector itemSelector = VectorSelector(items);
+			VectorSelector vehicleSelector = VectorSelector(vehicles);
+			Item *item = &itemSelector(cromossome[i]);
+			Vehicle *vehicle = &vehicleSelector(cromossome[i + items.size()]);
+			std::vector<std::pair<long double, Vehicle *>> availableVehicles = getAvailableVehicles(item->id);
+			bool attended = false;
+			for (auto &availableVehicle : availableVehicles)
+			{
+				if (availableVehicle.second->id == vehicle->id)
+				{
+					fitness += availableVehicle.first;
+					attended = true;
+					break;
+				}
+			}
+			if (!attended)
+			{
+				fitness += PENALTY;
+			}
+		}
+	}
 	return fitness;
+}
+
+std::vector<Item *> TSPInstance::unnatendedItems()
+{
+	std::vector<Item *> unnatendedItems;
+	for (auto &item : items)
+	{
+		if (!item.wasAttended())
+		{
+			unnatendedItems.push_back(&item);
+		}
+	}
+	return unnatendedItems;
 }
 
 unsigned int TSPInstance::size()
