@@ -16,6 +16,9 @@ int main(int argc, char const *argv[])
 	TSPInstance instance = TSPInstance();
 	instance.setUp();
 	instance.print();
+	int cromossome_size = instance.size();
+	if (instance.decoderType == BOTH)
+		cromossome_size *= 2;
 
 	TSPDecoder decoder(instance);
 	auto [brkga_params, control_params] =
@@ -24,7 +27,7 @@ int main(int argc, char const *argv[])
 
 	BRKGA::BRKGA_MP_IPR<TSPDecoder> algorithm(
 		decoder, BRKGA::Sense::MINIMIZE, seed,
-		instance.size(), brkga_params);
+		cromossome_size, brkga_params);
 
 	algorithm.initialize();
 	algorithm.evolve(1);
