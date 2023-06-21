@@ -425,3 +425,111 @@ Generation 5300
 
 Best cost: 66805.15649585
 
+Generation 5350
+
+Best cost: 66805.15649585
+
+Generation 5400
+
+Best cost: 66805.15649585
+
+Generation 5450
+
+Best cost: 66805.15649585
+
+Generation 5500
+
+Best cost: 66805.15649585
+
+Generation 5550
+
+Best cost: 66805.15649585
+
+Generation 5600
+
+Best cost: 66805.15649585
+
+Generation 5650
+
+Best cost: 66805.15649585
+
+Generation 5700
+
+Best cost: 66805.15649585
+
+Generation 5750
+
+Best cost: 66805.15649585
+
+Generation 5800
+
+Best cost: 66805.15649585
+
+Generation 5850
+
+Best cost: 66805.15649585
+
+Generation 5900
+
+Best cost: 66805.15649585
+
+Generation 5950
+
+Best cost: 66805.15649585
+
+Generation 6000
+
+Best cost: 66805.15649585
+
+Generation 6050
+
+Best cost: 66805.15649585
+
+Generation 6100
+
+Best cost: 66805.15649585
+
+Generation 6150
+
+Best cost: 66805.15649585
+
+Generation 6200
+
+Best cost: 66805.15649585
+
+Generation 6250
+
+Best cost: 66805.15649585
+
+Generation 6300
+
+Best cost: 66805.15649585
+
+Generation 6350
+
+Best cost: 66805.15649585
+
+Generation 6400
+
+Best cost: 66805.15649585
+
+Generation 6450
+
+Best cost: 66805.15649585
+
+Generation 6500
+
+Best cost: 66805.15649585
+
+Generation 6550
+
+Best cost: 66805.15649585
+
+Generation 6600
+
+Best cost: 66805.15649585
+
+Generation 6650
+
+Best cost: 66805.15649585
+

@@ -9,6 +9,7 @@ class TSPDecoder
 {
 private:
 public:
+	TSPDecoder();
 	TSPDecoder(TSPInstance &instance);
 	~TSPDecoder();
 	BRKGA::fitness_t decode(BRKGA::Chromosome &chromosome, bool /* not-used */);
