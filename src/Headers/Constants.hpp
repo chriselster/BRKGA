@@ -3,14 +3,14 @@
 
 #include <string>
 
-std::string ITEM_FILE = "items.csv";
-std::string CLIENT_FILE = "clients.csv";
-std::string VEHICLE_FILE = "vehicles.csv";
-std::string CLIENTS_PER_CARRIER_FILE = "clients_per_carrier.csv";
-std::string ITEMS_PER_VEHICLE_FILE = "items_per_vehicle.csv";
+extern std::string ITEM_FILE;
+extern std::string CLIENT_FILE;
+extern std::string VEHICLE_FILE;
+extern std::string CLIENTS_PER_CARRIER_FILE;
+extern std::string ITEMS_PER_VEHICLE_FILE;
 
-int ONLY_VEHIICLES = 0;
-int ONLY_iTEMS = 1;
-int BOTH = 2;
+extern int ONLY_VEHIICLES;
+extern int ONLY_ITEMS;
+extern int BOTH;
 
 #endif // __CONSTANTS_H__

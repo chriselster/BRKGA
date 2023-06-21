@@ -1,7 +1,4 @@
 #include "TSPInstance.hpp"
-#include "VectorSelector.cpp"
-#include "read_csv.cpp"
-#include "Constants.hpp"
 
 TSPInstance::TSPInstance()
 {
@@ -62,7 +59,8 @@ std::string TSPInstance::parseLine(std::fstream &file)
 	std::string line;
 	std::getline(file, line);
 	std::string delimiter = "= ";
-	std::string testFolder = line.substr(line.find(delimiter) + delimiter.length());
+	std::string parsed = line.substr(line.find(delimiter) + delimiter.length());
+	return parsed;
 }
 
 void TSPInstance::createCarriers()
@@ -150,7 +148,7 @@ long double TSPInstance::evaluate(std::vector<long double> cromossome)
 			attendItem(i, cromossome[i]);
 		}
 	}
-	else if (decoderType == ONLY_iTEMS)
+	else if (decoderType == ONLY_ITEMS)
 	{
 		for (int i = 0; i < items.size(); i++)
 		{

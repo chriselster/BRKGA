@@ -9,6 +9,9 @@
 #include "Item.hpp"
 #include "Vehicle.hpp"
 #include "../Entities/CsvReader.cpp"
+#include "Constants.hpp"
+#include "../Entities/VectorSelector.cpp"
+#include "../Entities/read_csv.cpp"
 
 #include <string>
 #include <algorithm>

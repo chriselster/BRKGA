@@ -1,11 +1,12 @@
 #include "TSPDecoder.hpp"
-#include <cmath>
-#include <iostream>
-#include <fstream>
-#include <iomanip>
 
 TSPDecoder::TSPDecoder(TSPInstance &_instance) : instance(_instance)
 {
+}
+
+TSPDecoder::TSPDecoder()
+{
+	instance = TSPInstance();
 }
 
 TSPDecoder::~TSPDecoder()
@@ -19,7 +20,7 @@ BRKGA::fitness_t TSPDecoder::decode(BRKGA::Chromosome &chromosome, bool /* not-u
 	return fitness;
 }
 
-void TSPDecoder::printSolution(BRKGA::Chromosome &chromosome)
+void TSPDecoder::printSolution(BRKGA::Chromosome &chromosome, std::fstream &file)
 {
 	long double fitness = instance.evaluate(std::vector<long double>(chromosome.begin(), chromosome.end()));
 	instance.printStatistics();
@@ -27,8 +28,6 @@ void TSPDecoder::printSolution(BRKGA::Chromosome &chromosome)
 	std::cout << std::fixed << std::setprecision(8) << "Best cost: " << fitness << std::endl
 			  << std::endl;
 
-	std::fstream file = std::fstream("../src/output/output.txt", std::ios::app);
 	file << std::fixed << std::setprecision(8) << "Best cost: " << fitness << std::endl
 		 << std::endl;
-	file.close();
 }
