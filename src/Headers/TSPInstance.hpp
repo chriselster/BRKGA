@@ -1,7 +1,6 @@
 #ifndef __ALLOCATIONHANDLER_H__
 #define __ALLOCATIONHANDLER_H__
 
-#include "Constants.hpp"
 #include <fstream>
 #include <queue>
 #include <vector>

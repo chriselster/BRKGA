@@ -1,3 +1,6 @@
+#ifndef __VECTORSELECTOR_H__
+#define __VECTORSELECTOR_H__
+
 #include <vector>
 #include <cmath>
 
@@ -14,3 +17,5 @@ public:
         return values[pos];
     }
 };
+
+#endif // __VECTORSELECTOR_H__

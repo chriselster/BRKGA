@@ -8,6 +8,8 @@
 #include <vector>
 #include <stdlib.h>
 
+// Rodar 10 vez para cada decoder e instancia variando seed
+
 int main(int argc, char const *argv[])
 {
 
@@ -17,17 +19,21 @@ int main(int argc, char const *argv[])
 	instance.setUp();
 	instance.print();
 	int cromossome_size = instance.size();
-	if (instance.decoderType == BOTH)
+	if (instance.decoderType == 2)
 		cromossome_size *= 2;
 
 	TSPDecoder decoder(instance);
 	auto [brkga_params, control_params] =
 		BRKGA::readConfiguration("config.conf");
-	int seed = 4;
+	int seed = std::stoi(argv[2]);
 
 	BRKGA::BRKGA_MP_IPR<TSPDecoder> algorithm(
 		decoder, BRKGA::Sense::MINIMIZE, seed,
 		cromossome_size, brkga_params);
+
+	const double rho = 0.7;
+	algorithm.setBiasCustomFunction([&](const unsigned x)
+									{ return x == 1 ? rho : 1.0 - rho; });
 
 	algorithm.initialize();
 	algorithm.evolve(1);

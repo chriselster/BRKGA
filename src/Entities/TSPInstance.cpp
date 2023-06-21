@@ -1,6 +1,7 @@
 #include "TSPInstance.hpp"
 #include "VectorSelector.cpp"
 #include "read_csv.cpp"
+#include "Constants.hpp"
 
 TSPInstance::TSPInstance()
 {
@@ -162,24 +163,7 @@ long double TSPInstance::evaluate(std::vector<long double> cromossome)
 		for (int i = 0; i < items.size(); i++)
 		{
 			VectorSelector itemSelector = VectorSelector(itemsPtr);
-			VectorSelector vehicleSelector = VectorSelector(vehiclesPtr);
-			Item *item = itemSelector(cromossome[i]);
-			Vehicle *vehicle = vehicleSelector(cromossome[i + items.size()]);
-			std::vector<std::pair<long double, Vehicle *>> availableVehicles = getAvailableVehicles(item->id);
-			bool attended = false;
-			for (auto &availableVehicle : availableVehicles)
-			{
-				if (availableVehicle.second->id == vehicle->id)
-				{
-					fitness += availableVehicle.first;
-					attended = true;
-					break;
-				}
-			}
-			if (!attended)
-			{
-				fitness += PENALTY;
-			}
+			attendItem(itemSelector(cromossome[i])->id, cromossome[i + items.size()]);
 		}
 	}
 	return fitness;

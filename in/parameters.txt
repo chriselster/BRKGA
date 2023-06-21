@@ -1,2 +1,2 @@
-test_folder = test100
+test_folder = test50
 decoder_type = 2
