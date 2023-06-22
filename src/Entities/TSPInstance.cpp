@@ -23,21 +23,10 @@ void TSPInstance::readEntities()
 
 	clients = CsvReader::from_csv<Client>(addFolder(CLIENT_FILE));
 	items = CsvReader::from_csv<Item>(addFolder(ITEM_FILE));
-	addPointers(items, itemsPtr);
 	vehicles = CsvReader::from_csv<Vehicle>(addFolder(VEHICLE_FILE));
-	addPointers(vehicles, vehiclesPtr);
 	carriers = std::vector<Carrier>();
 	createCarriers();
 	sortEntities();
-}
-
-template <class T>
-void TSPInstance::addPointers(std::vector<T> &items, std::vector<T *> &itemsPtr)
-{
-	for (auto &item : items)
-	{
-		itemsPtr.push_back(&item);
-	}
 }
 
 std::string TSPInstance::addFolder(std::string filename)
@@ -160,8 +149,8 @@ long double TSPInstance::evaluate(std::vector<long double> cromossome)
 	{
 		for (int i = 0; i < items.size(); i++)
 		{
-			VectorSelector itemSelector = VectorSelector(itemsPtr);
-			attendItem(itemSelector(cromossome[i])->id, cromossome[i + items.size()]);
+			VectorSelector itemSelector = VectorSelector<Item>(items);
+			attendItem(itemSelector(cromossome[i]).id, cromossome[i + items.size()]);
 		}
 	}
 	return fitness;

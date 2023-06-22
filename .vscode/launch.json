@@ -9,7 +9,6 @@
             "program": "${workspaceFolder}/bin/app",
             "args": [
                 "1000",
-                "0"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/in",

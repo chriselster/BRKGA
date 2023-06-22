@@ -17,7 +17,7 @@ class BRKGARunner
 {
     BRKGA::BrkgaParams brkga_params;
     TSPInstance instance;
-    TSPDecoder decoder;
+    TSPDecoder decoder = TSPDecoder(instance);
     int cromossome_size;
     unsigned num_generations;
     std::string parseLine(std::fstream &file);
@@ -37,7 +37,7 @@ BRKGARunner::BRKGARunner(unsigned num_generations)
     cromossome_size = instance.size();
     if (instance.decoderType == BOTH)
         cromossome_size *= 2;
-    TSPDecoder decoder(instance);
+    decoder = TSPDecoder(instance);
     auto [params, control_params] =
         BRKGA::readConfiguration("config.conf");
     brkga_params = params;
@@ -60,6 +60,7 @@ void BRKGARunner::run(int seed)
     file << "Generation " << 1 << std::endl;
 
     BRKGA::Chromosome best = algorithm.getBestChromosome();
+    decoder = TSPDecoder(instance);
     decoder.printSolution(best, file);
     for (unsigned i = 0; i <= num_generations; i += 50)
     {
@@ -68,6 +69,7 @@ void BRKGARunner::run(int seed)
              << std::endl;
 
         best = algorithm.getBestChromosome();
+        decoder = TSPDecoder(instance);
         decoder.printSolution(best, file);
     }
     file.close();

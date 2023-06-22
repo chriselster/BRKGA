@@ -23,9 +23,7 @@ private:
 	std::vector<Carrier> carriers;
 	std::vector<Client> clients;
 	std::vector<Item> items;
-	std::vector<Item *> itemsPtr;
 	std::vector<Vehicle> vehicles;
-	std::vector<Vehicle *> vehiclesPtr;
 	std::string testFolder;
 
 	std::vector<Item *> unnatendedItems();
@@ -40,9 +38,6 @@ private:
 	void sortEntities();
 	void readParameters();
 	std::string addFolder(std::string filename);
-
-	template <class T>
-	void addPointers(std::vector<T> &items, std::vector<T *> &itemsPtr);
 
 public:
 	int decoderType = 0;

@@ -4,11 +4,6 @@ TSPDecoder::TSPDecoder(TSPInstance &_instance) : instance(_instance)
 {
 }
 
-TSPDecoder::TSPDecoder()
-{
-	instance = TSPInstance();
-}
-
 TSPDecoder::~TSPDecoder()
 {
 }
