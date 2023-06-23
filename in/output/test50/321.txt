@@ -37,3 +37,51 @@ Generation 450
 
 Best cost: 66541.20269423
 
+Generation 500
+
+Best cost: 66541.20269423
+
+Generation 550
+
+Best cost: 66541.20269423
+
+Generation 600
+
+Best cost: 66541.20269423
+
+Generation 650
+
+Best cost: 66541.20269423
+
+Generation 700
+
+Best cost: 66541.20269423
+
+Generation 750
+
+Best cost: 66541.20269423
+
+Generation 800
+
+Best cost: 66541.20269423
+
+Generation 850
+
+Best cost: 66541.20269423
+
+Generation 900
+
+Best cost: 66541.20269423
+
+Generation 950
+
+Best cost: 66541.20269423
+
+Generation 1000
+
+Best cost: 66541.20269423
+
+Generation 1050
+
+Best cost: 66541.20269423
+
