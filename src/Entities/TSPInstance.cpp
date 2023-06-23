@@ -1,6 +1,6 @@
 #include "TSPInstance.hpp"
 
-TSPInstance::TSPInstance()
+TSPInstance::TSPInstance(RunArguments &_args) : args(_args)
 {
 	carriers = std::vector<Carrier>();
 }
@@ -31,15 +31,13 @@ void TSPInstance::readEntities()
 
 std::string TSPInstance::addFolder(std::string filename)
 {
-	return testFolder + filename;
+	return args.input_file_location + filename;
 }
 
 void TSPInstance::readParameters()
 {
 	std::fstream file;
 	file.open("parameters.txt", std::ios::in);
-	testFolder = parseLine(file);
-	testFolder += "/";
 	decoderType = std::stoi(parseLine(file));
 }
 
@@ -177,28 +175,28 @@ unsigned int TSPInstance::size()
 	return items.size();
 }
 
-void TSPInstance::printStatistics()
+void TSPInstance::printStatistics(std::fstream &file)
 {
 	long double totoalCost = 0;
 	for (auto &vehicle : vehicles)
 	{
 		long double tripCost = vehicle.tripCost();
-		std::cout << "Vehicle " << vehicle.id << " has " << vehicle.remainingCapacity << " remaining capacity" << std::endl;
-		std::cout << "\tTrip cost: " << tripCost << std::endl
-				  << std::endl;
+		file << "Vehicle " << vehicle.id << " has " << vehicle.remainingCapacity << " remaining capacity" << std::endl;
+		file << "\tTrip cost: " << tripCost << std::endl
+			 << std::endl;
 		totoalCost += tripCost;
 	}
-	std::cout << std::endl;
-	std::cout << "Total cost: " << totoalCost << std::endl
-			  << std::endl;
+	file << std::endl;
+	file << "Total cost: " << totoalCost << std::endl
+		 << std::endl;
 
 	for (auto &item : items)
 	{
 		if (item.wasAttended())
-			std::cout << "\033[1;32mItem " << item.id << " was attended by vehicle " << item.vehicle->id << "\033[0m" << std::endl;
+			file << "\033[1;32mItem " << item.id << " was attended by vehicle " << item.vehicle->id << "\033[0m" << std::endl;
 		else
-			std::cout << "\033[1;31mItem " << item.id << " was not attended.\033[0m"
-					  << " Position: " << item.destination.toString() << std::endl;
+			file << "\033[1;31mItem " << item.id << " was not attended.\033[0m"
+				 << " Position: " << item.destination.toString() << std::endl;
 	}
 }
 

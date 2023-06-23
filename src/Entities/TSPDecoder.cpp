@@ -18,7 +18,7 @@ BRKGA::fitness_t TSPDecoder::decode(BRKGA::Chromosome &chromosome, bool /* not-u
 void TSPDecoder::printSolution(BRKGA::Chromosome &chromosome, std::fstream &file)
 {
 	long double fitness = instance.evaluate(std::vector<long double>(chromosome.begin(), chromosome.end()));
-	instance.printStatistics();
+	instance.printStatistics(file);
 	instance.validate();
 	std::cout << std::fixed << std::setprecision(8) << "Best cost: " << fitness << std::endl
 			  << std::endl;

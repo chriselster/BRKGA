@@ -12,6 +12,7 @@
 #include "Constants.hpp"
 #include "../Entities/VectorSelector.cpp"
 #include "../Entities/read_csv.cpp"
+#include "RunArguments.hpp"
 
 #include <string>
 #include <algorithm>
@@ -24,7 +25,7 @@ private:
 	std::vector<Client> clients;
 	std::vector<Item> items;
 	std::vector<Vehicle> vehicles;
-	std::string testFolder;
+	RunArguments args;
 
 	std::vector<Item *> unnatendedItems();
 	std::string parseLine(std::fstream &file);
@@ -40,15 +41,15 @@ private:
 	std::string addFolder(std::string filename);
 
 public:
-	int decoderType = 0;
-	long double fitness = 0;
-	TSPInstance();
+	TSPInstance(RunArguments &_args);
 	~TSPInstance();
 
+	int decoderType = 0;
+	long double fitness = 0;
 	void setUp();
 	long double evaluate(std::vector<long double> cromossome);
 	unsigned int size();
-	void printStatistics();
+	void printStatistics(std::fstream &file);
 	void print();
 	void attendItem(int itemId, long double vehicleSelector);
 	void reset();
