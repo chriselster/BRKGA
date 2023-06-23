@@ -5,18 +5,35 @@
 
 class RunArguments
 {
-    std::string setOutputFileLocation()
+    void setOutputFileLocation()
     {
-        std::string output_file_location = input_file_location;
-        output_file_location.replace(output_file_location.find("input"), 5, "output");
-        return output_file_location + std::to_string(seed) + ".txt";
+        output_file_location = input_file_location;
+        output_file_location.replace(output_file_location.find("instances"), 9, "outputs");
+        std::string decoder = getDecoderName();
+        output_file_location = output_file_location + std::to_string(seed) + +".txt";
+    }
+
+    std::string getDecoderName()
+    {
+        switch (decoderType)
+        {
+        case 0:
+            return "only_items";
+        case 1:
+            return "only_vehicles";
+        case 2:
+            return "both";
+        default:
+            return "Invalid";
+        }
     }
 
 public:
-    RunArguments(int seed, char const *argv[])
+    RunArguments(int _seed, char const *argv[])
     {
+        seed = _seed;
         number_of_generations = std::stoi(argv[1]);
-        input_file_location = argv[2];
+        input_file_location = argv[2] + std::string("/");
         decoderType = std::stoi(argv[3]);
         setOutputFileLocation();
     }

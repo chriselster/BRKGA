@@ -1,2 +1,0 @@
-test_folder = test20
-decoder_type = 2

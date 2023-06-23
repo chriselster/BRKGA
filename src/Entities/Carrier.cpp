@@ -75,15 +75,22 @@ long double Carrier::calculateTripCostDelta(Item *item, Vehicle *vehicle)
     return vehicle->calculateTripCostDelta(item);
 }
 
-void Carrier::attendItem(Item *item, Vehicle *vehicle)
-{
-    vehicle->take(item);
-}
-
 void Carrier::reset()
 {
     for (auto &vehicle : vehicles)
     {
         vehicle->reset();
+    }
+}
+
+void Carrier::updatePointer(Vehicle *newVehicle)
+{
+    for (auto &vehicle : vehicles)
+    {
+        if (vehicle->id == newVehicle->id)
+        {
+            vehicle = newVehicle;
+            return;
+        }
     }
 }

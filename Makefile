@@ -11,7 +11,7 @@ ENTITIES = $(wildcard $(SRCDIR)/Entities/*.cpp)
 OBJS = $(ENTITIES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
 
-TARGET = $(BINDIR)/app
+TARGET = $(BINDIR)/brkga
 
 all: $(TARGET)
 

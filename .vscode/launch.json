@@ -6,12 +6,14 @@
             "name": "Iniciar",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/app",
+            "program": "${workspaceFolder}/bin/brkga",
             "args": [
                 "1000",
+                "instances/test20",
+                "0"
             ],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/in",
+            "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",

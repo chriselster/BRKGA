@@ -24,8 +24,8 @@ void TSPInstance::readEntities()
 	items = CsvReader::from_csv<Item>(addFolder(ITEM_FILE));
 	vehicles = CsvReader::from_csv<Vehicle>(addFolder(VEHICLE_FILE));
 	carriers = std::vector<Carrier>();
-	createCarriers();
 	sortEntities();
+	createCarriers();
 }
 
 std::string TSPInstance::addFolder(std::string filename)
@@ -44,13 +44,21 @@ std::string TSPInstance::parseLine(std::fstream &file)
 
 void TSPInstance::createCarriers()
 {
-	for (auto &vehicle : vehicles)
+	for (Vehicle &vehicle : vehicles)
 	{
 		while (carriers.size() <= vehicle.carrierId)
 		{
 			carriers.push_back(Carrier(carriers.size()));
 		}
 		carriers[vehicle.carrierId].addVehicle(&vehicle);
+	}
+}
+
+void TSPInstance::updateCarrierPointers()
+{
+	for (Vehicle &vehicle : vehicles)
+	{
+		carriers[vehicle.carrierId].updatePointer(&vehicle);
 	}
 }
 
@@ -98,9 +106,9 @@ void TSPInstance::addItemsToClients()
 {
 	for (auto &item : items)
 	{
-		Client *client = &clients[item.clientId];
-		client->addItem(&item);
-		item.setDestination(client->getPosition());
+		Client client = clients[item.clientId];
+		client.addItem(&item);
+		item.setDestination(client.getPosition());
 	}
 }
 
@@ -120,6 +128,7 @@ void TSPInstance::print()
 long double TSPInstance::evaluate(std::vector<long double> cromossome)
 {
 	fitness = 0;
+	updateCarrierPointers();
 	reset();
 	if (args.decoderType == ONLY_VEHIICLES)
 	{
@@ -178,16 +187,16 @@ void TSPInstance::printStatistics(std::fstream &file)
 			 << std::endl;
 		totoalCost += tripCost;
 	}
-	file << std::endl;
+
 	file << "Total cost: " << totoalCost << std::endl
 		 << std::endl;
 
 	for (auto &item : items)
 	{
 		if (item.wasAttended())
-			file << "\033[1;32mItem " << item.id << " was attended by vehicle " << item.vehicle->id << "\033[0m" << std::endl;
+			file << "Item " << item.id << " was attended by vehicle " << item.vehicle->id << std::endl;
 		else
-			file << "\033[1;31mItem " << item.id << " was not attended.\033[0m"
+			file << "Item " << item.id << " was not attended."
 				 << " Position: " << item.destination.toString() << std::endl;
 	}
 }
@@ -208,7 +217,7 @@ void TSPInstance::attendItem(int itemId, long double vehicleSelector)
 	fitness += selection.first;
 
 	Item *item = &items[itemId];
-	attendItem(item, selectedVehicle);
+	selectedVehicle->take(item);
 }
 
 std::vector<std::pair<long double, Vehicle *>> TSPInstance::getAvailableVehicles(int itemId)
@@ -218,22 +227,16 @@ std::vector<std::pair<long double, Vehicle *>> TSPInstance::getAvailableVehicles
 	{
 		if (carrier.canAttend(&items[itemId]))
 		{
-			std::priority_queue<std::pair<long double, Vehicle *>> vehicles = carrier.getAvailableVehicles(&items[itemId]);
-			while (!vehicles.empty())
+			std::priority_queue<std::pair<long double, Vehicle *>> availableVehiclesInCarrier = carrier.getAvailableVehicles(&items[itemId]);
+			while (!availableVehiclesInCarrier.empty())
 			{
-				availableVehicles.push_back(vehicles.top());
-				vehicles.pop();
+				availableVehicles.push_back(availableVehiclesInCarrier.top());
+				availableVehiclesInCarrier.pop();
 			}
 		}
 	}
 	sort(availableVehicles.begin(), availableVehicles.end());
 	return availableVehicles;
-}
-
-void TSPInstance::attendItem(Item *item, Vehicle *vehicle)
-{
-	Carrier *carrier = &carriers[vehicle->carrierId];
-	carrier->attendItem(item, vehicle);
 }
 
 void TSPInstance::reset()
@@ -280,11 +283,11 @@ void TSPInstance::validate()
 	}
 	if (valid)
 	{
-		std::cout << "\033[1;32mSolution is valid\033[0m" << std::endl;
+		std::cout << "Solution is valid" << std::endl;
 	}
 	else
 	{
-		std::cout << "\033[1;31mSolution is not valid\033[0m" << std::endl;
+		std::cout << "Solution is not valid" << std::endl;
 	}
 }
 
@@ -299,6 +302,6 @@ void TSPInstance::loadSolution(std::string solutionFile)
 
 		Item *item = &items[itemId];
 		Vehicle *vehicle = &vehicles[vehicleId];
-		attendItem(item, vehicle);
+		vehicle->take(item);
 	}
 }

@@ -34,10 +34,10 @@ private:
 	void readEntities();
 	void addItemsToClients();
 	std::vector<std::pair<long double, Vehicle *>> getAvailableVehicles(int itemId);
-	void attendItem(Item *itemId, Vehicle *vehicle);
 	void createCarriers();
 	void sortEntities();
 	void readParameters();
+	void updateCarrierPointers();
 	std::string addFolder(std::string filename);
 
 public:

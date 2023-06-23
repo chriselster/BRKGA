@@ -17,7 +17,7 @@ public:
 std::fstream FileGenerator::getOutputFile(std::string file_location)
 {
     std::string folder = getFolder(file_location);
-    std::filesystem::create_directory(file_location);
+    std::filesystem::create_directories(folder);
 
     std::fstream file;
     file.open(file_location, std::ios::out);

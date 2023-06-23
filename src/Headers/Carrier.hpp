@@ -14,11 +14,11 @@
 class Carrier
 {
 private:
-	std::vector<Vehicle *> vehicles;
 	std::set<int> clientIds;
 	Point position = Point(0, 0);
 
 public:
+	std::vector<Vehicle *> vehicles;
 	int id;
 	Carrier(int id);
 	Carrier();
@@ -29,8 +29,8 @@ public:
 	bool canAttend(Item *item);
 	std::priority_queue<std::pair<long double, Vehicle *>> getAvailableVehicles(Item *item);
 	long double calculateTripCostDelta(Item *item, Vehicle *vehicle);
-	void attendItem(Item *item, Vehicle *vehicle);
 	void reset();
+	void updatePointer(Vehicle *vehicle);
 };
 
 #endif // __Carrier_H__
