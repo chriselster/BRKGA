@@ -1,0 +1,39 @@
+Generation 1
+Best cost: 300071074.29062550
+
+Generation 50
+
+Best cost: 66778.84930788
+
+Generation 100
+
+Best cost: 66701.06237527
+
+Generation 150
+
+Best cost: 66701.06237527
+
+Generation 200
+
+Best cost: 66587.37321413
+
+Generation 250
+
+Best cost: 66541.20269423
+
+Generation 300
+
+Best cost: 66541.20269423
+
+Generation 350
+
+Best cost: 66541.20269423
+
+Generation 400
+
+Best cost: 66541.20269423
+
+Generation 450
+
+Best cost: 66541.20269423
+

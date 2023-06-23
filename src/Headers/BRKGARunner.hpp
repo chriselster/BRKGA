@@ -11,6 +11,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <filesystem>
 #include <stdlib.h>
 
 class FileGenerator
@@ -29,10 +30,9 @@ std::fstream FileGenerator::getOutputFile(int seed)
     testFolder += "/";
     file.close();
 
-    std::string command = "mkdir -p " + testFolder;
-    system(command.c_str());
+    std::filesystem::create_directory("output/" + testFolder);
 
-    std::string filename = "output/testFolder" + std::to_string(seed) + ".txt";
+    std::string filename = "output/" + testFolder + std::to_string(seed) + ".txt";
     file.open(filename, std::ios::out);
     return file;
 }

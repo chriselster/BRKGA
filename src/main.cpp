@@ -37,22 +37,19 @@ int main(int argc, char const *argv[])
 		algorithm.initialize();
 		algorithm.evolve(1);
 		std::cout << "Generation " << 1 << std::endl;
-		std::fstream file = std::fstream("../src/output/output.txt", std::ios::out);
-		file << "Generation " << 1 << std::endl;
-		file.close();
+		output << "Generation " << 1 << std::endl;
 		BRKGA::Chromosome best = algorithm.getBestChromosome();
 		decoder.printSolution(best, output);
 		for (unsigned i = 0; i <= num_generations; i += 50)
 		{
 			algorithm.evolve(50);
 			std::cout << "Generation " << i + 50 << std::endl;
-			std::fstream file = std::fstream("../src/output/output.txt", std::ios::app);
-			file << "Generation " << i + 50 << std::endl
-				 << std::endl;
-			file.close();
+			output << "Generation " << i + 50 << std::endl
+				   << std::endl;
 			best = algorithm.getBestChromosome();
 			decoder.printSolution(best, output);
 		}
+		output.close();
 	}
 
 	// for (int i = 0; i < 10; i++)
