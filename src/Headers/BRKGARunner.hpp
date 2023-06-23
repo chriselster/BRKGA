@@ -13,69 +13,15 @@
 #include <vector>
 #include <stdlib.h>
 
-class BRKGARunner
+class FileGenerator
 {
-    BRKGA::BrkgaParams brkga_params;
-    TSPInstance instance;
-    TSPDecoder decoder = TSPDecoder(instance);
-    int cromossome_size;
-    unsigned num_generations;
     std::string parseLine(std::fstream &file);
-    std::fstream getOutputFile(int seed);
 
 public:
-    BRKGARunner(unsigned num_generations);
-    void run(int seed);
+    std::fstream getOutputFile(int seed);
 };
 
-BRKGARunner::BRKGARunner(unsigned num_generations)
-{
-    this->num_generations = num_generations;
-    TSPInstance instance = TSPInstance();
-    instance.setUp();
-    instance.print();
-    cromossome_size = instance.size();
-    if (instance.decoderType == BOTH)
-        cromossome_size *= 2;
-    decoder = TSPDecoder(instance);
-    auto [params, control_params] =
-        BRKGA::readConfiguration("config.conf");
-    brkga_params = params;
-}
-
-void BRKGARunner::run(int seed)
-{
-
-    BRKGA::BRKGA_MP_IPR<TSPDecoder> algorithm(
-        decoder, BRKGA::Sense::MINIMIZE, seed,
-        cromossome_size, brkga_params);
-
-    const double rho = 0.7;
-    algorithm.setBiasCustomFunction([&](const unsigned x)
-                                    { return x == 1 ? rho : 1.0 - rho; });
-    algorithm.initialize();
-    algorithm.evolve(1);
-
-    std::fstream file = getOutputFile(seed);
-    file << "Generation " << 1 << std::endl;
-
-    BRKGA::Chromosome best = algorithm.getBestChromosome();
-    decoder = TSPDecoder(instance);
-    decoder.printSolution(best, file);
-    for (unsigned i = 0; i <= num_generations; i += 50)
-    {
-        algorithm.evolve(50);
-        file << "Generation " << i + 50 << std::endl
-             << std::endl;
-
-        best = algorithm.getBestChromosome();
-        decoder = TSPDecoder(instance);
-        decoder.printSolution(best, file);
-    }
-    file.close();
-}
-
-std::fstream BRKGARunner::getOutputFile(int seed)
+std::fstream FileGenerator::getOutputFile(int seed)
 {
     std::fstream file;
     file.open("parameters.txt", std::ios::in);
@@ -91,7 +37,7 @@ std::fstream BRKGARunner::getOutputFile(int seed)
     return file;
 }
 
-std::string BRKGARunner::parseLine(std::fstream &file)
+std::string FileGenerator::parseLine(std::fstream &file)
 {
     std::string line;
     std::getline(file, line);

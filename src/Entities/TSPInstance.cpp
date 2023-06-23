@@ -130,6 +130,7 @@ void TSPInstance::print()
 long double TSPInstance::evaluate(std::vector<long double> cromossome)
 {
 	fitness = 0;
+	reset();
 	if (decoderType == ONLY_VEHIICLES)
 	{
 		for (int i = 0; i < items.size(); i++)
@@ -141,7 +142,8 @@ long double TSPInstance::evaluate(std::vector<long double> cromossome)
 	{
 		for (int i = 0; i < items.size(); i++)
 		{
-			VectorSelector<Item *> selector = VectorSelector<Item *>(unnatendedItems());
+			std::vector<Item *> unnatended = unnatendedItems();
+			VectorSelector<Item *> selector = VectorSelector<Item *>(unnatended);
 			attendItem(selector(cromossome[i])->id, 0);
 		}
 	}
@@ -149,8 +151,9 @@ long double TSPInstance::evaluate(std::vector<long double> cromossome)
 	{
 		for (int i = 0; i < items.size(); i++)
 		{
-			VectorSelector itemSelector = VectorSelector<Item>(items);
-			attendItem(itemSelector(cromossome[i]).id, cromossome[i + items.size()]);
+			std::vector<Item *> unnatended = unnatendedItems();
+			VectorSelector<Item *> selector = VectorSelector<Item *>(unnatended);
+			attendItem(selector(cromossome[i])->id, cromossome[i + items.size()]);
 		}
 	}
 	return fitness;

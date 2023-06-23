@@ -1,2 +1,2 @@
 test_folder = test50
-decoder_type = 0
+decoder_type = 2
