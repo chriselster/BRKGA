@@ -11,7 +11,6 @@ TSPInstance::~TSPInstance()
 
 void TSPInstance::setUp()
 {
-	readParameters();
 	readEntities();
 	readAcceptedClientsPerCarrier();
 	readAcceptedItemsPerVeichle();
@@ -32,13 +31,6 @@ void TSPInstance::readEntities()
 std::string TSPInstance::addFolder(std::string filename)
 {
 	return args.input_file_location + filename;
-}
-
-void TSPInstance::readParameters()
-{
-	std::fstream file;
-	file.open("parameters.txt", std::ios::in);
-	decoderType = std::stoi(parseLine(file));
 }
 
 std::string TSPInstance::parseLine(std::fstream &file)
@@ -129,14 +121,14 @@ long double TSPInstance::evaluate(std::vector<long double> cromossome)
 {
 	fitness = 0;
 	reset();
-	if (decoderType == ONLY_VEHIICLES)
+	if (args.decoderType == ONLY_VEHIICLES)
 	{
 		for (int i = 0; i < items.size(); i++)
 		{
 			attendItem(i, cromossome[i]);
 		}
 	}
-	else if (decoderType == ONLY_ITEMS)
+	else if (args.decoderType == ONLY_ITEMS)
 	{
 		for (int i = 0; i < items.size(); i++)
 		{

@@ -18,7 +18,7 @@ void run(RunArguments args)
 	instance.setUp();
 	instance.print();
 	int cromossome_size = instance.size();
-	if (instance.decoderType == 2)
+	if (args.decoderType == 2)
 		cromossome_size *= 2;
 
 	TSPDecoder decoder(instance);
@@ -51,7 +51,6 @@ void run(RunArguments args)
 int main(int argc, char const *argv[])
 {
 
-	const unsigned num_generations = std::stoi(argv[1]);
 	int seeds[] = {2838, 2139, 6913, 321, 4321, 9876, 12588, 20, 1295, 129482};
 
 	std::thread threads[10];

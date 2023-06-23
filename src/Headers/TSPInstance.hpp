@@ -44,7 +44,6 @@ public:
 	TSPInstance(RunArguments &_args);
 	~TSPInstance();
 
-	int decoderType = 0;
 	long double fitness = 0;
 	void setUp();
 	long double evaluate(std::vector<long double> cromossome);

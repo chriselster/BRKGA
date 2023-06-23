@@ -17,11 +17,13 @@ public:
     {
         number_of_generations = std::stoi(argv[1]);
         input_file_location = argv[2];
+        decoderType = std::stoi(argv[3]);
         setOutputFileLocation();
     }
 
     int number_of_generations;
     int seed;
+    int decoderType;
     std::string input_file_location;
     std::string output_file_location;
 };
