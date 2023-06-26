@@ -29,12 +29,12 @@ class RunArguments
     }
 
 public:
-    RunArguments(int _seed, char const *argv[])
+    RunArguments(char const *argv[])
     {
-        seed = _seed;
         number_of_generations = std::stoi(argv[1]);
         input_file_location = argv[2] + std::string("/");
         decoderType = std::stoi(argv[3]);
+        seed = std::stoi(argv[4]);
         setOutputFileLocation();
     }
 

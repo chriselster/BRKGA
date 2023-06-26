@@ -51,20 +51,8 @@ void run(RunArguments args)
 int main(int argc, char const *argv[])
 {
 
-	int seeds[] = {2838, 2139, 6913, 321, 4321, 9876, 12588, 20, 1295, 129482};
-
-	std::thread threads[10];
-
-	for (int i = 0; i < 10; i++)
-	{
-		RunArguments args(seeds[i], argv);
-		threads[i] = std::thread(run, args);
-	}
-
-	for (int i = 0; i < 10; i++)
-	{
-		threads[i].join();
-	}
+	RunArguments args(argv);
+	run(args);
 
 	return 0;
 }
