@@ -10,7 +10,7 @@ class RunArguments
         output_file_location = input_file_location;
         output_file_location.replace(output_file_location.find("instances"), 9, "outputs");
         std::string decoder = getDecoderName();
-        output_file_location = output_file_location + std::to_string(seed) + +".txt";
+        output_file_location = output_file_location + decoder + "\\" + std::to_string(seed) + +".txt ";
     }
 
     std::string getDecoderName()
