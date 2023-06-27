@@ -1,53 +1,62 @@
-Generation 1
-Vehicle 0 has 7.52439 remaining capacity
+
+[Tue Jun 27 16:21:34 2023] Reading instance...
+population size: 100
+cromossome size: 20
+
+[Tue Jun 27 16:21:34 2023] Initializing BRKGA...
+
+[Tue Jun 27 16:21:34 2023] Evolving...
+* Iteration | Cost | CurrentTime
+* 1 | 100040358 | 0.09
+Vehicle 0 has 7.52 remaining capacity
 	Trip cost: 2509.84
 
-Vehicle 1 has 0.90503 remaining capacity
-	Trip cost: 3184.8
+Vehicle 1 has 0.91 remaining capacity
+	Trip cost: 3184.80
 
-Vehicle 2 has 17.8783 remaining capacity
+Vehicle 2 has 17.88 remaining capacity
 	Trip cost: 2979.88
 
-Vehicle 3 has 5.07064 remaining capacity
+Vehicle 3 has 5.07 remaining capacity
 	Trip cost: 2808.76
 
-Vehicle 4 has 10.7314 remaining capacity
+Vehicle 4 has 10.73 remaining capacity
 	Trip cost: 2509.84
 
-Vehicle 5 has 1.46042 remaining capacity
-	Trip cost: 2625.8
+Vehicle 5 has 1.46 remaining capacity
+	Trip cost: 2625.80
 
-Vehicle 6 has 25 remaining capacity
-	Trip cost: 0
+Vehicle 6 has 25.00 remaining capacity
+	Trip cost: 0.00
 
-Vehicle 7 has 2.36574 remaining capacity
+Vehicle 7 has 2.37 remaining capacity
 	Trip cost: 2314.93
 
-Vehicle 8 has 7.30001 remaining capacity
+Vehicle 8 has 7.30 remaining capacity
 	Trip cost: 2973.98
 
-Vehicle 9 has 5.67118 remaining capacity
+Vehicle 9 has 5.67 remaining capacity
 	Trip cost: 2509.84
 
-Vehicle 10 has 8.54993 remaining capacity
-	Trip cost: 2675.9
+Vehicle 10 has 8.55 remaining capacity
+	Trip cost: 2675.90
 
-Vehicle 11 has 6.57954 remaining capacity
+Vehicle 11 has 6.58 remaining capacity
 	Trip cost: 2607.45
 
-Vehicle 12 has 3.85428 remaining capacity
+Vehicle 12 has 3.85 remaining capacity
 	Trip cost: 2699.62
 
-Vehicle 13 has 1.14613 remaining capacity
+Vehicle 13 has 1.15 remaining capacity
 	Trip cost: 3074.53
 
-Vehicle 14 has 8.27659 remaining capacity
+Vehicle 14 has 8.28 remaining capacity
 	Trip cost: 2173.36
 
-Vehicle 15 has 5.7369 remaining capacity
+Vehicle 15 has 5.74 remaining capacity
 	Trip cost: 2708.98
 
-Total cost: 40357.5
+Total cost: 40357.52
 
 Item 0 was attended by vehicle 2
 Item 1 was attended by vehicle 15
@@ -71,56 +80,932 @@ Item 18 was attended by vehicle 12
 Item 19 was not attended. Position: (39.334999, 85.329002)
 Best cost: 100040357.52401216
 
-Generation 50
-Vehicle 0 has 1.46042061 remaining capacity
-	Trip cost: 2625.80364683
+* 1 | 40102 | 0.12
+Vehicle 0 has 5.74 remaining capacity
+	Trip cost: 2708.98
 
-Vehicle 1 has 25.00000000 remaining capacity
-	Trip cost: 0.00000000
+Vehicle 1 has 25.00 remaining capacity
+	Trip cost: 0.00
 
-Vehicle 2 has 2.50619125 remaining capacity
-	Trip cost: 2558.03190887
+Vehicle 2 has 1.15 remaining capacity
+	Trip cost: 3074.53
 
-Vehicle 3 has 5.07063866 remaining capacity
-	Trip cost: 2808.75938961
+Vehicle 3 has 0.91 remaining capacity
+	Trip cost: 3184.80
 
-Vehicle 4 has 0.90503025 remaining capacity
-	Trip cost: 2895.27155192
+Vehicle 4 has 10.73 remaining capacity
+	Trip cost: 2509.84
 
-Vehicle 5 has 8.27658713 remaining capacity
-	Trip cost: 2173.35818745
+Vehicle 5 has 8.28 remaining capacity
+	Trip cost: 2173.36
 
-Vehicle 6 has 2.36574173 remaining capacity
-	Trip cost: 2429.04738598
+Vehicle 6 has 2.37 remaining capacity
+	Trip cost: 2429.05
 
-Vehicle 7 has 10.73136997 remaining capacity
-	Trip cost: 2370.40460949
+Vehicle 7 has 7.52 remaining capacity
+	Trip cost: 2370.40
 
-Vehicle 8 has 0.17835426 remaining capacity
-	Trip cost: 3302.71676471
+Vehicle 8 has 8.55 remaining capacity
+	Trip cost: 2837.01
 
-Vehicle 9 has 1.14613342 remaining capacity
-	Trip cost: 2795.03120581
+Vehicle 9 has 3.85 remaining capacity
+	Trip cost: 2602.48
 
-Vehicle 10 has 7.52438736 remaining capacity
-	Trip cost: 2607.44507044
+Vehicle 10 has 5.67 remaining capacity
+	Trip cost: 2607.45
 
-Vehicle 11 has 6.57953835 remaining capacity
-	Trip cost: 2607.44507044
+Vehicle 11 has 6.58 remaining capacity
+	Trip cost: 2607.45
 
-Vehicle 12 has 4.64857197 remaining capacity
-	Trip cost: 2616.60082504
+Vehicle 12 has 5.07 remaining capacity
+	Trip cost: 2808.76
 
-Vehicle 13 has 5.67117691 remaining capacity
-	Trip cost: 2607.44507044
+Vehicle 13 has 2.51 remaining capacity
+	Trip cost: 2557.33
 
-Vehicle 14 has 5.73690224 remaining capacity
-	Trip cost: 2558.48548796
+Vehicle 14 has 0.18 remaining capacity
+	Trip cost: 3004.29
 
-Vehicle 15 has 7.75563431 remaining capacity
-	Trip cost: 2636.39447833
+Vehicle 15 has 1.46 remaining capacity
+	Trip cost: 2625.80
 
-Total cost: 39592.24065332
+Total cost: 40101.54
+
+Item 0 was attended by vehicle 14
+Item 1 was attended by vehicle 0
+Item 2 was attended by vehicle 12
+Item 3 was attended by vehicle 3
+Item 4 was attended by vehicle 3
+Item 5 was attended by vehicle 14
+Item 6 was attended by vehicle 5
+Item 7 was attended by vehicle 6
+Item 8 was attended by vehicle 5
+Item 9 was attended by vehicle 15
+Item 10 was attended by vehicle 7
+Item 11 was attended by vehicle 11
+Item 12 was attended by vehicle 10
+Item 13 was attended by vehicle 4
+Item 14 was attended by vehicle 9
+Item 15 was attended by vehicle 2
+Item 16 was attended by vehicle 8
+Item 17 was attended by vehicle 8
+Item 18 was attended by vehicle 9
+Item 19 was attended by vehicle 13
+Best cost: 40101.53649405
+
+* 3 | 40088 | 0.20
+Vehicle 0 has 5.74 remaining capacity
+	Trip cost: 2708.98
+
+Vehicle 1 has 25.00 remaining capacity
+	Trip cost: 0.00
+
+Vehicle 2 has 2.51 remaining capacity
+	Trip cost: 2558.03
+
+Vehicle 3 has 0.91 remaining capacity
+	Trip cost: 3184.80
+
+Vehicle 4 has 1.46 remaining capacity
+	Trip cost: 2625.80
+
+Vehicle 5 has 7.52 remaining capacity
+	Trip cost: 2370.40
+
+Vehicle 6 has 8.28 remaining capacity
+	Trip cost: 2429.05
+
+Vehicle 7 has 2.37 remaining capacity
+	Trip cost: 2314.93
+
+Vehicle 8 has 5.27 remaining capacity
+	Trip cost: 2731.60
+
+Vehicle 9 has 3.85 remaining capacity
+	Trip cost: 2602.48
+
+Vehicle 10 has 5.67 remaining capacity
+	Trip cost: 2607.45
+
+Vehicle 11 has 6.58 remaining capacity
+	Trip cost: 2607.45
+
+Vehicle 12 has 5.07 remaining capacity
+	Trip cost: 2808.76
+
+Vehicle 13 has 14.01 remaining capacity
+	Trip cost: 2738.92
+
+Vehicle 14 has 0.18 remaining capacity
+	Trip cost: 3004.29
+
+Vehicle 15 has 1.15 remaining capacity
+	Trip cost: 2795.03
+
+Total cost: 40087.98
+
+Item 0 was attended by vehicle 14
+Item 1 was attended by vehicle 0
+Item 2 was attended by vehicle 12
+Item 3 was attended by vehicle 3
+Item 4 was attended by vehicle 3
+Item 5 was attended by vehicle 14
+Item 6 was attended by vehicle 6
+Item 7 was attended by vehicle 7
+Item 8 was attended by vehicle 6
+Item 9 was attended by vehicle 4
+Item 10 was attended by vehicle 5
+Item 11 was attended by vehicle 11
+Item 12 was attended by vehicle 10
+Item 13 was attended by vehicle 8
+Item 14 was attended by vehicle 9
+Item 15 was attended by vehicle 15
+Item 16 was attended by vehicle 13
+Item 17 was attended by vehicle 8
+Item 18 was attended by vehicle 9
+Item 19 was attended by vehicle 2
+Best cost: 40087.97662831
+
+* 4 | 39946 | 0.24
+Vehicle 0 has 5.74 remaining capacity
+	Trip cost: 2708.98
+
+Vehicle 1 has 25.00 remaining capacity
+	Trip cost: 0.00
+
+Vehicle 2 has 2.51 remaining capacity
+	Trip cost: 2558.03
+
+Vehicle 3 has 0.91 remaining capacity
+	Trip cost: 3184.80
+
+Vehicle 4 has 3.85 remaining capacity
+	Trip cost: 2602.48
+
+Vehicle 5 has 8.28 remaining capacity
+	Trip cost: 2173.36
+
+Vehicle 6 has 2.37 remaining capacity
+	Trip cost: 2429.05
+
+Vehicle 7 has 7.52 remaining capacity
+	Trip cost: 2370.40
+
+Vehicle 8 has 5.27 remaining capacity
+	Trip cost: 2731.60
+
+Vehicle 9 has 1.15 remaining capacity
+	Trip cost: 2795.03
+
+Vehicle 10 has 5.67 remaining capacity
+	Trip cost: 2607.45
+
+Vehicle 11 has 6.58 remaining capacity
+	Trip cost: 2607.45
+
+Vehicle 12 has 5.07 remaining capacity
+	Trip cost: 2808.76
+
+Vehicle 13 has 14.01 remaining capacity
+	Trip cost: 2738.92
+
+Vehicle 14 has 0.18 remaining capacity
+	Trip cost: 3004.29
+
+Vehicle 15 has 1.46 remaining capacity
+	Trip cost: 2625.80
+
+Total cost: 39946.40
+
+Item 0 was attended by vehicle 14
+Item 1 was attended by vehicle 0
+Item 2 was attended by vehicle 12
+Item 3 was attended by vehicle 3
+Item 4 was attended by vehicle 3
+Item 5 was attended by vehicle 14
+Item 6 was attended by vehicle 5
+Item 7 was attended by vehicle 6
+Item 8 was attended by vehicle 5
+Item 9 was attended by vehicle 15
+Item 10 was attended by vehicle 7
+Item 11 was attended by vehicle 11
+Item 12 was attended by vehicle 10
+Item 13 was attended by vehicle 8
+Item 14 was attended by vehicle 4
+Item 15 was attended by vehicle 9
+Item 16 was attended by vehicle 13
+Item 17 was attended by vehicle 8
+Item 18 was attended by vehicle 4
+Item 19 was attended by vehicle 2
+Best cost: 39946.40067324
+
+* 6 | 39941 | 0.33
+Vehicle 0 has 5.74 remaining capacity
+	Trip cost: 2708.98
+
+Vehicle 1 has 25.00 remaining capacity
+	Trip cost: 0.00
+
+Vehicle 2 has 1.15 remaining capacity
+	Trip cost: 3074.53
+
+Vehicle 3 has 0.91 remaining capacity
+	Trip cost: 3184.80
+
+Vehicle 4 has 6.58 remaining capacity
+	Trip cost: 2509.84
+
+Vehicle 5 has 8.28 remaining capacity
+	Trip cost: 2173.36
+
+Vehicle 6 has 2.37 remaining capacity
+	Trip cost: 2429.05
+
+Vehicle 7 has 7.52 remaining capacity
+	Trip cost: 2370.40
+
+Vehicle 8 has 2.51 remaining capacity
+	Trip cost: 2558.03
+
+Vehicle 9 has 10.73 remaining capacity
+	Trip cost: 2509.84
+
+Vehicle 10 has 3.85 remaining capacity
+	Trip cost: 2699.62
+
+Vehicle 11 has 5.67 remaining capacity
+	Trip cost: 2607.45
+
+Vehicle 12 has 5.07 remaining capacity
+	Trip cost: 2808.76
+
+Vehicle 13 has 8.55 remaining capacity
+	Trip cost: 2675.90
+
+Vehicle 14 has 0.18 remaining capacity
+	Trip cost: 3004.29
+
+Vehicle 15 has 1.46 remaining capacity
+	Trip cost: 2625.80
+
+Total cost: 39940.66
+
+Item 0 was attended by vehicle 14
+Item 1 was attended by vehicle 0
+Item 2 was attended by vehicle 12
+Item 3 was attended by vehicle 3
+Item 4 was attended by vehicle 3
+Item 5 was attended by vehicle 14
+Item 6 was attended by vehicle 5
+Item 7 was attended by vehicle 6
+Item 8 was attended by vehicle 5
+Item 9 was attended by vehicle 15
+Item 10 was attended by vehicle 7
+Item 11 was attended by vehicle 4
+Item 12 was attended by vehicle 11
+Item 13 was attended by vehicle 9
+Item 14 was attended by vehicle 10
+Item 15 was attended by vehicle 2
+Item 16 was attended by vehicle 13
+Item 17 was attended by vehicle 13
+Item 18 was attended by vehicle 10
+Item 19 was attended by vehicle 8
+Best cost: 39940.65793922
+
+* 7 | 39923 | 0.37
+Vehicle 0 has 10.73 remaining capacity
+	Trip cost: 2509.84
+
+Vehicle 1 has 0.91 remaining capacity
+	Trip cost: 3184.80
+
+Vehicle 2 has 1.15 remaining capacity
+	Trip cost: 3074.53
+
+Vehicle 3 has 5.74 remaining capacity
+	Trip cost: 2814.33
+
+Vehicle 4 has 5.67 remaining capacity
+	Trip cost: 2509.84
+
+Vehicle 5 has 8.28 remaining capacity
+	Trip cost: 2173.36
+
+Vehicle 6 has 2.37 remaining capacity
+	Trip cost: 2429.05
+
+Vehicle 7 has 7.52 remaining capacity
+	Trip cost: 2370.40
+
+Vehicle 8 has 2.51 remaining capacity
+	Trip cost: 2558.03
+
+Vehicle 9 has 1.46 remaining capacity
+	Trip cost: 2625.80
+
+Vehicle 10 has 4.65 remaining capacity
+	Trip cost: 2616.60
+
+Vehicle 11 has 6.58 remaining capacity
+	Trip cost: 2607.45
+
+Vehicle 12 has 5.07 remaining capacity
+	Trip cost: 2808.76
+
+Vehicle 13 has 25.00 remaining capacity
+	Trip cost: 0.00
+
+Vehicle 14 has 0.18 remaining capacity
+	Trip cost: 3004.29
+
+Vehicle 15 has 7.76 remaining capacity
+	Trip cost: 2636.39
+
+Total cost: 39923.48
+
+Item 0 was attended by vehicle 14
+Item 1 was attended by vehicle 3
+Item 2 was attended by vehicle 12
+Item 3 was attended by vehicle 1
+Item 4 was attended by vehicle 1
+Item 5 was attended by vehicle 14
+Item 6 was attended by vehicle 5
+Item 7 was attended by vehicle 6
+Item 8 was attended by vehicle 5
+Item 9 was attended by vehicle 9
+Item 10 was attended by vehicle 7
+Item 11 was attended by vehicle 11
+Item 12 was attended by vehicle 4
+Item 13 was attended by vehicle 0
+Item 14 was attended by vehicle 15
+Item 15 was attended by vehicle 2
+Item 16 was attended by vehicle 10
+Item 17 was attended by vehicle 10
+Item 18 was attended by vehicle 10
+Item 19 was attended by vehicle 8
+Best cost: 39923.48088973
+
+* 8 | 39875 | 0.41
+Vehicle 0 has 7.76 remaining capacity
+	Trip cost: 2636.39
+
+Vehicle 1 has 0.91 remaining capacity
+	Trip cost: 3184.80
+
+Vehicle 2 has 2.51 remaining capacity
+	Trip cost: 2558.03
+
+Vehicle 3 has 5.07 remaining capacity
+	Trip cost: 2808.76
+
+Vehicle 4 has 1.15 remaining capacity
+	Trip cost: 2795.03
+
+Vehicle 5 has 8.28 remaining capacity
+	Trip cost: 2173.36
+
+Vehicle 6 has 2.37 remaining capacity
+	Trip cost: 2429.05
+
+Vehicle 7 has 3.62 remaining capacity
+	Trip cost: 2372.60
+
+Vehicle 8 has 0.18 remaining capacity
+	Trip cost: 3302.72
+
+Vehicle 9 has 1.46 remaining capacity
+	Trip cost: 2625.80
+
+Vehicle 10 has 25.00 remaining capacity
+	Trip cost: 0.00
+
+Vehicle 11 has 6.58 remaining capacity
+	Trip cost: 2607.45
+
+Vehicle 12 has 5.67 remaining capacity
+	Trip cost: 2607.45
+
+Vehicle 13 has 5.27 remaining capacity
+	Trip cost: 2578.22
+
+Vehicle 14 has 5.74 remaining capacity
+	Trip cost: 2558.49
+
+Vehicle 15 has 14.01 remaining capacity
+	Trip cost: 2636.39
+
+Total cost: 39874.53
+
+Item 0 was attended by vehicle 8
+Item 1 was attended by vehicle 14
+Item 2 was attended by vehicle 3
+Item 3 was attended by vehicle 1
+Item 4 was attended by vehicle 1
+Item 5 was attended by vehicle 8
+Item 6 was attended by vehicle 5
+Item 7 was attended by vehicle 6
+Item 8 was attended by vehicle 5
+Item 9 was attended by vehicle 9
+Item 10 was attended by vehicle 7
+Item 11 was attended by vehicle 11
+Item 12 was attended by vehicle 12
+Item 13 was attended by vehicle 13
+Item 14 was attended by vehicle 0
+Item 15 was attended by vehicle 4
+Item 16 was attended by vehicle 15
+Item 17 was attended by vehicle 13
+Item 18 was attended by vehicle 7
+Item 19 was attended by vehicle 2
+Best cost: 39874.53197260
+
+* 10 | 39831 | 0.49
+Vehicle 0 has 7.76 remaining capacity
+	Trip cost: 2636.39
+
+Vehicle 1 has 0.91 remaining capacity
+	Trip cost: 3184.80
+
+Vehicle 2 has 2.51 remaining capacity
+	Trip cost: 2558.03
+
+Vehicle 3 has 5.07 remaining capacity
+	Trip cost: 2808.76
+
+Vehicle 4 has 1.15 remaining capacity
+	Trip cost: 2795.03
+
+Vehicle 5 has 8.28 remaining capacity
+	Trip cost: 2173.36
+
+Vehicle 6 has 2.37 remaining capacity
+	Trip cost: 2429.05
+
+Vehicle 7 has 7.52 remaining capacity
+	Trip cost: 2370.40
+
+Vehicle 8 has 0.18 remaining capacity
+	Trip cost: 3302.72
+
+Vehicle 9 has 1.46 remaining capacity
+	Trip cost: 2625.80
+
+Vehicle 10 has 25.00 remaining capacity
+	Trip cost: 0.00
+
+Vehicle 11 has 6.58 remaining capacity
+	Trip cost: 2607.45
+
+Vehicle 12 has 5.67 remaining capacity
+	Trip cost: 2607.45
+
+Vehicle 13 has 6.83 remaining capacity
+	Trip cost: 2592.28
+
+Vehicle 14 has 5.74 remaining capacity
+	Trip cost: 2558.49
+
+Vehicle 15 has 8.55 remaining capacity
+	Trip cost: 2580.92
+
+Total cost: 39830.93
+
+Item 0 was attended by vehicle 8
+Item 1 was attended by vehicle 14
+Item 2 was attended by vehicle 3
+Item 3 was attended by vehicle 1
+Item 4 was attended by vehicle 1
+Item 5 was attended by vehicle 8
+Item 6 was attended by vehicle 5
+Item 7 was attended by vehicle 6
+Item 8 was attended by vehicle 5
+Item 9 was attended by vehicle 9
+Item 10 was attended by vehicle 7
+Item 11 was attended by vehicle 11
+Item 12 was attended by vehicle 12
+Item 13 was attended by vehicle 13
+Item 14 was attended by vehicle 0
+Item 15 was attended by vehicle 4
+Item 16 was attended by vehicle 15
+Item 17 was attended by vehicle 15
+Item 18 was attended by vehicle 13
+Item 19 was attended by vehicle 2
+Best cost: 39830.92664324
+
+* 11 | 39792 | 0.54
+Vehicle 0 has 7.76 remaining capacity
+	Trip cost: 2636.39
+
+Vehicle 1 has 0.91 remaining capacity
+	Trip cost: 3184.80
+
+Vehicle 2 has 2.51 remaining capacity
+	Trip cost: 2558.03
+
+Vehicle 3 has 5.07 remaining capacity
+	Trip cost: 2808.76
+
+Vehicle 4 has 1.15 remaining capacity
+	Trip cost: 2795.03
+
+Vehicle 5 has 8.28 remaining capacity
+	Trip cost: 2173.36
+
+Vehicle 6 has 2.37 remaining capacity
+	Trip cost: 2429.05
+
+Vehicle 7 has 7.52 remaining capacity
+	Trip cost: 2370.40
+
+Vehicle 8 has 0.18 remaining capacity
+	Trip cost: 3302.72
+
+Vehicle 9 has 1.46 remaining capacity
+	Trip cost: 2625.80
+
+Vehicle 10 has 25.00 remaining capacity
+	Trip cost: 0.00
+
+Vehicle 11 has 6.58 remaining capacity
+	Trip cost: 2607.45
+
+Vehicle 12 has 5.67 remaining capacity
+	Trip cost: 2607.45
+
+Vehicle 13 has 10.73 remaining capacity
+	Trip cost: 2607.45
+
+Vehicle 14 has 5.74 remaining capacity
+	Trip cost: 2558.49
+
+Vehicle 15 has 4.65 remaining capacity
+	Trip cost: 2527.01
+
+Total cost: 39792.18
+
+Item 0 was attended by vehicle 8
+Item 1 was attended by vehicle 14
+Item 2 was attended by vehicle 3
+Item 3 was attended by vehicle 1
+Item 4 was attended by vehicle 1
+Item 5 was attended by vehicle 8
+Item 6 was attended by vehicle 5
+Item 7 was attended by vehicle 6
+Item 8 was attended by vehicle 5
+Item 9 was attended by vehicle 9
+Item 10 was attended by vehicle 7
+Item 11 was attended by vehicle 11
+Item 12 was attended by vehicle 12
+Item 13 was attended by vehicle 13
+Item 14 was attended by vehicle 0
+Item 15 was attended by vehicle 4
+Item 16 was attended by vehicle 15
+Item 17 was attended by vehicle 15
+Item 18 was attended by vehicle 15
+Item 19 was attended by vehicle 2
+Best cost: 39792.17954797
+
+* 12 | 39784 | 0.59
+Vehicle 0 has 1.46 remaining capacity
+	Trip cost: 2625.80
+
+Vehicle 1 has 0.91 remaining capacity
+	Trip cost: 3184.80
+
+Vehicle 2 has 2.51 remaining capacity
+	Trip cost: 2558.03
+
+Vehicle 3 has 5.07 remaining capacity
+	Trip cost: 2808.76
+
+Vehicle 4 has 7.76 remaining capacity
+	Trip cost: 2636.39
+
+Vehicle 5 has 8.28 remaining capacity
+	Trip cost: 2173.36
+
+Vehicle 6 has 2.37 remaining capacity
+	Trip cost: 2429.05
+
+Vehicle 7 has 7.52 remaining capacity
+	Trip cost: 2370.40
+
+Vehicle 8 has 0.18 remaining capacity
+	Trip cost: 3302.72
+
+Vehicle 9 has 1.15 remaining capacity
+	Trip cost: 2795.03
+
+Vehicle 10 has 4.65 remaining capacity
+	Trip cost: 2616.60
+
+Vehicle 11 has 6.58 remaining capacity
+	Trip cost: 2607.45
+
+Vehicle 12 has 25.00 remaining capacity
+	Trip cost: 0.00
+
+Vehicle 13 has 10.73 remaining capacity
+	Trip cost: 2607.45
+
+Vehicle 14 has 5.74 remaining capacity
+	Trip cost: 2558.49
+
+Vehicle 15 has 5.67 remaining capacity
+	Trip cost: 2509.84
+
+Total cost: 39784.16
+
+Item 0 was attended by vehicle 8
+Item 1 was attended by vehicle 14
+Item 2 was attended by vehicle 3
+Item 3 was attended by vehicle 1
+Item 4 was attended by vehicle 1
+Item 5 was attended by vehicle 8
+Item 6 was attended by vehicle 5
+Item 7 was attended by vehicle 6
+Item 8 was attended by vehicle 5
+Item 9 was attended by vehicle 0
+Item 10 was attended by vehicle 7
+Item 11 was attended by vehicle 11
+Item 12 was attended by vehicle 15
+Item 13 was attended by vehicle 13
+Item 14 was attended by vehicle 4
+Item 15 was attended by vehicle 9
+Item 16 was attended by vehicle 10
+Item 17 was attended by vehicle 10
+Item 18 was attended by vehicle 10
+Item 19 was attended by vehicle 2
+Best cost: 39784.16291283
+
+* 14 | 39777 | 0.68
+Vehicle 0 has 1.15 remaining capacity
+	Trip cost: 2795.03
+
+Vehicle 1 has 0.91 remaining capacity
+	Trip cost: 3184.80
+
+Vehicle 2 has 2.51 remaining capacity
+	Trip cost: 2558.03
+
+Vehicle 3 has 5.07 remaining capacity
+	Trip cost: 2808.76
+
+Vehicle 4 has 5.67 remaining capacity
+	Trip cost: 2509.84
+
+Vehicle 5 has 8.28 remaining capacity
+	Trip cost: 2173.36
+
+Vehicle 6 has 2.37 remaining capacity
+	Trip cost: 2429.05
+
+Vehicle 7 has 7.76 remaining capacity
+	Trip cost: 2489.93
+
+Vehicle 8 has 0.18 remaining capacity
+	Trip cost: 3302.72
+
+Vehicle 9 has 1.46 remaining capacity
+	Trip cost: 2625.80
+
+Vehicle 10 has 4.65 remaining capacity
+	Trip cost: 2616.60
+
+Vehicle 11 has 6.58 remaining capacity
+	Trip cost: 2607.45
+
+Vehicle 12 has 25.00 remaining capacity
+	Trip cost: 0.00
+
+Vehicle 13 has 10.73 remaining capacity
+	Trip cost: 2607.45
+
+Vehicle 14 has 5.74 remaining capacity
+	Trip cost: 2558.49
+
+Vehicle 15 has 7.52 remaining capacity
+	Trip cost: 2509.84
+
+Total cost: 39777.13
+
+Item 0 was attended by vehicle 8
+Item 1 was attended by vehicle 14
+Item 2 was attended by vehicle 3
+Item 3 was attended by vehicle 1
+Item 4 was attended by vehicle 1
+Item 5 was attended by vehicle 8
+Item 6 was attended by vehicle 5
+Item 7 was attended by vehicle 6
+Item 8 was attended by vehicle 5
+Item 9 was attended by vehicle 9
+Item 10 was attended by vehicle 15
+Item 11 was attended by vehicle 11
+Item 12 was attended by vehicle 4
+Item 13 was attended by vehicle 13
+Item 14 was attended by vehicle 7
+Item 15 was attended by vehicle 0
+Item 16 was attended by vehicle 10
+Item 17 was attended by vehicle 10
+Item 18 was attended by vehicle 10
+Item 19 was attended by vehicle 2
+Best cost: 39777.13211819
+
+* 15 | 39617 | 0.73
+Vehicle 0 has 1.46 remaining capacity
+	Trip cost: 2625.80
+
+Vehicle 1 has 25.00 remaining capacity
+	Trip cost: 0.00
+
+Vehicle 2 has 2.51 remaining capacity
+	Trip cost: 2558.03
+
+Vehicle 3 has 5.07 remaining capacity
+	Trip cost: 2808.76
+
+Vehicle 4 has 0.91 remaining capacity
+	Trip cost: 2895.27
+
+Vehicle 5 has 8.28 remaining capacity
+	Trip cost: 2173.36
+
+Vehicle 6 has 2.37 remaining capacity
+	Trip cost: 2429.05
+
+Vehicle 7 has 7.52 remaining capacity
+	Trip cost: 2370.40
+
+Vehicle 8 has 0.18 remaining capacity
+	Trip cost: 3302.72
+
+Vehicle 9 has 10.73 remaining capacity
+	Trip cost: 2509.84
+
+Vehicle 10 has 5.67 remaining capacity
+	Trip cost: 2607.45
+
+Vehicle 11 has 6.58 remaining capacity
+	Trip cost: 2607.45
+
+Vehicle 12 has 3.85 remaining capacity
+	Trip cost: 2699.62
+
+Vehicle 13 has 8.55 remaining capacity
+	Trip cost: 2675.90
+
+Vehicle 14 has 5.74 remaining capacity
+	Trip cost: 2558.49
+
+Vehicle 15 has 1.15 remaining capacity
+	Trip cost: 2795.03
+
+Total cost: 39617.16
+
+Item 0 was attended by vehicle 8
+Item 1 was attended by vehicle 14
+Item 2 was attended by vehicle 3
+Item 3 was attended by vehicle 4
+Item 4 was attended by vehicle 4
+Item 5 was attended by vehicle 8
+Item 6 was attended by vehicle 5
+Item 7 was attended by vehicle 6
+Item 8 was attended by vehicle 5
+Item 9 was attended by vehicle 0
+Item 10 was attended by vehicle 7
+Item 11 was attended by vehicle 11
+Item 12 was attended by vehicle 10
+Item 13 was attended by vehicle 9
+Item 14 was attended by vehicle 12
+Item 15 was attended by vehicle 15
+Item 16 was attended by vehicle 13
+Item 17 was attended by vehicle 13
+Item 18 was attended by vehicle 12
+Item 19 was attended by vehicle 2
+Best cost: 39617.16220957
+
+* 16 | 39597 | 0.77
+Vehicle 0 has 1.46 remaining capacity
+	Trip cost: 2625.80
+
+Vehicle 1 has 25.00 remaining capacity
+	Trip cost: 0.00
+
+Vehicle 2 has 2.51 remaining capacity
+	Trip cost: 2558.03
+
+Vehicle 3 has 5.07 remaining capacity
+	Trip cost: 2808.76
+
+Vehicle 4 has 0.91 remaining capacity
+	Trip cost: 2895.27
+
+Vehicle 5 has 8.28 remaining capacity
+	Trip cost: 2173.36
+
+Vehicle 6 has 2.37 remaining capacity
+	Trip cost: 2429.05
+
+Vehicle 7 has 7.52 remaining capacity
+	Trip cost: 2370.40
+
+Vehicle 8 has 0.18 remaining capacity
+	Trip cost: 3302.72
+
+Vehicle 9 has 10.73 remaining capacity
+	Trip cost: 2509.84
+
+Vehicle 10 has 5.67 remaining capacity
+	Trip cost: 2607.45
+
+Vehicle 11 has 6.58 remaining capacity
+	Trip cost: 2607.45
+
+Vehicle 12 has 7.76 remaining capacity
+	Trip cost: 2738.92
+
+Vehicle 13 has 4.65 remaining capacity
+	Trip cost: 2616.60
+
+Vehicle 14 has 5.74 remaining capacity
+	Trip cost: 2558.49
+
+Vehicle 15 has 1.15 remaining capacity
+	Trip cost: 2795.03
+
+Total cost: 39597.16
+
+Item 0 was attended by vehicle 8
+Item 1 was attended by vehicle 14
+Item 2 was attended by vehicle 3
+Item 3 was attended by vehicle 4
+Item 4 was attended by vehicle 4
+Item 5 was attended by vehicle 8
+Item 6 was attended by vehicle 5
+Item 7 was attended by vehicle 6
+Item 8 was attended by vehicle 5
+Item 9 was attended by vehicle 0
+Item 10 was attended by vehicle 7
+Item 11 was attended by vehicle 11
+Item 12 was attended by vehicle 10
+Item 13 was attended by vehicle 9
+Item 14 was attended by vehicle 12
+Item 15 was attended by vehicle 15
+Item 16 was attended by vehicle 13
+Item 17 was attended by vehicle 13
+Item 18 was attended by vehicle 13
+Item 19 was attended by vehicle 2
+Best cost: 39597.16220957
+
+* 39 | 39592 | 1.62
+Vehicle 0 has 1.46 remaining capacity
+	Trip cost: 2625.80
+
+Vehicle 1 has 25.00 remaining capacity
+	Trip cost: 0.00
+
+Vehicle 2 has 2.51 remaining capacity
+	Trip cost: 2558.03
+
+Vehicle 3 has 5.07 remaining capacity
+	Trip cost: 2808.76
+
+Vehicle 4 has 0.91 remaining capacity
+	Trip cost: 2895.27
+
+Vehicle 5 has 8.28 remaining capacity
+	Trip cost: 2173.36
+
+Vehicle 6 has 2.37 remaining capacity
+	Trip cost: 2429.05
+
+Vehicle 7 has 10.73 remaining capacity
+	Trip cost: 2370.40
+
+Vehicle 8 has 0.18 remaining capacity
+	Trip cost: 3302.72
+
+Vehicle 9 has 1.15 remaining capacity
+	Trip cost: 2795.03
+
+Vehicle 10 has 7.52 remaining capacity
+	Trip cost: 2607.45
+
+Vehicle 11 has 6.58 remaining capacity
+	Trip cost: 2607.45
+
+Vehicle 12 has 4.65 remaining capacity
+	Trip cost: 2616.60
+
+Vehicle 13 has 5.67 remaining capacity
+	Trip cost: 2607.45
+
+Vehicle 14 has 5.74 remaining capacity
+	Trip cost: 2558.49
+
+Vehicle 15 has 7.76 remaining capacity
+	Trip cost: 2636.39
+
+Total cost: 39592.24
 
 Item 0 was attended by vehicle 8
 Item 1 was attended by vehicle 14
@@ -144,129 +1029,129 @@ Item 18 was attended by vehicle 12
 Item 19 was attended by vehicle 2
 Best cost: 39592.24065332
 
-Generation 100
-Vehicle 0 has 1.46042061 remaining capacity
-	Trip cost: 2625.80364683
+* 105 | 39561 | 4.07
+Vehicle 0 has 0.18 remaining capacity
+	Trip cost: 3004.29
 
-Vehicle 1 has 25.00000000 remaining capacity
-	Trip cost: 0.00000000
+Vehicle 1 has 25.00 remaining capacity
+	Trip cost: 0.00
 
-Vehicle 2 has 2.50619125 remaining capacity
-	Trip cost: 2558.03190887
+Vehicle 2 has 1.46 remaining capacity
+	Trip cost: 2888.38
 
-Vehicle 3 has 5.07063866 remaining capacity
-	Trip cost: 2808.75938961
+Vehicle 3 has 5.07 remaining capacity
+	Trip cost: 2808.76
 
-Vehicle 4 has 0.90503025 remaining capacity
-	Trip cost: 2895.27155192
+Vehicle 4 has 1.15 remaining capacity
+	Trip cost: 2795.03
 
-Vehicle 5 has 8.27658713 remaining capacity
-	Trip cost: 2173.35818745
+Vehicle 5 has 8.28 remaining capacity
+	Trip cost: 2173.36
 
-Vehicle 6 has 2.36574173 remaining capacity
-	Trip cost: 2429.04738598
+Vehicle 6 has 2.37 remaining capacity
+	Trip cost: 2429.05
 
-Vehicle 7 has 10.73136997 remaining capacity
-	Trip cost: 2370.40460949
+Vehicle 7 has 10.73 remaining capacity
+	Trip cost: 2370.40
 
-Vehicle 8 has 0.17835426 remaining capacity
-	Trip cost: 3302.71676471
+Vehicle 8 has 2.51 remaining capacity
+	Trip cost: 2558.03
 
-Vehicle 9 has 1.14613342 remaining capacity
-	Trip cost: 2795.03120581
+Vehicle 9 has 0.91 remaining capacity
+	Trip cost: 2895.27
 
-Vehicle 10 has 7.52438736 remaining capacity
-	Trip cost: 2607.44507044
+Vehicle 10 has 4.65 remaining capacity
+	Trip cost: 2616.60
 
-Vehicle 11 has 6.57953835 remaining capacity
-	Trip cost: 2607.44507044
+Vehicle 11 has 6.58 remaining capacity
+	Trip cost: 2607.45
 
-Vehicle 12 has 4.64857197 remaining capacity
-	Trip cost: 2616.60082504
+Vehicle 12 has 7.76 remaining capacity
+	Trip cost: 2738.92
 
-Vehicle 13 has 5.67117691 remaining capacity
-	Trip cost: 2607.44507044
+Vehicle 13 has 5.67 remaining capacity
+	Trip cost: 2607.45
 
-Vehicle 14 has 5.73690224 remaining capacity
-	Trip cost: 2558.48548796
+Vehicle 14 has 5.74 remaining capacity
+	Trip cost: 2558.49
 
-Vehicle 15 has 7.75563431 remaining capacity
-	Trip cost: 2636.39447833
+Vehicle 15 has 7.52 remaining capacity
+	Trip cost: 2509.84
 
-Total cost: 39592.24065332
+Total cost: 39561.31
 
-Item 0 was attended by vehicle 8
+Item 0 was attended by vehicle 0
 Item 1 was attended by vehicle 14
 Item 2 was attended by vehicle 3
-Item 3 was attended by vehicle 4
-Item 4 was attended by vehicle 4
-Item 5 was attended by vehicle 8
+Item 3 was attended by vehicle 9
+Item 4 was attended by vehicle 9
+Item 5 was attended by vehicle 0
 Item 6 was attended by vehicle 5
 Item 7 was attended by vehicle 6
 Item 8 was attended by vehicle 5
-Item 9 was attended by vehicle 0
-Item 10 was attended by vehicle 10
+Item 9 was attended by vehicle 2
+Item 10 was attended by vehicle 15
 Item 11 was attended by vehicle 11
 Item 12 was attended by vehicle 13
 Item 13 was attended by vehicle 7
-Item 14 was attended by vehicle 15
-Item 15 was attended by vehicle 9
-Item 16 was attended by vehicle 12
-Item 17 was attended by vehicle 12
-Item 18 was attended by vehicle 12
-Item 19 was attended by vehicle 2
-Best cost: 39592.24065332
+Item 14 was attended by vehicle 12
+Item 15 was attended by vehicle 4
+Item 16 was attended by vehicle 10
+Item 17 was attended by vehicle 10
+Item 18 was attended by vehicle 10
+Item 19 was attended by vehicle 8
+Best cost: 39561.31377747
 
-Generation 150
-Vehicle 0 has 0.17835426 remaining capacity
-	Trip cost: 3004.28796792
+* 109 | 39550 | 4.22
+Vehicle 0 has 0.18 remaining capacity
+	Trip cost: 3004.29
 
-Vehicle 1 has 25.00000000 remaining capacity
-	Trip cost: 0.00000000
+Vehicle 1 has 25.00 remaining capacity
+	Trip cost: 0.00
 
-Vehicle 2 has 5.67117691 remaining capacity
-	Trip cost: 2760.82419223
+Vehicle 2 has 5.67 remaining capacity
+	Trip cost: 2760.82
 
-Vehicle 3 has 5.07063866 remaining capacity
-	Trip cost: 2808.75938961
+Vehicle 3 has 5.07 remaining capacity
+	Trip cost: 2808.76
 
-Vehicle 4 has 1.46042061 remaining capacity
-	Trip cost: 2625.80364683
+Vehicle 4 has 1.46 remaining capacity
+	Trip cost: 2625.80
 
-Vehicle 5 has 8.27658713 remaining capacity
-	Trip cost: 2173.35818745
+Vehicle 5 has 8.28 remaining capacity
+	Trip cost: 2173.36
 
-Vehicle 6 has 2.36574173 remaining capacity
-	Trip cost: 2429.04738598
+Vehicle 6 has 2.37 remaining capacity
+	Trip cost: 2429.05
 
-Vehicle 7 has 10.73136997 remaining capacity
-	Trip cost: 2370.40460949
+Vehicle 7 has 10.73 remaining capacity
+	Trip cost: 2370.40
 
-Vehicle 8 has 2.50619125 remaining capacity
-	Trip cost: 2558.03190887
+Vehicle 8 has 2.51 remaining capacity
+	Trip cost: 2558.03
 
-Vehicle 9 has 0.90503025 remaining capacity
-	Trip cost: 2895.27155192
+Vehicle 9 has 0.91 remaining capacity
+	Trip cost: 2895.27
 
-Vehicle 10 has 7.75563431 remaining capacity
-	Trip cost: 2738.92093026
+Vehicle 10 has 7.76 remaining capacity
+	Trip cost: 2738.92
 
-Vehicle 11 has 7.52438736 remaining capacity
-	Trip cost: 2607.44507044
+Vehicle 11 has 7.52 remaining capacity
+	Trip cost: 2607.45
 
-Vehicle 12 has 6.57953835 remaining capacity
-	Trip cost: 2607.44507044
+Vehicle 12 has 6.58 remaining capacity
+	Trip cost: 2607.45
 
-Vehicle 13 has 4.64857197 remaining capacity
-	Trip cost: 2616.60082504
+Vehicle 13 has 4.65 remaining capacity
+	Trip cost: 2616.60
 
-Vehicle 14 has 5.73690224 remaining capacity
-	Trip cost: 2558.48548796
+Vehicle 14 has 5.74 remaining capacity
+	Trip cost: 2558.49
 
-Vehicle 15 has 1.14613342 remaining capacity
-	Trip cost: 2795.03120581
+Vehicle 15 has 1.15 remaining capacity
+	Trip cost: 2795.03
 
-Total cost: 39549.71743026
+Total cost: 39549.72
 
 Item 0 was attended by vehicle 0
 Item 1 was attended by vehicle 14
@@ -290,129 +1175,56 @@ Item 18 was attended by vehicle 13
 Item 19 was attended by vehicle 8
 Best cost: 39549.71743026
 
-Generation 200
-Vehicle 0 has 0.17835426 remaining capacity
-	Trip cost: 3004.28796792
+* 212 | 39538 | 7.99
+Vehicle 0 has 0.18 remaining capacity
+	Trip cost: 3004.29
 
-Vehicle 1 has 25.00000000 remaining capacity
-	Trip cost: 0.00000000
+Vehicle 1 has 25.00 remaining capacity
+	Trip cost: 0.00
 
-Vehicle 2 has 5.67117691 remaining capacity
-	Trip cost: 2760.82419223
+Vehicle 2 has 5.67 remaining capacity
+	Trip cost: 2760.82
 
-Vehicle 3 has 5.07063866 remaining capacity
-	Trip cost: 2808.75938961
+Vehicle 3 has 5.07 remaining capacity
+	Trip cost: 2808.76
 
-Vehicle 4 has 1.46042061 remaining capacity
-	Trip cost: 2625.80364683
+Vehicle 4 has 1.46 remaining capacity
+	Trip cost: 2625.80
 
-Vehicle 5 has 8.27658713 remaining capacity
-	Trip cost: 2173.35818745
+Vehicle 5 has 8.28 remaining capacity
+	Trip cost: 2173.36
 
-Vehicle 6 has 2.36574173 remaining capacity
-	Trip cost: 2429.04738598
+Vehicle 6 has 2.37 remaining capacity
+	Trip cost: 2429.05
 
-Vehicle 7 has 10.73136997 remaining capacity
-	Trip cost: 2370.40460949
+Vehicle 7 has 7.76 remaining capacity
+	Trip cost: 2489.93
 
-Vehicle 8 has 2.50619125 remaining capacity
-	Trip cost: 2558.03190887
+Vehicle 8 has 2.51 remaining capacity
+	Trip cost: 2558.03
 
-Vehicle 9 has 0.90503025 remaining capacity
-	Trip cost: 2895.27155192
+Vehicle 9 has 0.91 remaining capacity
+	Trip cost: 2895.27
 
-Vehicle 10 has 7.75563431 remaining capacity
-	Trip cost: 2738.92093026
+Vehicle 10 has 7.52 remaining capacity
+	Trip cost: 2607.45
 
-Vehicle 11 has 7.52438736 remaining capacity
-	Trip cost: 2607.44507044
+Vehicle 11 has 4.65 remaining capacity
+	Trip cost: 2616.60
 
-Vehicle 12 has 6.57953835 remaining capacity
-	Trip cost: 2607.44507044
+Vehicle 12 has 6.58 remaining capacity
+	Trip cost: 2607.45
 
-Vehicle 13 has 4.64857197 remaining capacity
-	Trip cost: 2616.60082504
+Vehicle 13 has 10.73 remaining capacity
+	Trip cost: 2607.45
 
-Vehicle 14 has 5.73690224 remaining capacity
-	Trip cost: 2558.48548796
+Vehicle 14 has 5.74 remaining capacity
+	Trip cost: 2558.49
 
-Vehicle 15 has 1.14613342 remaining capacity
-	Trip cost: 2795.03120581
+Vehicle 15 has 1.15 remaining capacity
+	Trip cost: 2795.03
 
-Total cost: 39549.71743026
-
-Item 0 was attended by vehicle 0
-Item 1 was attended by vehicle 14
-Item 2 was attended by vehicle 3
-Item 3 was attended by vehicle 9
-Item 4 was attended by vehicle 9
-Item 5 was attended by vehicle 0
-Item 6 was attended by vehicle 5
-Item 7 was attended by vehicle 6
-Item 8 was attended by vehicle 5
-Item 9 was attended by vehicle 4
-Item 10 was attended by vehicle 11
-Item 11 was attended by vehicle 12
-Item 12 was attended by vehicle 2
-Item 13 was attended by vehicle 7
-Item 14 was attended by vehicle 10
-Item 15 was attended by vehicle 15
-Item 16 was attended by vehicle 13
-Item 17 was attended by vehicle 13
-Item 18 was attended by vehicle 13
-Item 19 was attended by vehicle 8
-Best cost: 39549.71743026
-
-Generation 250
-Vehicle 0 has 0.17835426 remaining capacity
-	Trip cost: 3004.28796792
-
-Vehicle 1 has 25.00000000 remaining capacity
-	Trip cost: 0.00000000
-
-Vehicle 2 has 5.67117691 remaining capacity
-	Trip cost: 2760.82419223
-
-Vehicle 3 has 5.07063866 remaining capacity
-	Trip cost: 2808.75938961
-
-Vehicle 4 has 1.46042061 remaining capacity
-	Trip cost: 2625.80364683
-
-Vehicle 5 has 8.27658713 remaining capacity
-	Trip cost: 2173.35818745
-
-Vehicle 6 has 2.36574173 remaining capacity
-	Trip cost: 2429.04738598
-
-Vehicle 7 has 7.75563431 remaining capacity
-	Trip cost: 2489.92811842
-
-Vehicle 8 has 2.50619125 remaining capacity
-	Trip cost: 2558.03190887
-
-Vehicle 9 has 0.90503025 remaining capacity
-	Trip cost: 2895.27155192
-
-Vehicle 10 has 7.52438736 remaining capacity
-	Trip cost: 2607.44507044
-
-Vehicle 11 has 4.64857197 remaining capacity
-	Trip cost: 2616.60082504
-
-Vehicle 12 has 6.57953835 remaining capacity
-	Trip cost: 2607.44507044
-
-Vehicle 13 has 10.73136997 remaining capacity
-	Trip cost: 2607.44507044
-
-Vehicle 14 has 5.73690224 remaining capacity
-	Trip cost: 2558.48548796
-
-Vehicle 15 has 1.14613342 remaining capacity
-	Trip cost: 2795.03120581
-
-Total cost: 39537.76507937
+Total cost: 39537.77
 
 Item 0 was attended by vehicle 0
 Item 1 was attended by vehicle 14
@@ -436,3 +1248,11 @@ Item 18 was attended by vehicle 11
 Item 19 was attended by vehicle 8
 Best cost: 39537.76507937
 
+
+[Tue Jun 27 16:22:11 2023] End of optimization
+
+Total number of iterations: 1001
+Last update iteration: 212
+Total optimization time: 37.41900000
+Last update time: 7.99000000
+Large number of iterations between improvements: 103
