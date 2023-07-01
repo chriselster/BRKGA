@@ -205,3 +205,15 @@ bool Vehicle::hasIncorrectPoints()
     ok = ok && visitedClientsSet.size() == visitedClients.size();
     return !ok;
 }
+
+bool Vehicle::canTakeAllItems()
+{
+    long double totalWeight = 0;
+    for (Item *item : items)
+    {
+        if (acceptedItemTypes.find(item->type) == acceptedItemTypes.end())
+            return false;
+        totalWeight += item->weight;
+    }
+    return totalWeight <= capacity;
+}

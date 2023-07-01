@@ -1,0 +1,81 @@
+Vehicle 0 has 1.84529 remaining capacity
+	Trip cost: 3193.1
+
+Vehicle 1 has 5.70218 remaining capacity
+	Trip cost: 1672.53
+
+Vehicle 2 has 1.5228 remaining capacity
+	Trip cost: 1598.36
+
+Vehicle 3 has 2.60542 remaining capacity
+	Trip cost: 1598.36
+
+Vehicle 4 has 25 remaining capacity
+	Trip cost: 0
+
+Vehicle 5 has 0.758662 remaining capacity
+	Trip cost: 1908.57
+
+Vehicle 6 has 11.3178 remaining capacity
+	Trip cost: 1672.53
+
+Vehicle 7 has 3.00416 remaining capacity
+	Trip cost: 1916.43
+
+Vehicle 8 has 20.9938 remaining capacity
+	Trip cost: 2856.99
+
+Vehicle 9 has 1.23738 remaining capacity
+	Trip cost: 1921.06
+
+Vehicle 10 has 6.83594 remaining capacity
+	Trip cost: 1520.49
+
+Vehicle 11 has 5.70065 remaining capacity
+	Trip cost: 1672.53
+
+Vehicle 12 has 25 remaining capacity
+	Trip cost: 0
+
+Vehicle 13 has 3.43776 remaining capacity
+	Trip cost: 942.813
+
+Vehicle 14 has 9.32616 remaining capacity
+	Trip cost: 1827.65
+
+Vehicle 15 has 0.779544 remaining capacity
+	Trip cost: 2473.42
+
+Vehicle 16 has 1.7268 remaining capacity
+	Trip cost: 1357.16
+
+Vehicle 17 has 1.0999 remaining capacity
+	Trip cost: 1368.18
+
+Total cost: 29500.2
+
+Item 0 was attended by vehicle 8
+Item 1 was attended by vehicle 0
+Item 2 was attended by vehicle 2
+Item 3 was attended by vehicle 3
+Item 4 was attended by vehicle 3
+Item 5 was attended by vehicle 3
+Item 6 was attended by vehicle 5
+Item 7 was attended by vehicle 9
+Item 8 was attended by vehicle 5
+Item 9 was attended by vehicle 7
+Item 10 was attended by vehicle 14
+Item 11 was attended by vehicle 7
+Item 12 was attended by vehicle 1
+Item 13 was attended by vehicle 9
+Item 14 was attended by vehicle 6
+Item 15 was attended by vehicle 11
+Item 16 was attended by vehicle 10
+Item 17 was attended by vehicle 16
+Item 18 was attended by vehicle 17
+Item 19 was attended by vehicle 15
+Item 20 was attended by vehicle 15
+Item 21 was attended by vehicle 17
+Item 22 was attended by vehicle 15
+Item 23 was attended by vehicle 13
+Item 24 was attended by vehicle 17

@@ -270,6 +270,12 @@ void TSPInstance::validate()
 			valid = false;
 			std::cout << "Vehicle " << vehicle.id << " has " << vehicle.remainingCapacity << " remaining capacity" << std::endl;
 		}
+		if (!vehicle.canTakeAllItems())
+		{
+			valid = false;
+			std::cout << "Vehicle " << vehicle.id << " can't take all items" << std::endl;
+		}
+
 		if (!vehicle.canVisitAllClients())
 		{
 			valid = false;
@@ -281,6 +287,21 @@ void TSPInstance::validate()
 			std::cout << "Vehicle " << vehicle.id << " has incorrect points" << std::endl;
 		}
 	}
+	for (auto &carrier : carriers)
+	{
+		for (auto &vehicle : carrier.vehicles)
+		{
+			for (auto &item : vehicle->items)
+			{
+				if (!carrier.canAttendClient(item->clientId))
+				{
+					valid = false;
+					std::cout << "Carrier " << carrier.id << " can't attend client " << item->clientId << std::endl;
+				}
+			}
+		}
+	}
+
 	if (valid)
 	{
 		std::cout << "Solution is valid" << std::endl;

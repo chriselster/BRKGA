@@ -35,12 +35,18 @@
             "name": "Test Solution",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/solution",
+            "program": "${workspaceFolder}/solution",
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/in",
+            "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
+            "args": [
+                "1",
+                "instances/25-items/UNIFORM/1",
+                "0",
+                "231"
+            ],
             "setupCommands": [
                 {
                     "description": "Habilitar a reformatação automática para gdb",

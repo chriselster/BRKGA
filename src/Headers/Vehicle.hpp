@@ -16,7 +16,6 @@ private:
 	std::set<int> acceptedItemTypes;
 	std::set<int> visitedClients;
 	std::set<Point *> visitedPoints;
-	std::set<Item *> items;
 	Point origin = Point(0, 0);
 	long double calculateTripCostWhenTaking(Item *item);
 	void updateCurrentTripInfo(Item *item);
@@ -29,6 +28,7 @@ private:
 	long double costPerKmPerWeight;
 
 public:
+	std::set<Item *> items;
 	long double remainingCapacity;
 	int carrierId;
 	int id;
@@ -49,6 +49,7 @@ public:
 	void setMinimumCapacity(long double minimumCapacity);
 	bool canVisitAllClients();
 	bool hasIncorrectPoints();
+	bool canTakeAllItems();
 };
 
 #endif // __Vehicle_H__

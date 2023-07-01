@@ -47,7 +47,7 @@ void Carrier::print()
 
 bool Carrier::canAttend(Item *item)
 {
-    if (clientIds.find(item->clientId) == clientIds.end())
+    if (!canAttendClient(item->clientId))
         return false;
     for (auto &vehicle : vehicles)
     {
@@ -55,6 +55,13 @@ bool Carrier::canAttend(Item *item)
             return true;
     }
     return false;
+}
+
+bool Carrier::canAttendClient(int clientId)
+{
+    if (clientIds.find(clientId) == clientIds.end())
+        return false;
+    return true;
 }
 
 std::priority_queue<std::pair<long double, Vehicle *>> Carrier::getAvailableVehicles(Item *item)

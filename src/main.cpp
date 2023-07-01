@@ -1,6 +1,6 @@
 #include "./Headers/brkga_mp_ipr/brkga_mp_ipr.hpp"
 
-#include "./Headers/BRKGARunner.hpp"
+#include "./Headers/FileGenerator.hpp"
 #include "./Headers/RunArguments.hpp"
 #include "./Headers/TSPInstance.hpp"
 #include "./Headers/TSPDecoder.hpp"

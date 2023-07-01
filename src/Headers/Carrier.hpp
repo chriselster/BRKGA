@@ -31,6 +31,7 @@ public:
 	long double calculateTripCostDelta(Item *item, Vehicle *vehicle);
 	void reset();
 	void updatePointer(Vehicle *vehicle);
+	bool canAttendClient(int clientId);
 };
 
 #endif // __Carrier_H__
