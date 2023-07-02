@@ -11,7 +11,6 @@ class Vehicle
 private:
 	long double capacity;
 	long double minimumContractedLoad;
-	long double maxDistanceBetweenClients;
 	long double additionalForMultipleClients;
 	std::set<int> acceptedItemTypes;
 	std::set<int> visitedClients;
@@ -28,6 +27,7 @@ private:
 	long double costPerKmPerWeight;
 
 public:
+	long double maxDistanceBetweenClients;
 	std::set<Item *> items;
 	long double remainingCapacity;
 	int carrierId;
@@ -50,6 +50,7 @@ public:
 	bool canVisitAllClients();
 	bool hasIncorrectPoints();
 	bool canTakeAllItems();
+	bool acceptsItemType(int itemType);
 };
 
 #endif // __Vehicle_H__

@@ -45,7 +45,7 @@ void Vehicle::addAcceptedItem(int itemType)
 
 bool Vehicle::canTake(Item *item)
 {
-    if (acceptedItemTypes.find(item->type) == acceptedItemTypes.end())
+    if (!acceptsItemType(item->type))
         return false;
 
     if (remainingCapacity < item->weight)
@@ -62,6 +62,11 @@ bool Vehicle::canTake(Item *item)
     }
 
     return true;
+}
+
+bool Vehicle::acceptsItemType(int itemType)
+{
+    return acceptedItemTypes.find(itemType) != acceptedItemTypes.end();
 }
 
 void Vehicle::print()
@@ -164,7 +169,7 @@ long double Vehicle::tripCost()
 {
     long double cost = 0;
     if (visitedClients.size() > 1)
-        cost += additionalForMultipleClients;
+        cost += additionalForMultipleClients * (visitedClients.size() - 1);
     for (Item *item : items)
     {
         cost += baseTripCost(item);

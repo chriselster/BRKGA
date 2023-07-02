@@ -291,14 +291,21 @@ void TSPInstance::validate()
 	{
 		for (auto &vehicle : carrier.vehicles)
 		{
-			for (auto &item : vehicle->items)
+			std::cout << "Vehicle " << vehicle->id << ": ";
+			for (auto &client : clients)
 			{
-				if (!carrier.canAttendClient(item->clientId))
+				for (auto &client2 : clients)
 				{
-					valid = false;
-					std::cout << "Carrier " << carrier.id << " can't attend client " << item->clientId << std::endl;
+					if (client.id == client2.id)
+						continue;
+					double distance = client.getPosition()->distanceTo(client2.getPosition());
+					if (distance <= vehicle->maxDistanceBetweenClients)
+					{
+						std::cout << "(" << client.id << "-" << client2.id << "),";
+					}
 				}
 			}
+			std::cout << std::endl;
 		}
 	}
 
