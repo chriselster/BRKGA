@@ -9,48 +9,49 @@
 class Vehicle
 {
 private:
-	long double capacity;
-	long double minimumContractedLoad;
-	long double additionalForMultipleClients;
-	std::set<int> acceptedItemTypes;
-	std::set<int> visitedClients;
-	std::set<Point *> visitedPoints;
-	Point origin = Point(0, 0);
-	long double calculateTripCostWhenTaking(Item *item);
-	void updateCurrentTripInfo(Item *item);
-	long double getFarthestTrip();
-	long double calculateDeadFreightCostWhenTaking(Item *item);
-	long double calculateDeadFreight();
-	long double baseTripCost(Item *item);
-	void addToVehicle(Item *item);
-	void removeFromVehicle(Item *item, bool clientWasAlreadyVisited);
-	long double costPerKmPerWeight;
+    long double capacity;
+    long double minimumContractedLoad;
+    long double additionalForMultipleClients;
+    std::set<int> acceptedItemTypes;
+    std::set<int> visitedClients;
+    std::set<Point *> visitedPoints;
+    Point origin = Point(0, 0);
+    long double calculateTripCostWhenTaking(Item *item);
+    void updateCurrentTripInfo(Item *item);
+    long double getFarthestTrip();
+    long double calculateDeadFreightCostWhenTaking(Item *item);
+
+    long double baseTripCost(Item *item);
+    void addToVehicle(Item *item);
+    void removeFromVehicle(Item *item, bool clientWasAlreadyVisited);
+    long double costPerKmPerWeight;
 
 public:
-	long double maxDistanceBetweenClients;
-	std::set<Item *> items;
-	long double remainingCapacity;
-	int carrierId;
-	int id;
-	int type;
-	Vehicle(std::vector<std::string> values);
-	Vehicle(int id, int carrierId, int type, long double capacity, long double costPerKm,
-			long double minimumCapacity, long double additionalForMultipleClients, long double maxDistanceBetweenClients);
-	~Vehicle();
-	void addAcceptedItem(int itemType);
-	bool canTake(Item *itemType);
-	void print();
-	void take(Item *item);
-	void reset();
-	long double tripCost();
-	long double usedCapacity();
-	bool alreadyVisited(int clientId);
-	long double calculateTripCostDelta(Item *item);
-	void setMinimumCapacity(long double minimumCapacity);
-	bool canVisitAllClients();
-	bool hasIncorrectPoints();
-	bool canTakeAllItems();
-	bool acceptsItemType(int itemType);
+    long double maxDistanceBetweenClients;
+    std::set<Item *> items;
+    long double remainingCapacity;
+    int carrierId;
+    int id;
+    int type;
+    Vehicle(std::vector<std::string> values);
+    Vehicle(int id, int carrierId, int type, long double capacity, long double costPerKm,
+            long double minimumCapacity, long double additionalForMultipleClients, long double maxDistanceBetweenClients);
+    ~Vehicle();
+    void addAcceptedItem(int itemType);
+    bool canTake(Item *itemType);
+    void print();
+    void take(Item *item);
+    void reset();
+    long double tripCost();
+    long double usedCapacity();
+    bool alreadyVisited(int clientId);
+    long double calculateTripCostDelta(Item *item);
+    void setMinimumCapacity(long double minimumCapacity);
+    bool canVisitAllClients();
+    bool hasIncorrectPoints();
+    bool canTakeAllItems();
+    long double calculateDeadFreight();
+    bool acceptsItemType(int itemType);
 };
 
 #endif // __Vehicle_H__

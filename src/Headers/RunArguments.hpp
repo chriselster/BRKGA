@@ -17,7 +17,7 @@ class RunArguments
             output_file_location.replace(output_file_location.find("solutions"), 9, "outputs");
         }
         std::string decoder = getDecoderName();
-        output_file_location = output_file_location + decoder + "/" + std::to_string(seed) + +".txt ";
+        output_file_location = output_file_location + decoder + "/" + std::to_string(seed) + +".txt";
     }
 
     std::string getDecoderName()

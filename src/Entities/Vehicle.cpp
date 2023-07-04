@@ -55,10 +55,9 @@ bool Vehicle::canTake(Item *item)
     {
         for (Point *visitedPoint : visitedPoints)
         {
-            if (visitedPoint->distanceTo(&item->destination) <= maxDistanceBetweenClients)
-                return true;
+            if (visitedPoint->distanceTo(&item->destination) > maxDistanceBetweenClients)
+                return false;
         }
-        return false;
     }
 
     return true;
@@ -183,12 +182,12 @@ bool Vehicle::canVisitAllClients()
 
     for (Point *visitedPoint : visitedPoints)
     {
-        bool ok = false;
+        bool ok = true;
         for (Point *otherPoint : visitedPoints)
         {
-            if (visitedPoint->distanceTo(otherPoint) <= maxDistanceBetweenClients)
+            if (visitedPoint->distanceTo(otherPoint) > maxDistanceBetweenClients)
             {
-                ok = true;
+                ok = false;
                 break;
             }
         }

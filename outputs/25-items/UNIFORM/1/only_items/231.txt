@@ -1,56 +1,74 @@
 Vehicle 0 has 1.84529 remaining capacity
 	Trip cost: 3193.1
+	Dead freight cost: 80.0343
 
 Vehicle 1 has 5.70218 remaining capacity
 	Trip cost: 1672.53
+	Dead freight cost: 153.652
 
 Vehicle 2 has 1.5228 remaining capacity
 	Trip cost: 1598.36
+	Dead freight cost: 18.3595
 
 Vehicle 3 has 2.60542 remaining capacity
 	Trip cost: 1598.36
+	Dead freight cost: 91.2189
 
 Vehicle 4 has 25 remaining capacity
 	Trip cost: 0
+	Dead freight cost: 0
 
 Vehicle 5 has 0.758662 remaining capacity
 	Trip cost: 1908.57
+	Dead freight cost: 0
 
 Vehicle 6 has 11.3178 remaining capacity
 	Trip cost: 1672.53
+	Dead freight cost: 595.64
 
 Vehicle 7 has 3.00416 remaining capacity
 	Trip cost: 1916.43
+	Dead freight cost: 0
 
 Vehicle 8 has 20.9938 remaining capacity
 	Trip cost: 2856.99
+	Dead freight cost: 2318.37
 
 Vehicle 9 has 1.23738 remaining capacity
 	Trip cost: 1921.06
+	Dead freight cost: 0
 
 Vehicle 10 has 6.83594 remaining capacity
 	Trip cost: 1520.49
+	Dead freight cost: 220.806
 
 Vehicle 11 has 5.70065 remaining capacity
 	Trip cost: 1672.53
+	Dead freight cost: 153.531
 
 Vehicle 12 has 25 remaining capacity
 	Trip cost: 0
+	Dead freight cost: 0
 
 Vehicle 13 has 3.43776 remaining capacity
 	Trip cost: 942.813
+	Dead freight cost: 86.8482
 
 Vehicle 14 has 9.32616 remaining capacity
 	Trip cost: 1827.65
+	Dead freight cost: 479.59
 
 Vehicle 15 has 0.779544 remaining capacity
 	Trip cost: 2473.42
+	Dead freight cost: 0
 
 Vehicle 16 has 1.7268 remaining capacity
 	Trip cost: 1357.16
+	Dead freight cost: 27.2461
 
 Vehicle 17 has 1.0999 remaining capacity
 	Trip cost: 1388.18
+	Dead freight cost: 0
 
 Total cost: 29520.2
 
